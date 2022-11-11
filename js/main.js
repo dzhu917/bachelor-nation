@@ -1,4 +1,5 @@
-let data;
+let bachelorette_data;
+let contestant_data;
 
 d3.csv("data/bachelorette-data.csv", (row) => {
     row.date_size = +row.date_size
@@ -8,9 +9,18 @@ d3.csv("data/bachelorette-data.csv", (row) => {
     row.winner = +row.winner
     return row
 }).then((csv) => {
-    data = csv
-    console.log(data)
-    drawDots(data)
+    bachelorette_data = csv
+    console.log(bachelorette_data)
+})
+
+d3.csv("data/contestant_data_simplified.csv", (row) => {
+    row.season = +row.season
+    row.winner = +row.winner
+    return row
+}).then((csv) => {
+    contestant_data = csv
+    console.log(contestant_data)
+    drawDots(contestant_data)
 })
 
 function drawDots(data){
