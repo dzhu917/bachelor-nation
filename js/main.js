@@ -13,7 +13,7 @@ d3.csv("data/bachelorette-data.csv", (row) => {
     console.log(bachelorette_data)
 })
 
-d3.csv("data/contestant_data_simplified.csv", (row) => {
+d3.csv("data/contestant-data-simplified.csv", (row) => {
     row.season = +row.season
     row.winner = +row.winner
     return row
@@ -38,18 +38,32 @@ function drawDots(data){
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom);
 
-    var circles = svg.selectAll("dots")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", d => d.season * 10)
-        .attr("cy", (d,i) => i * 10)
-        .attr("r", 2)
-        .attr('fill', function(d){
+    // create circle containers
+    let circles = svg.selectAll('circle')
+        .data(data);
+
+    // append circles
+    circles.enter().append('circle')
+        .attr('cx', function(d,i){
+            if(i % 4 === 0){
+                return width/10*3.5;
+            } else if(i % 4 === 1) {
+                return width/10 * 4.5
+            } else if(i % 4 === 2) {
+                return width/10 * 5.5
+            } else if(i % 4 === 3) {
+                return width/10 * 6.5
+            }
+        })
+        .attr('cy', function(d,i){
+            return (Math.trunc(i / 4)) * height/5 + margin.top;
+        })
+        .attr('r', width/30)
+        .attr('fill', function(d,i){
             if(d.winner === 1){
                 return 'blue'
             }else{
                 return 'red'
             }
-        })
+        });
 }
