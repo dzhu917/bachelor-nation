@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,400;8..144,600&display=swap");
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Roboto Serif";
+    font-weight: 600;
+}
+
+h2 {
+    color: seagreen;
+}
+
+p {
+    font-family: "Roboto Serif";
+    font-weight: 400;
+}
+
+body {
+    padding: 5vh;
+}
