@@ -33,37 +33,36 @@ function drawDots(data){
     let width = 600 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
 
-    let svg = d3.select("#dots")
+    let allContestantDots = d3.select("#allContestantDots")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom);
 
     // create circle containers
-    let circles = svg.selectAll('circle')
+    let allContestantCircles = allContestantDots.selectAll('circle')
         .data(data);
 
     // append circles
-    circles.enter().append('circle')
-        .attr('cx', function(d,i){
-            if(i % 4 === 0){
-                return width/10*3.5;
-            } else if(i % 4 === 1) {
-                return width/10 * 4.5
-            } else if(i % 4 === 2) {
-                return width/10 * 5.5
-            } else if(i % 4 === 3) {
-                return width/10 * 6.5
+    allContestantCircles.enter().append('circle')
+        .attr('cx', function(d){
+            return d3.randomUniform(margin.right, width - 10)();
+        })
+        .attr('cy', function(d){
+            return d3.randomUniform(margin.top, height - 10)()
+        })
+        .attr('r', function(d,i){
+            if(d.winner === 1){
+                return 5
+            }
+            else{
+                return 3
             }
         })
-        .attr('cy', function(d,i){
-            return (Math.trunc(i / 4)) * height/5 + margin.top;
-        })
-        .attr('r', width/30)
         .attr('fill', function(d,i){
             if(d.winner === 1){
-                return 'blue'
+                return 'teal'
             }else{
-                return 'red'
+                return 'lightgrey'
             }
         });
 }
