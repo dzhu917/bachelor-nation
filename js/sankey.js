@@ -60,7 +60,7 @@ class FirVis {
 
         // CREATE SLIDER
         vis.sliderFill = d3.sliderBottom()
-            .min(1)
+            .min(0)
             .max(10)
             .width(300)
             .ticks(10)
@@ -104,12 +104,12 @@ class FirVis {
         allContestantCircles.enter().append('circle')
             .merge(allContestantCircles)
             .attr('cx', function(d, i){
-                return vis.padding + 10*(i % 10)
+                return vis.padding + 15*(i % 26)
             })
             .attr('cy', function(d, i){
-                return 2*vis.padding + 10*Math.floor(i / 10)
+                return 2*vis.padding + 15*Math.floor(i / 26)
             })
-            .attr('r', 3)
+            .attr('r', 5)
             .attr('fill', function(d){
                 // if contestant has been eliminated, fill circle gray
                 if(d.elim_week <= val) {
