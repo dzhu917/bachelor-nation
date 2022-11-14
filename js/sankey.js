@@ -30,26 +30,6 @@ class FirVis {
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
 
-        // create circle containers
-        vis.allContestantCircles = vis.svg.selectAll('circle')
-            .data(vis.data);
-
-        // append circles
-        vis.allContestantCircles.enter().append('circle')
-            .attr('cx', function(d, i){
-                return vis.padding + 10*(i % 10)
-            })
-            .attr('cy', function(d, i){
-                return 2*vis.padding + 10*Math.floor(i / 10)
-            })
-            .attr('r', 3)
-            .attr('fill', function(d){
-                if(d.fir === 1){
-                    return 'rgba(255,49,49,0.62)'
-                } else{
-                    return '#cce5cc'
-                }
-            });
 
         // Create legend
         vis.allContestantDotLegendData = ["Received first impression rose", "Did not receive first impression rose", "Eliminated"]
@@ -88,7 +68,8 @@ class FirVis {
             .default(0.015)
             .fill('#0f4f65')
             .on('onchange', val => {
-                d3.select('p#value-fill').text(val);
+                // d3.select('p#value-fill').text(val);
+                vis.updateVis(val);
             });
 
         vis.gFill = d3.select('div#slider')
@@ -100,7 +81,7 @@ class FirVis {
 
         vis.gFill.call(vis.sliderFill);
 
-        // d3.select('p#value-fill').text(d3.format('.2%')(vis.sliderFill.value()));
+        console.log(vis.sliderFill.value())
 
         vis.wrangleData();
     }
@@ -111,10 +92,35 @@ class FirVis {
         vis.updateVis();
     }
 
-    updateVis(){
+    updateVis(val){
+        // console.log(val)
         let vis = this;
 
-        // add a slider from weeks 1 to 10
-        //
+        // create circle containers
+        let allContestantCircles = vis.svg.selectAll('circle')
+            .data(vis.data);
+
+        // append circles
+        allContestantCircles.enter().append('circle')
+            .merge(allContestantCircles)
+            .attr('cx', function(d, i){
+                return vis.padding + 10*(i % 10)
+            })
+            .attr('cy', function(d, i){
+                return 2*vis.padding + 10*Math.floor(i / 10)
+            })
+            .attr('r', 3)
+            .attr('fill', function(d){
+                // if contestant has been eliminated, fill circle gray
+                if(d.elim_week <= val) {
+                    return '#525750'
+                } else if (d.fir === 1){
+                    return 'rgba(255,49,49,0.62)'
+                } else{
+                    return '#cce5cc'
+                }
+            });
+
+        allContestantCircles.exit().remove();
     }
 }
