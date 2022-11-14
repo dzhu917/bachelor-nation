@@ -99,10 +99,6 @@ class DotsVis {
             .append('g')
             .data(vis.data)
 
-        // create circle containers
-        // vis.winnerDifferentiatedCircles = vis.allContestantCircles.selectAll('.winnerDifferentiatedCircles')
-        //     .data(vis.data);
-
         // append circles
         vis.winnerDifferentiatedDots.enter()
             .append('circle')
