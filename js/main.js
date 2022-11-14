@@ -51,12 +51,14 @@ function createVis(data) {
     myFIR = new FirVis('firDiv', contestant_data);
 }
 
+/*
 let selectedCategory = document.getElementById('categorySelector').value;
 
 function categoryChange(){
     selectedCategory = document.getElementById('categorySelector').value;
     myDots.wrangleData();
 }
+*/
 
 function clean(chartType){
     if (chartType !== "dot"){
@@ -65,7 +67,7 @@ function clean(chartType){
             .attr("opacity", 0)
     }
     if (chartType !== "fir"){
-        d3.select("#firgroup")
+        d3.select("#sankeygroup")
             .transition()
             .attr("opacity", 0)
     }
@@ -102,6 +104,14 @@ function draw4(){
     myDots.updateVisElimSorted();
 }
 
+function draw5(){
+    console.log("draw5");
+
+    clean("fir");
+
+    myFIR.updateVis();
+}
+
 
 // Enables scrolling function
 // Loads text and draws graph on scroll
@@ -112,6 +122,7 @@ let activationFunctions = [
     draw2,
     draw3,
     draw4,
+    draw5,
 ]
 
 let scroll = scroller()

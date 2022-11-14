@@ -16,40 +16,27 @@ class FirVis {
         vis.margin = {top: 20, right: 40, bottom: 20, left: 20};
 
         vis.padding = 30;
+        vis.svg = d3.select("#svg");
+        
+        vis.width = vis.svg.style("width").replace("px", "");
+        vis.height = vis.svg.style("height").replace("px", "");
 
-        // Width and height as the inner dimensions of the chart area
-        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
-
-        // sort data by FIR
-
-        vis.svg = d3.select("#" + vis.parentElement)
-            .append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
-
-        vis.initFIRVis();
-        vis.initSortedFIRVis();
-        vis.wrangleData();
-    }
-
-    initFIRVis() {
-
-        let vis = this
-
-        // sort data by FIR
-        vis.data.sort((a,b) => {return b.fir - a.fir})
+        vis.sankeygroup = vis.svg
+            .append("g")
+            .attr("id", "sankeygroup")
+            .attr("opacity", 0)
 
         // append div container for tooltip
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'divTooltip')
 
+        
         // Create legend
-        vis.allContestantDotLegendData = ["Received first impression rose", "Did not receive first impression rose", "Eliminated"]
+        vis.allContestantDotLegendData = ["Got first impression rose", "Did not get first impression rose", "Eliminated"]
         vis.allContestantDotLegendColors = ["rgba(255,49,49,0.62)", '#cce5cc', "#525750"]
 
-        vis.allContestantDotLegend = vis.svg
+        vis.allContestantDotLegend = vis.sankeygroup
             .selectAll(".allContestantDotLegend")
             .enter()
             .append('g')
@@ -58,19 +45,18 @@ class FirVis {
         vis.allContestantDotLegend.enter()
             .append("rect")
             .attr("class","allContestantDotLegend")
-            .attr("width",20)
-            .attr("height",20)
+            .attr("width",15)
+            .attr("height",15)
             .attr("fill", (d,i) => vis.allContestantDotLegendColors[i])
             .attr('y', 10)
-            .attr('x',(d,i) => i*300 + vis.margin.left)
+            .attr('x',(d,i) => i*250 + vis.margin.left)
 
         vis.allContestantDotLegend.enter()
             .append("text")
             .attr("class","allContestantDotLegend-label")
             .text(d => d)
             .attr('y', 25)
-            .attr('x',(d,i) => 30 + i*300 + vis.margin.left)
-            .style("font-size", "16px");
+            .attr('x',(d,i) => 20 + i*250 + vis.margin.left)
 
         // CREATE SLIDER
         vis.sliderFill = d3.sliderBottom()
@@ -82,8 +68,8 @@ class FirVis {
             .default(0.015)
             .fill('#0f4f65')
             .on('onchange', val => {
-                // d3.select('p#value-fill').text(val);
-                vis.updateVis(val);
+                vis.selected = val;
+                vis.updateVis();
             });
 
         vis.gFill = d3.select('div#slider')
@@ -95,8 +81,7 @@ class FirVis {
 
         vis.gFill.call(vis.sliderFill);
 
-        // console.log(vis.sliderFill.value())
-
+        vis.wrangleData();
     }
 
     initSortedFIRVis() {
@@ -162,38 +147,25 @@ class FirVis {
     wrangleData(){
         let vis = this;
 
-        vis.updateVis();
+        // sort data by FIR
+        vis.data.sort((a,b) => {return b.fir - a.fir})
     }
 
-    updateVis(val){
+    updateVis(){
         // console.log(val)
         let vis = this;
 
+        vis.sankeygroup
+            .transition()
+            .attr("opacity", 1);
+
         // create circle containers
-        let allContestantCircles = vis.svg.selectAll('.allContestantCircles')
+        let allContestantCircles = vis.sankeygroup.selectAll('.allContestantCircles')
             .data(vis.data);
 
         // append circles
         allContestantCircles.enter().append('circle')
             .attr("class", "allContestantCircles")
-            .merge(allContestantCircles)
-            .attr('cx', function(d, i){
-                return vis.padding + 15*(i % 26)
-            })
-            .attr('cy', function(d, i){
-                return 2*vis.padding + 15*Math.floor(i / 26)
-            })
-            .attr('r', 5)
-            .attr('fill', function(d){
-                // if contestant has been eliminated, fill circle gray
-                if(d.elim_week <= val) {
-                    return '#525750'
-                } else if (d.fir === 1){
-                    return 'rgba(255,49,49,0.62)'
-                } else{
-                    return '#cce5cc'
-                }
-            })
             .on("mouseover", function(event,d){
                 vis.tooltip
                     .style("opacity", 1)
@@ -218,6 +190,25 @@ class FirVis {
                     .style("left", 0)
                     .style("top", 0)
                     .html(``);
+            })
+            .merge(allContestantCircles)
+            .transition()
+            .attr('cx', function(d, i){
+                return vis.padding + 15*(i % 26)
+            })
+            .attr('cy', function(d, i){
+                return 2*vis.padding + 15*Math.floor(i / 26)
+            })
+            .attr('r', 5)
+            .attr('fill', function(d){
+                // if contestant has been eliminated, fill circle gray
+                if(d.elim_week <= vis.selected) {
+                    return '#525750'
+                } else if (d.fir === 1){
+                    return 'rgba(255,49,49,0.62)'
+                } else{
+                    return '#cce5cc'
+                }
             });
 
         allContestantCircles.exit().remove();
