@@ -24,6 +24,7 @@ class DotsVis {
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
 
+        // Add visualization
         vis.initAllDotsVis();
         vis.initWinnerDotsVis();
 
@@ -54,7 +55,7 @@ class DotsVis {
             })
             .attr('cy', function(d){
                 if (d.show === "Bachelorette"){
-                    return 70 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
+                    return 90 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
                 }
                 else{
                     return d3.randomUniform(vis.margin.top + vis.padding, 100)()
@@ -68,6 +69,30 @@ class DotsVis {
                     return '#75D6FF'
                 }
             });
+
+        // ADD LABELS TO CLUSTERS
+        vis.allContestantCircles.enter()
+            .append("text")
+            .attr("class", "allContestantCirclesSeasonLabels")
+            .merge(vis.allContestantCircles)
+            .attr('x', function(d){
+                if (d.show === "Bachelorette"){
+                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+                }
+                else{
+                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+                }
+            })
+            .attr('y', function(d){
+                if (d.show === "Bachelorette"){
+                    return 90 + 100 + vis.margin.top
+                }
+                else{
+                    return 100 + vis.margin.top
+                }
+            })
+            .text(d => "S" + d.season)
+            .style("font-size", 12)
 
         // CREATE LEGEND FOR DOT PLOT 1
 
@@ -103,16 +128,16 @@ class DotsVis {
 
         // CREATE DOT PLOT 2: DIFFERENTIATE WINNERS
 
-        vis.winnerDifferentiatedDots = vis.svg
-            .selectAll(".winnerDifferentiatedDots")
+        vis.winnerDifferentiatedCircles = vis.svg
+            .selectAll(".winnerDifferentiatedCircles")
             .enter()
             .append('g')
             .data(vis.data)
 
         // append circles
-        vis.winnerDifferentiatedDots.enter()
+        vis.winnerDifferentiatedCircles.enter()
             .append('circle')
-            .attr('class', 'winnerDifferentiatedDots')
+            .attr('class', 'winnerDifferentiatedCircles')
             .attr('cx', function(d){
                 if (d.show === "Bachelorette"){
                     return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
@@ -123,7 +148,7 @@ class DotsVis {
             })
             .attr('cy', function(d){
                 if (d.show === "Bachelorette"){
-                    return 200 + 70 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
+                    return 200 + 90 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
                 }
                 else{
                     return 200 + d3.randomUniform(vis.margin.top + vis.padding, 100)()
@@ -151,6 +176,30 @@ class DotsVis {
                     return '#FAB05A'
                 }
             });
+
+        // ADD LABELS TO CLUSTERS
+        vis.winnerDifferentiatedCircles.enter()
+            .append("text")
+            .attr("class", "allContestantCirclesSeasonLabels")
+            .merge(vis.winnerDifferentiatedCircles)
+            .attr('x', function(d){
+                if (d.show === "Bachelorette"){
+                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+                }
+                else{
+                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+                }
+            })
+            .attr('y', function(d){
+                if (d.show === "Bachelorette"){
+                    return 200 + 90 + 100 + vis.margin.top
+                }
+                else{
+                    return 200 + 100 + vis.margin.top
+                }
+            })
+            .text(d => "S" + d.season)
+            .style("font-size", 12)
 
     }
 
