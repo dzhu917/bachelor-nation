@@ -37,5 +37,11 @@ function createVis(data) {
 
     myDots = new DotsVis('dotsDiv', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
-    
+}
+
+let selectedCategory = document.getElementById('categorySelector').value;
+
+function categoryChange(){
+    selectedCategory = document.getElementById('categorySelector').value;
+    myDots.wrangleData();
 }

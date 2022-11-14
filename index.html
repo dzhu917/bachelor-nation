@@ -20,8 +20,15 @@
 				<div class="align-self-center">
 					<h1>Bachelor Nation</h1>
 				</div>
-				<p>All contestants are represented as dots. Teal ones are Bachelor contestants. Orange ones are Bachelorette contestants. Separated by season.</p>
-				<p>Winners are differentiated by size in the following visualization.</p>
+				<p>All contestants are represented as dots. Teal ones are Bachelor contestants. Orange ones are Bachelorette contestants. Separated by season. Winners are differentiated by size in the following visualization.</p>
+				<div style="margin-bottom: 10px">
+					<select id='categorySelector' class="custom-select align-self-center" style="width: 30%" onchange="categoryChange()">
+						<option value="allContestants" selected>All Contestants</option>
+						<option value="winnerDiff">Winners</option>
+						<option value="elimWeek">Elimination Week</option>
+						<option value="sortedElimWeek">Sorted Elimination Week</option>
+					</select>
+				</div>
 				<div id="dotsDiv" style="height: 130vh; width: 100%;"></div>
 			</div>
 			<div class="row justify-content-center">
@@ -34,8 +41,6 @@
 				<div id="firDiv" style="height: 150vh; width: 100%;"></div>
 			</div>
 		</div>
-
-
 
 
 	<!-- embedding JS libraries -->
