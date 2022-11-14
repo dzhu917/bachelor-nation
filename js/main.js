@@ -43,6 +43,7 @@ function createVis(data) {
 
     svg = d3.select("#vis")
                     .append('svg')
+                    .attr("id", "svg")
                     .attr('width', width)
                     .attr('height', height);
 
@@ -57,9 +58,8 @@ function createVis(data) {
 
     simulation.stop()
 
-
-    myDots = new DotsVis('dotsDiv', contestant_data);
-    myFIR = new FirVis('firDiv', contestant_data);
+    myDots = new DotsVis('vis', contestant_data);
+    //myFIR = new FirVis('firDiv', contestant_data);
 }
 
 let selectedCategory = document.getElementById('categorySelector').value;
@@ -79,7 +79,7 @@ function draw2(){
 
 let activationFunctions = [
     draw1,
-    draw2
+    draw2,
 ]
 
 let scroll = scroller()
@@ -87,13 +87,6 @@ let scroll = scroller()
 scroll()
 
 let lastIndex, activeIndex = 0
-
-scroll.on('active', function(index){
-    d3.selectAll('.step')
-        .transition().duration(500)
-        .style('opacity', function (d, i) {return i === index ? 1 : 0.1;});
-    
-}
 
 function draw1(){
     console.log("draw1");
@@ -102,17 +95,6 @@ function draw1(){
 function draw2(){
     console.log("draw2");
 }
-
-let activationFunctions = [
-    draw1,
-    draw2
-]
-
-let scroll = scroller()
-    .container(d3.select('#vis-text'))
-scroll()
-
-let lastIndex, activeIndex = 0
 
 scroll.on('active', function(index){
     d3.selectAll('.step')
