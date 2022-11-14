@@ -249,7 +249,7 @@ function drawInitial(){
 
     svg.selectAll('.lab-text')
         .text(d => `Average: $${d3.format(",.2r")(categoriesXY[d][2])}`)
-        .attr('x', d => categoriesXY[d][0] + 200 + 1000)
+        .attr('x', d => categoriefsXY[d][0] + 200 + 1000)
         .attr('y', d => categoriesXY[d][1] - 500)
         .attr('font-family', 'Domine')
         .attr('font-size', '12px')

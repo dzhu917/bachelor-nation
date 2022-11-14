@@ -28,7 +28,7 @@ class DotsVis {
         vis.initAllDotsVis();
         vis.initWinnerDotsVis();
         vis.initElimWeekDotsVis();
-        vis.initSortedElimWeekDotsVis();
+        //vis.initSortedElimWeekDotsVis();
 
         vis.wrangleData();
     }

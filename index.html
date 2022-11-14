@@ -1,45 +1,68 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>CS171 Final Project</title>
 
-		<!-- Load CSS libraries -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-		<link rel="stylesheet" href="css/style.css">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CS171 Final Project</title>
 
-		<!-- GOOGLE FONTS -->
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,300italic' rel='stylesheet' type='text/css'>
-	</head>
+	<!-- Load CSS libraries -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
 
-	<body>
-		<div class="container-fluid">
-			<div class="row justify-content-center">
-				<div class="align-self-center">
-					<h1>Bachelor Nation</h1>
+	<!-- GOOGLE FONTS -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,300italic' rel='stylesheet'
+		type='text/css'>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-4" id="vis-text">
+				<div id="sections">
+					<section class="step">
+						<div class="row justify-content-center">
+							<div class="align-self-center">
+								<h1>Bachelor Nation</h1>
+							</div>
+							
+							<p>All contestants are represented as dots. Teal ones are Bachelor contestants. Orange ones are
+								Bachelorette contestants. Separated by season.</p>
+							<p>Winners are differentiated by size in the following visualization.</p>
+							<div id="dotsDiv" style="height: 130vh; width: 100%;"></div>
+						</div>
+					</section>
+					<section class="step">
+						<div class="row justify-content-center">
+							<div class="align-self-center">
+								<h4>First impression roses as an indicator of success</h4>
+								<p>In the first week of each season, one contestant received a "First Impression Rose".</p>
+							</div>
+							<p id="value-fill"></p>
+							<div id="slider"></div>
+							<div id="firDiv" style="height: 150vh; width: 100%;"></div>
+						</div>
+					</section>
 				</div>
-				<p>All contestants are represented as dots. Teal ones are Bachelor contestants. Orange ones are Bachelorette contestants. Separated by season.</p>
-				<p>Winners are differentiated by size in the following visualization.</p>
-				<div id="dotsDiv" style="height: 130vh; width: 100%;"></div>
 			</div>
-			<div class="row justify-content-center">
-				<div class="align-self-center">
-					<h4>First impression roses as an indicator of success</h4>
-					<p>In the first week of each season, one contestant received a "First Impression Rose".</p>
+
+			<div class="col-8">	
+				<div class="sticky-top">
+					<div id="vis"></div>
 				</div>
-				<p id="value-fill"></p>
-				<div id="slider"></div>
-				<div id="firDiv" style="height: 150vh; width: 100%;"></div>
 			</div>
 		</div>
+	</div>
 
 
 
 
 	<!-- embedding JS libraries -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+		crossorigin="anonymous"></script>
 
 	<!-- d3 -->
 	<script src="https://d3js.org/d3.v7.min.js"></script>
@@ -55,5 +78,6 @@
 	<!-- main -->
 	<script src="js/main.js"></script>
 
-	</body>
+</body>
+
 </html>

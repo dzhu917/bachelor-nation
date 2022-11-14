@@ -1,6 +1,8 @@
 let bachelorette_data;
 let contestant_data;
 let myDots;
+let simulation, nodes;
+let svg;
 let myFIR;
 
 let promises = [
@@ -35,7 +37,68 @@ function createVis(data) {
     bachelorette_data = data[0];
     contestant_data = data[1];
 
+    let margins = {top: 20, right: 20, bottom: 50, left: 20};
+    let width = document.getElementById("vis").getBoundingClientRect().width - margins.left - margins.right;
+    let height = window.innerHeight - margins.top - margins.bottom;
+
+    svg = d3.select("#vis")
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height);
+
+    simulation = d3.forceSimulation(data)
+
+    // Define each tick of simulation
+    simulation.on('tick', () => {
+        nodes
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y)
+    })
+
+    simulation.stop()
+
+
     myDots = new DotsVis('dotsDiv', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
     
 }
+
+function draw1(){
+    console.log("draw1");
+}
+
+function draw2(){
+    console.log("draw2");
+}
+
+let activationFunctions = [
+    draw1,
+    draw2
+]
+
+let scroll = scroller()
+    .container(d3.select('#vis-text'))
+scroll()
+
+let lastIndex, activeIndex = 0
+
+scroll.on('active', function(index){
+    d3.selectAll('.step')
+        .transition().duration(500)
+        .style('opacity', function (d, i) {return i === index ? 1 : 0.1;});
+    
+    activeIndex = index
+    let sign = (activeIndex - lastIndex) < 0 ? -1 : 1; 
+    let scrolledSections = d3.range(lastIndex + sign, activeIndex + sign, sign);
+    scrolledSections.forEach(i => {
+        activationFunctions[i]();
+    })
+    lastIndex = activeIndex;
+
+})
+
+scroll.on('progress', function(index, progress){
+    if (index == 2 & progress > 0.7){
+
+    }
+})
