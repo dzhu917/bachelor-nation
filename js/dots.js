@@ -28,6 +28,7 @@ class DotsVis {
         vis.initAllDotsVis();
         vis.initWinnerDotsVis();
         vis.initElimWeekDotsVis();
+        vis.initSortedElimWeekDotsVis();
 
         vis.wrangleData();
     }
@@ -207,7 +208,7 @@ class DotsVis {
     initElimWeekDotsVis(){
         let vis = this
 
-        // CREATE DOT PLOT 2: DIFFERENTIATE WINNERS
+        // CREATE DOT PLOT 3: DIFFERENTIATE BY ELIMINATION WEEK
 
         vis.elimWeekDifferentiatedCircles = vis.svg
             .selectAll(".elimWeekDifferentiatedCircles")
@@ -342,6 +343,156 @@ class DotsVis {
                 }
                 else{
                     return 400 + 100 + vis.margin.top
+                }
+            })
+            .text(d => "S" + d.season)
+            .style("font-size", 12)
+    }
+
+    initSortedElimWeekDotsVis(){
+        let vis = this
+
+        // CREATE DOT PLOT 4: SORT THE DOTS DIFFERENTIATED BY ELIMINATION WEEK
+
+        vis.elimWeekDifferentiatedCircles = vis.svg
+            .selectAll(".elimWeekDifferentiatedCircles")
+            .enter()
+            .append('g')
+            .data(vis.data)
+
+        // append circles
+        vis.elimWeekDifferentiatedCircles.enter()
+            .append('circle')
+            .attr('class', 'elimWeekDifferentiatedCircles')
+            .attr('cx', function(d){
+                if (d.show === "Bachelorette"){
+                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+                }
+                else{
+                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+                }
+            })
+            .attr('cy', function(d){
+                if (d.show === "Bachelor" & d.winner === 1){
+                    return 700
+                }
+                else if (d.show === "Bachelor" & d.winner === 0){
+                    return 640 + d.elim_week * 6
+                }
+                else if (d.show === "Bachelorette" & d.winner === 1){
+                    return 700 + 100
+                }
+                else{
+                    return 640 + 100 + d.elim_week * 6
+                }
+            })
+            .attr('r', function(d){
+                if(d.winner === 1){
+                    return 6
+                }
+                else{
+                    return 3
+                }
+            })
+            .attr('fill', function(d,i){
+                if(d.show == "Bachelorette"){
+                    if(d.winner === 1){
+                        return '#2d87ad'
+                    }
+                    else if(d.elim_week === 10){
+                        return '#4690b3'
+                    }
+                    else if(d.elim_week === 9){
+                        return '#5a99ba'
+                    }
+                    else if(d.elim_week === 8){
+                        return '#6ba2c0'
+                    }
+                    else if(d.elim_week === 7){
+                        return '#7cacc6'
+                    }
+                    else if(d.elim_week === 6){
+                        return '#8cb5cd'
+                    }
+                    else if(d.elim_week === 5){
+                        return '#9cbed3'
+                    }
+                    else if(d.elim_week === 4){
+                        return '#abc8da'
+                    }
+                    else if(d.elim_week === 3){
+                        return '#bbd2e0'
+                    }
+                    else if(d.elim_week === 2){
+                        return '#cadbe7'
+                    }
+                    else if(d.elim_week === 1){
+                        return '#d9e5ed'
+                    }
+                    else {
+                        return '#d9e5ed'
+                    }
+                }
+                else{
+                    if(d.winner === 1){
+                        return '#AD6A1C'
+                    }
+                    else if(d.elim_week === 10){
+                        return '#b67631'
+                    }
+                    else if(d.elim_week === 9){
+                        return '#bf8244'
+                    }
+                    else if(d.elim_week === 8){
+                        return '#c88f57'
+                    }
+                    else if(d.elim_week === 7){
+                        return '#d09b6a'
+                    }
+                    else if(d.elim_week === 6){
+                        return '#d8a87d'
+                    }
+                    else if(d.elim_week === 5){
+                        return '#dfb590'
+                    }
+                    else if(d.elim_week === 4){
+                        return '#e6c2a3'
+                    }
+                    else if(d.elim_week === 3){
+                        return '#eccfb7'
+                    }
+                    else if(d.elim_week === 2){
+                        return '#f2ddcb'
+                    }
+                    else if(d.elim_week === 1){
+                        return '#f8eadf'
+                    }
+                    else {
+                        return '#f8eadf'
+                    }
+
+                }
+            });
+
+        // ADD LABELS TO CLUSTERS
+        vis.elimWeekDifferentiatedCircles.enter()
+            .append("text")
+            .attr("class", "allContestantCirclesSeasonLabels")
+            .merge(vis.elimWeekDifferentiatedCircles)
+            .attr('x', function(d){
+                if (d.show === "Bachelorette"){
+                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+                }
+                else{
+                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+                }
+            })
+            .attr('y', function(d){
+                if (d.show === "Bachelorette"){
+                    return 705 + 100 + vis.margin.top
+                }
+                else{
+                    return 705 + vis.margin.top
                 }
             })
             .text(d => "S" + d.season)
