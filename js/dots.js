@@ -45,10 +45,20 @@ class DotsVis {
             .attr("class", "allContestantCircles")
             .merge(vis.allContestantCircles)
             .attr('cx', function(d){
-                return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/68)), (d.season * (vis.width/21)))();
+                if (d.show === "Bachelorette"){
+                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+                }
+                else{
+                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+                }
             })
             .attr('cy', function(d){
-                return d3.randomUniform(vis.margin.top + vis.padding, 100)()
+                if (d.show === "Bachelorette"){
+                    return 70 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
+                }
+                else{
+                    return d3.randomUniform(vis.margin.top + vis.padding, 100)()
+                }
             })
             .attr('r', 3)
             .attr('fill', function(d,i){
@@ -104,10 +114,20 @@ class DotsVis {
             .append('circle')
             .attr('class', 'winnerDifferentiatedDots')
             .attr('cx', function(d){
-                return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (vis.width/21)))();
+                if (d.show === "Bachelorette"){
+                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+                }
+                else{
+                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+                }
             })
             .attr('cy', function(d){
-                return 300 + d3.randomUniform(vis.margin.top, vis.height)()
+                if (d.show === "Bachelorette"){
+                    return 200 + 70 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
+                }
+                else{
+                    return 200 + d3.randomUniform(vis.margin.top + vis.padding, 100)()
+                }
             })
             .attr('r', function(d){
                 if(d.winner === 1){
@@ -119,13 +139,13 @@ class DotsVis {
             })
             .attr('fill', function(d,i){
                 if(d.show === "Bachelorette" & d.winner === 1){
-                    return '#AD6A1C'
+                    return '#2D87AD'
                 }
                 else if(d.show === "Bachelorette" & d.winner === 0){
                     return '#75D6FF'
                 }
                 else if(d.show === "Bachelor" & d.winner === 1){
-                    return '#2D87AD'
+                    return '#AD6A1C'
                 }
                 else {
                     return '#FAB05A'
