@@ -97,7 +97,6 @@ class DotsVis {
             .style("font-size", 12)
 
         // CREATE LEGEND FOR DOT PLOT 1
-
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
         vis.allContestantDotLegendColors = ["#75D6FF", "#FAB05A"]
 
