@@ -60,6 +60,38 @@ function createVis(data) {
 
     myDots = new DotsVis('dotsDiv', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
+}
+
+let selectedCategory = document.getElementById('categorySelector').value;
+
+function categoryChange(){
+    selectedCategory = document.getElementById('categorySelector').value;
+    myDots.wrangleData();
+}
+
+function draw1(){
+    console.log("draw1");
+}
+
+function draw2(){
+    console.log("draw2");
+}
+
+let activationFunctions = [
+    draw1,
+    draw2
+]
+
+let scroll = scroller()
+    .container(d3.select('#vis-text'))
+scroll()
+
+let lastIndex, activeIndex = 0
+
+scroll.on('active', function(index){
+    d3.selectAll('.step')
+        .transition().duration(500)
+        .style('opacity', function (d, i) {return i === index ? 1 : 0.1;});
     
 }
 

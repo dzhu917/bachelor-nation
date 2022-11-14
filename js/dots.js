@@ -26,7 +26,7 @@ class DotsVis {
 
         // Add visualization
         vis.initAllDotsVis();
-        vis.initWinnerDotsVis();
+        //vis.initWinnerDotsVis();
         vis.initElimWeekDotsVis();
         //vis.initSortedElimWeekDotsVis();
 
@@ -154,110 +154,110 @@ class DotsVis {
             .style("font-size", "16px");
     }
 
-    initWinnerDotsVis(){
-        let vis = this
-
-        // CREATE DOT PLOT 2: DIFFERENTIATE WINNERS
-
-        vis.winnerDifferentiatedCircles = vis.svg
-            .selectAll(".winnerDifferentiatedCircles")
-            .enter()
-            .append('g')
-            .data(vis.data)
-
-        // append circles
-        vis.winnerDifferentiatedCircles.enter()
-            .append('circle')
-            .attr('class', 'winnerDifferentiatedCircles')
-            .attr('cx', function(d){
-                if (d.show === "Bachelorette"){
-                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
-                }
-                else{
-                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
-                }
-            })
-            .attr('cy', function(d){
-                if (d.show === "Bachelorette"){
-                    return 200 + 90 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
-                }
-                else{
-                    return 200 + d3.randomUniform(vis.margin.top + vis.padding, 100)()
-                }
-            })
-            .attr('r', function(d){
-                if(d.winner === 1){
-                    return 6
-                }
-                else{
-                    return 3
-                }
-            })
-            .attr('fill', function(d,i){
-                if(d.show === "Bachelorette" & d.winner === 1){
-                    return '#2D87AD'
-                }
-                else if(d.show === "Bachelorette" & d.winner === 0){
-                    return '#75D6FF'
-                }
-                else if(d.show === "Bachelor" & d.winner === 1){
-                    return '#AD6A1C'
-                }
-                else {
-                    return '#FAB05A'
-                }
-            })
-            .on("mouseover", function(event,d){
-                vis.tooltip
-                    .style("opacity", 1)
-                    .style("left", event.pageX + 20 + "px")
-                    .style("top", event.pageY + "px")
-                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
-                     <p style="font-weight: bold;">${d.name}</p>
-                     <p style="line-height: 0.5"> Season: ${d.season}</p>
-                     <p style="line-height: 0.5"> Elim Week: ${d.elim_week}</p>                     
-                 </div>\``);
-
-                d3.select(this)
-                    .style("stroke", "black")
-            })
-            .on("mouseout", function(){
-                d3.select(this)
-                    .attr("opacity", "1")
-                    .attr("stroke-width", 0)
-
-                vis.tooltip
-                    .style("opacity", 0)
-                    .style("left", 0)
-                    .style("top", 0)
-                    .html(``);
-            });
-
-        // ADD LABELS TO CLUSTERS
-        vis.winnerDifferentiatedCircles.enter()
-            .append("text")
-            .attr("class", "allContestantCirclesSeasonLabels")
-            .merge(vis.winnerDifferentiatedCircles)
-            .attr('x', function(d){
-                if (d.show === "Bachelorette"){
-                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
-                }
-                else{
-                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
-                }
-            })
-            .attr('y', function(d){
-                if (d.show === "Bachelorette"){
-                    return 200 + 90 + 100 + vis.margin.top
-                }
-                else{
-                    return 200 + 100 + vis.margin.top
-                }
-            })
-            .text(d => "S" + d.season)
-            .style("font-size", 12)
-
-    }
+    // initWinnerDotsVis(){
+    //     let vis = this
+    //
+    //     // CREATE DOT PLOT 2: DIFFERENTIATE WINNERS
+    //
+    //     vis.winnerDifferentiatedCircles = vis.svg
+    //         .selectAll(".winnerDifferentiatedCircles")
+    //         .enter()
+    //         .append('g')
+    //         .data(vis.data)
+    //
+    //     // append circles
+    //     vis.winnerDifferentiatedCircles.enter()
+    //         .append('circle')
+    //         .attr('class', 'winnerDifferentiatedCircles')
+    //         .attr('cx', function(d){
+    //             if (d.show === "Bachelorette"){
+    //                 return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+    //             }
+    //             else{
+    //                 return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+    //             }
+    //         })
+    //         .attr('cy', function(d){
+    //             if (d.show === "Bachelorette"){
+    //                 return 200 + 90 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
+    //             }
+    //             else{
+    //                 return 200 + d3.randomUniform(vis.margin.top + vis.padding, 100)()
+    //             }
+    //         })
+    //         .attr('r', function(d){
+    //             if(d.winner === 1){
+    //                 return 6
+    //             }
+    //             else{
+    //                 return 3
+    //             }
+    //         })
+    //         .attr('fill', function(d,i){
+    //             if(d.show === "Bachelorette" & d.winner === 1){
+    //                 return '#2D87AD'
+    //             }
+    //             else if(d.show === "Bachelorette" & d.winner === 0){
+    //                 return '#75D6FF'
+    //             }
+    //             else if(d.show === "Bachelor" & d.winner === 1){
+    //                 return '#AD6A1C'
+    //             }
+    //             else {
+    //                 return '#FAB05A'
+    //             }
+    //         })
+    //         .on("mouseover", function(event,d){
+    //             vis.tooltip
+    //                 .style("opacity", 1)
+    //                 .style("left", event.pageX + 20 + "px")
+    //                 .style("top", event.pageY + "px")
+    //                 .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
+    //                  <p style="font-weight: bold;">${d.name}</p>
+    //                  <p style="line-height: 0.5"> Season: ${d.season}</p>
+    //                  <p style="line-height: 0.5"> Elim Week: ${d.elim_week}</p>
+    //              </div>\``);
+    //
+    //             d3.select(this)
+    //                 .style("stroke", "black")
+    //         })
+    //         .on("mouseout", function(){
+    //             d3.select(this)
+    //                 .attr("opacity", "1")
+    //                 .attr("stroke-width", 0)
+    //
+    //             vis.tooltip
+    //                 .style("opacity", 0)
+    //                 .style("left", 0)
+    //                 .style("top", 0)
+    //                 .html(``);
+    //         });
+    //
+    //     // ADD LABELS TO CLUSTERS
+    //     vis.winnerDifferentiatedCircles.enter()
+    //         .append("text")
+    //         .attr("class", "allContestantCirclesSeasonLabels")
+    //         .merge(vis.winnerDifferentiatedCircles)
+    //         .attr('x', function(d){
+    //             if (d.show === "Bachelorette"){
+    //                 return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+    //             }
+    //             else{
+    //                 return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+    //             }
+    //         })
+    //         .attr('y', function(d){
+    //             if (d.show === "Bachelorette"){
+    //                 return 200 + 90 + 100 + vis.margin.top
+    //             }
+    //             else{
+    //                 return 200 + 100 + vis.margin.top
+    //             }
+    //         })
+    //         .text(d => "S" + d.season)
+    //         .style("font-size", 12)
+    //
+    // }
 
     initElimWeekDotsVis(){
         let vis = this
@@ -611,6 +611,29 @@ class DotsVis {
 
     updateVis(){
         let vis = this;
+
+        if(selectedCategory === "allContestants"){
+            vis.allContestantCircles
+                .enter()
+                .merge(vis.allContestantCircles)
+                .selectAll(".allContestantCircles")
+                .attr('r', 3)
+        }
+        else if(selectedCategory === "winnerDiff"){
+            vis.allContestantCircles
+                .selectAll(".allContestantCircles")
+                .attr('r', function(d){
+                    if(d.winner === 1){
+                        return 6
+                    }
+                    else{
+                        return 3
+                    }
+                })
+
+            vis.allContestantCircles.exit().remove()
+        }
+
     }
 
 }
