@@ -47,13 +47,13 @@ class FirVis {
                 if(d.fir === 1){
                     return 'rgba(255,49,49,0.62)'
                 } else{
-                    return '#0f4f65'
+                    return '#cce5cc'
                 }
             });
 
-        // create legend where red = FIR, blue = not FIR, grey '#525750' = eliminated
+        // Create legend
         vis.allContestantDotLegendData = ["Received first impression rose", "Did not receive first impression rose", "Eliminated"]
-        vis.allContestantDotLegendColors = ["rgba(255,49,49,0.62)", '#0f4f65', "#525750"]
+        vis.allContestantDotLegendColors = ["rgba(255,49,49,0.62)", '#cce5cc', "#525750"]
 
         vis.allContestantDotLegend = vis.svg
             .selectAll(".allContestantDotLegend")
@@ -78,6 +78,30 @@ class FirVis {
             .attr('x',(d,i) => 30 + i*300 + vis.margin.left)
             .style("font-size", "16px");
 
+        // CREATE SLIDER
+        vis.sliderFill = d3.sliderBottom()
+            .min(1)
+            .max(10)
+            .width(300)
+            .ticks(10)
+            .step(1)
+            .default(0.015)
+            .fill('#0f4f65')
+            .on('onchange', val => {
+                d3.select('p#value-fill').text(val);
+            });
+
+        vis.gFill = d3.select('div#slider')
+            .append('svg')
+            .attr('width', 500)
+            .attr('height', 100)
+            .append('g')
+            .attr('transform', 'translate(30,30)');
+
+        vis.gFill.call(vis.sliderFill);
+
+        // d3.select('p#value-fill').text(d3.format('.2%')(vis.sliderFill.value()));
+
         vis.wrangleData();
     }
 
@@ -89,5 +113,8 @@ class FirVis {
 
     updateVis(){
         let vis = this;
+
+        // add a slider from weeks 1 to 10
+        //
     }
 }
