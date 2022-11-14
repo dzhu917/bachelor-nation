@@ -111,7 +111,7 @@ class DotsVis {
                 return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (vis.width/21)))();
             })
             .attr('cy', function(d){
-                return (600 + d3.randomUniform(vis.margin.top, vis.height)())
+                return d3.randomUniform(vis.margin.top, vis.height)()
             })
             .attr('r', function(d){
                 if(d.winner === 1){
