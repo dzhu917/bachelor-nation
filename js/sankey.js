@@ -34,9 +34,11 @@ class FirVis {
 
         // append circles
         vis.allContestantCircles.enter().append('circle')
-            .attr('cx', 0)
+            .attr('cx', function(d, i){
+                return vis.padding + 10*(i % 10)
+            })
             .attr('cy', function(d, i){
-                return i*10
+                return vis.padding + 10*Math.floor(i / 10) // use modulo 3 for x
             })
             .attr('r', 3)
             .attr('fill', 'black');
