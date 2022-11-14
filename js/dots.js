@@ -9,6 +9,14 @@ class DotsVis {
 
     initVis(){
         let vis = this
+        vis.initAllDotsVis();
+        vis.initWinnerDotsVis();
+
+        vis.wrangleData();
+    }
+
+    initAllDotsVis(){
+        let vis = this
 
         // Margin object with properties for the four directions
         vis.margin = {top: 20, right: 40, bottom: 20, left: 20};
@@ -20,7 +28,7 @@ class DotsVis {
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
         // DOT PLOT 1: FOR ALL CONTESTANTS
-        vis.svg = d3.select("#allContestantDots")
+        vis.svg = d3.select("#" + vis.parentElement)
             .append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
@@ -47,6 +55,7 @@ class DotsVis {
             });
 
         // CREATE LEGEND FOR DOT PLOT 1
+
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
         vis.allContestantDotLegendColors = ["#75D6FF", "#FAB05A"]
 
@@ -72,10 +81,14 @@ class DotsVis {
             .attr('y', 25)
             .attr('x',(d,i) => vis.margin.left + 30 + i*250)
             .style("font-size", "16px");
+    }
+
+    initWinnerDotsVis(){
 
         // CREATE DOT PLOT 2: DIFFERENTIATE WINNERS
-        vis.winnerDifferentiatedDots = d3.select("#winnerDifferentiatedDots")
-            .append("svg")
+
+        vis.winnerDifferentiatedDots = vis.svg.selectAll("circle")
+            .append("g")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
 
@@ -114,7 +127,6 @@ class DotsVis {
                 }
             });
 
-        vis.wrangleData();
     }
 
     wrangleData(){
