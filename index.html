@@ -20,10 +20,9 @@
 				<div class="align-self-center">
 					<h1>Bachelor Nation</h1>
 				</div>
+				<div id="dotsDiv" style="height: 80vh; width: 100%;"></div>
 				<p>All contestants are represented as dots. Teal ones are Bachelor contestants. Orange ones are Bachelorette contestants. Separated by season.</p>
-				<div class="col" id="allContestantDots"></div>
 				<p>Winners are differentiated by size in the following visualization.</p>
-				<div class="col" id="winnerDifferentiatedDots"></div>
 			</div>
 			<div class="row">
 				<div class="col-6">
@@ -31,7 +30,7 @@
 						<div class="align-self-center">
 							<h4>First impression roses as an indicator of success</h4>
 						</div>
-						<div class="col"></div>
+						<div class="col" id="firDiv"></div>
 					</div>
 				</div>
 				<div class="col-6">
@@ -53,8 +52,9 @@
 	<script src="https://d3js.org/d3.v7.min.js"></script>
 
 	<!-- own js files -->
+		<script src="js/sankey.js"></script>
+		<script src="js/dots.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/sankey.js"></script>
 	<script src="js/scroller.js"></script>
 	<script src="js/sections.js"></script>
 
