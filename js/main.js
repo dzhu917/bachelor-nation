@@ -47,19 +47,8 @@ function createVis(data) {
                     .attr('width', width)
                     .attr('height', height);
 
-    simulation = d3.forceSimulation(data)
-
-    // Define each tick of simulation
-    simulation.on('tick', () => {
-        nodes
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y)
-    })
-
-    simulation.stop()
-
     myDots = new DotsVis('vis', contestant_data);
-    //myFIR = new FirVis('firDiv', contestant_data);
+    myFIR = new FirVis('firDiv', contestant_data);
 }
 
 let selectedCategory = document.getElementById('categorySelector').value;
@@ -69,17 +58,60 @@ function categoryChange(){
     myDots.wrangleData();
 }
 
+function clean(chartType){
+    if (chartType !== "dot"){
+        d3.select("#dotgroup")
+            .transition()
+            .attr("opacity", 0)
+    }
+    if (chartType !== "fir"){
+        d3.select("#firgroup")
+            .transition()
+            .attr("opacity", 0)
+    }
+}
 function draw1(){
     console.log("draw1");
+
+    clean("dot");
+
+    myDots.updateVisAll();
 }
 
 function draw2(){
     console.log("draw2");
+
+    clean("dot");
+    
+    myDots.updateVisWinner();
 }
 
+function draw3(){
+    console.log("draw3");
+
+    clean("dot");
+
+    myDots.updateVisElim();
+}
+
+function draw4(){
+    console.log("draw4");
+
+    clean("dot");
+
+    myDots.updateVisElimSorted();
+}
+
+
+// Enables scrolling function
+// Loads text and draws graph on scroll
+
+// Array of all graph functions
 let activationFunctions = [
     draw1,
     draw2,
+    draw3,
+    draw4,
 ]
 
 let scroll = scroller()
@@ -87,14 +119,6 @@ let scroll = scroller()
 scroll()
 
 let lastIndex, activeIndex = 0
-
-function draw1(){
-    console.log("draw1");
-}
-
-function draw2(){
-    console.log("draw2");
-}
 
 scroll.on('active', function(index){
     d3.selectAll('.step')
@@ -108,11 +132,4 @@ scroll.on('active', function(index){
         activationFunctions[i]();
     })
     lastIndex = activeIndex;
-
-})
-
-scroll.on('progress', function(index, progress){
-    if (index == 2 & progress > 0.7){
-
-    }
 })

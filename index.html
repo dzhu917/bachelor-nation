@@ -27,11 +27,16 @@
 							<div class="align-self-center">
 								<h1>Bachelor Nation</h1>
 							</div>
-							
-							<p>All contestants are represented as dots. Teal ones are Bachelor contestants. Orange ones are
-								Bachelorette contestants. Separated by season.</p>
-							<p>Winners are differentiated by size in the following visualization.</p>
-							<div id="dotsDiv" style="height: 130vh; width: 100%;"></div>
+
+							<p>All contestants are represented as dots. Teal ones are Bachelor contestants. Orange ones are Bachelorette contestants. Separated by season. Winners are differentiated by size in the following visualization.</p>
+							<div style="margin-bottom: 10px">
+								<select id='categorySelector' class="custom-select align-self-center" style="width: 30%" onchange="categoryChange()">
+									<option value="allContestants" selected>All Contestants</option>
+									<option value="winnerDiff">Winners</option>
+									<option value="elimWeek">Elimination Week</option>
+									<option value="sortedElimWeek">Sorted Elimination Week</option>
+								</select>
+							</div>
 						</div>
 					</section>
 					<section class="step">
@@ -39,6 +44,9 @@
 							<div class="align-self-center">
 								<h4>First impression roses as an indicator of success</h4>
 								<p>In the first week of each season, one contestant received a "First Impression Rose".</p>
+								<p>Out of all Bachelor and Bachelorette seasons, 26 first impression roses were given out. Of the contestants
+									who received a first impression rose, 7 (27%) of them would go on to win the show. In contrast,
+									only 26 out of the 860 (3%) other contestants that have been on the show ultimately won their season.</p>
 							</div>
 							<p id="value-fill"></p>
 							<div id="slider"></div>
@@ -46,24 +54,19 @@
 						</div>
 					</section>
 					<section class="step">
-						<p>All contestants are represented as dots. Teal ones are Bachelor contestants. Orange ones are Bachelorette contestants. Separated by season. Winners are differentiated by size in the following visualization.</p>
-						<div style="margin-bottom: 10px">
-							<select id='categorySelector' class="custom-select align-self-center" style="width: 30%" onchange="categoryChange()">
-								<option value="allContestants" selected>All Contestants</option>
-								<option value="winnerDiff">Winners</option>
-								<option value="elimWeek">Elimination Week</option>
-								<option value="sortedElimWeek">Sorted Elimination Week</option>
-							</select>
-						</div>
-						<div id="dotsDiv" style="height: 130vh; width: 100%;"></div>
+						<p>Out of all Bachelor and Bachelorette seasons, 26 first impression roses were given out. Of the contestants
+							who received a first impression rose, 7 (27%) of them would go on to win the show. In contrast,
+							only 26 out of the 860 (3%) other contestants that have been on the show ultimately won their season</p>
 					</section>
 					<section class="step">
-						<p id="value-fill"></p>
-						<div id="slider"></div>
-						<div id="firDiv" style="height: 150vh; width: 100%;"></div>
 						<p>Out of all Bachelor and Bachelorette seasons, 26 first impression roses were given out. Of the contestants
-						who received a first impression rose, 7 (27%) of them would go on to win the show. In contrast,
-						only 26 out of the 860 (3%) other contestants that have been on the show ultimately won their season.</p>
+							who received a first impression rose, 7 (27%) of them would go on to win the show. In contrast,
+							only 26 out of the 860 (3%) other contestants that have been on the show ultimately won their season</p>
+					</section>
+					<section class="step">
+						<p>Out of all Bachelor and Bachelorette seasons, 26 first impression roses were given out. Of the contestants
+							who received a first impression rose, 7 (27%) of them would go on to win the show. In contrast,
+							only 26 out of the 860 (3%) other contestants that have been on the show ultimately won their season</p>
 					</section>
 				</div>
 			</div>
