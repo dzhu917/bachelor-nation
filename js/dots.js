@@ -16,8 +16,8 @@ class DotsVis {
         vis.padding = 30;
 
         // Width and height as the inner dimensions of the chart area
-        vis.width = 800 - vis.margin.left - vis.margin.right;
-        vis.height = 600 - vis.margin.top - vis.margin.bottom;
+        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
+        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
         // DOT PLOT 1: FOR ALL CONTESTANTS
         vis.svg = d3.select("#allContestantDots")
@@ -32,7 +32,7 @@ class DotsVis {
         // append circles
         vis.allContestantCircles.enter().append('circle')
             .attr('cx', function(d){
-                return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (width/21)))();
+                return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (vis.width/21)))();
             })
             .attr('cy', function(d){
                 return d3.randomUniform(vis.margin.top + vis.padding, vis.height)()
@@ -86,7 +86,7 @@ class DotsVis {
         // append circles
         vis.winnerDifferentiatedCircles.enter().append('circle')
             .attr('cx', function(d){
-                return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (width/21)))();
+                return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (vis.width/21)))();
             })
             .attr('cy', function(d){
                 return d3.randomUniform(vis.margin.top, vis.height)()
@@ -118,6 +118,8 @@ class DotsVis {
     }
 
     wrangleData(){
+        let vis = this;
+
         vis.updateVis();
     }
 
