@@ -14,9 +14,11 @@ d3.csv("data/bachelorette-data.csv", (row) => {
     console.log(bachelorette_data)
 })
 
-d3.csv("data/contestant-data-simplified.csv", (row) => {
+d3.csv("data/contestant-data-simplified-1.csv", (row) => {
     row.season = +row.season
     row.winner = +row.winner
+    row.elim_week = +row.elim_week
+    row.fir = +row.fir
     return row
 }).then((csv) => {
     contestant_data = csv
