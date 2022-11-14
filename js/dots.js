@@ -19,18 +19,31 @@ class DotsVis {
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
-        // DOT PLOT 1: FOR ALL CONTESTANTS
-        vis.svg = d3.select("#allContestantDots")
+        vis.svg = d3.select("#" + vis.parentElement)
             .append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
 
+        vis.initAllDotsVis();
+        vis.initWinnerDotsVis();
+
+        vis.wrangleData();
+    }
+
+    initAllDotsVis(){
+        let vis = this
+
+        // DOT PLOT 1: FOR ALL CONTESTANTS
+
         // create circle containers
-        vis.allContestantCircles = vis.svg.selectAll('circle')
+        vis.allContestantCircles = vis.svg.selectAll('.allContestantCircles')
             .data(vis.data);
 
         // append circles
-        vis.allContestantCircles.enter().append('circle')
+        vis.allContestantCircles.enter()
+            .append('circle')
+            .attr("class", "allContestantCircles")
+            .merge(vis.allContestantCircles)
             .attr('cx', function(d){
                 return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (vis.width/21)))();
             })
@@ -47,6 +60,7 @@ class DotsVis {
             });
 
         // CREATE LEGEND FOR DOT PLOT 1
+
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
         vis.allContestantDotLegendColors = ["#75D6FF", "#FAB05A"]
 
@@ -72,19 +86,27 @@ class DotsVis {
             .attr('y', 25)
             .attr('x',(d,i) => vis.margin.left + 30 + i*250)
             .style("font-size", "16px");
+    }
+
+    initWinnerDotsVis(){
+        let vis = this
 
         // CREATE DOT PLOT 2: DIFFERENTIATE WINNERS
-        vis.winnerDifferentiatedDots = d3.select("#winnerDifferentiatedDots")
-            .append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
+
+        vis.winnerDifferentiatedDots = vis.svg
+            .selectAll(".winnerDifferentiatedDots")
+            .enter()
+            .append('g')
+            .data(vis.data)
 
         // create circle containers
-        vis.winnerDifferentiatedCircles = vis.winnerDifferentiatedDots.selectAll('circle')
-            .data(vis.data);
+        // vis.winnerDifferentiatedCircles = vis.allContestantCircles.selectAll('.winnerDifferentiatedCircles')
+        //     .data(vis.data);
 
         // append circles
-        vis.winnerDifferentiatedCircles.enter().append('circle')
+        vis.winnerDifferentiatedDots.enter()
+            .append('circle')
+            .attr('class', 'winnerDifferentiatedDots')
             .attr('cx', function(d){
                 return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (vis.width/21)))();
             })
@@ -114,7 +136,6 @@ class DotsVis {
                 }
             });
 
-        vis.wrangleData();
     }
 
     wrangleData(){
