@@ -27,4 +27,5 @@ d3.csv("data/contestant-data-simplified-1.csv", (row) => {
 
 function initMainPage(data){
     myDots = new DotsVis('dotsDiv', data);
+    myFIR = new FirVis('firDiv', data);
 }
