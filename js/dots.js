@@ -165,14 +165,6 @@ class DotsVis {
                 .enter()
                 .merge(vis.allContestantCircles)
                 .selectAll(".allContestantCircles")
-                .attr('cx', function(d){
-                    if (d.show === "Bachelorette"){
-                        return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
-                    }
-                    else{
-                        return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
-                    }
-                })
                 .attr('r', function(d){
                     if(d.winner === 1){
                         return 6
