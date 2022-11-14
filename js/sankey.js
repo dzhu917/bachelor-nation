@@ -40,7 +40,7 @@ class FirVis {
                 return vis.padding + 10*(i % 10)
             })
             .attr('cy', function(d, i){
-                return vis.padding + 10*Math.floor(i / 10)
+                return 2*vis.padding + 10*Math.floor(i / 10)
             })
             .attr('r', 3)
             .attr('fill', function(d){
@@ -52,6 +52,31 @@ class FirVis {
             });
 
         // create legend where red = FIR, blue = not FIR, grey '#525750' = eliminated
+        vis.allContestantDotLegendData = ["Received first impression rose", "Did not receive first impression rose", "Eliminated"]
+        vis.allContestantDotLegendColors = ["rgba(255,49,49,0.62)", '#0f4f65', "#525750"]
+
+        vis.allContestantDotLegend = vis.svg
+            .selectAll(".allContestantDotLegend")
+            .enter()
+            .append('g')
+            .data(vis.allContestantDotLegendData)
+
+        vis.allContestantDotLegend.enter()
+            .append("rect")
+            .attr("class","allContestantDotLegend")
+            .attr("width",20)
+            .attr("height",20)
+            .attr("fill", (d,i) => vis.allContestantDotLegendColors[i])
+            .attr('y', 10)
+            .attr('x',(d,i) => i*300 + vis.margin.left)
+
+        vis.allContestantDotLegend.enter()
+            .append("text")
+            .attr("class","allContestantDotLegend-label")
+            .text(d => d)
+            .attr('y', 25)
+            .attr('x',(d,i) => 30 + i*300 + vis.margin.left)
+            .style("font-size", "16px");
 
         vis.wrangleData();
     }
