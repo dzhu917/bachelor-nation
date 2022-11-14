@@ -4,11 +4,26 @@ let myDots;
 
 let promises = [
     d3.csv("data/bachelorette-data.csv"),
-    d3.csv("data/contestant-data-simplified.csv")
+    d3.csv("data/contestant-data-simplified-1.csv")
 ];
 
 Promise.all(promises)
     .then(function (data) {
+        data[0].forEach(function(d){
+            d.date_size = +d.date_size;
+            d.first_impression = +d.first_impression;
+            d.season = +d.season;
+            d.elim_week = +d.elim_week;
+            d.winner = +d.winner;
+        });
+
+        data[1].forEach(function(d){
+            d.season = +d.season;
+            d.winner = +d.winner;
+            d.elim_week = +d.elim_week;
+            d.fir = +d.fir;
+        });
+
         createVis(data)
     })
     .catch(function (err) {
@@ -16,33 +31,10 @@ Promise.all(promises)
     });
 
 function createVis(data) {
+    bachelorette_data = data[0];
+    contestant_data = data[1];
+
+    myDots = new DotsVis('dotsDiv', contestant_data);
+    myFIR = new FirVis('firDiv', contestant_data);
     
-}
-
-d3.csv("data/bachelorette-data.csv", (row) => {
-    row.date_size = +row.date_size
-    row.first_impression = +row.first_impression
-    row.season = +row.season
-    row.elim_week = +row.elim_week
-    row.winner = +row.winner
-    return row
-}).then((csv) => {
-    bachelorette_data = csv
-    console.log(bachelorette_data)
-})
-
-d3.csv("data/contestant-data-simplified-1.csv", (row) => {
-    row.season = +row.season
-    row.winner = +row.winner
-    row.elim_week = +row.elim_week
-    row.fir = +row.fir
-    return row
-}).then((csv) => {
-    contestant_data = csv
-    initMainPage(contestant_data)
-})
-
-function initMainPage(data){
-    myDots = new DotsVis('dotsDiv', data);
-    myFIR = new FirVis('firDiv', data);
 }
