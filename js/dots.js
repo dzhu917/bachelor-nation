@@ -42,6 +42,11 @@ class DotsVis {
         vis.allContestantCircles = vis.svg.selectAll('.allContestantCircles')
             .data(vis.data);
 
+        // append div container for tooltip
+        vis.tooltip = d3.select("body").append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'divTooltip')
+
         // append circles
         vis.allContestantCircles.enter()
             .append('circle')
@@ -70,6 +75,31 @@ class DotsVis {
                 }else{
                     return '#75D6FF'
                 }
+            })
+            .on("mouseover", function(event,d){
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`<div style="border: slategray; border-radius: 5px; background: white; padding: 5px">
+                     <h5>${d.name}</h5>
+                     <h6> Season: ${d.season}</h6>
+                     <h6> Elim Week: ${d.elim_week}</h6>                     
+                 </div>\``);
+
+                d3.select(this)
+                    .style("stroke", "black")
+            })
+            .on("mouseout", function(){
+                d3.select(this)
+                    .attr("opacity", "1")
+                    .attr("stroke-width", 0)
+
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
             });
 
         // ADD LABELS TO CLUSTERS
