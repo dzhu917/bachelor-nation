@@ -1,6 +1,7 @@
 let bachelorette_data;
 let contestant_data;
 let myDots;
+let myFIR;
 
 let promises = [
     d3.csv("data/bachelorette-data.csv"),
