@@ -1,6 +1,23 @@
 let bachelorette_data;
 let contestant_data;
 
+let promises = [
+    d3.csv("data/bachelorette-data.csv"),
+    d3.csv("data/contestant-data-simplified.csv")
+];
+
+Promise.all(promises)
+    .then(function (data) {
+        createVis(data)
+    })
+    .catch(function (err) {
+        console.log(err)
+    });
+
+function createVis(data) {
+    
+}
+
 d3.csv("data/bachelorette-data.csv", (row) => {
     row.date_size = +row.date_size
     row.first_impression = +row.first_impression
