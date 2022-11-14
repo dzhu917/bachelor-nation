@@ -7,12 +7,10 @@ class FirVis {
         this.data = data;
 
         this.initVis()
+
     }
     initVis() {
         let vis = this
-
-        // sort data by FIR
-        vis.data.sort((a,b) => {return b.fir - a.fir})
 
         // Margin object with properties for the four directions
         vis.margin = {top: 20, right: 40, bottom: 20, left: 20};
@@ -30,6 +28,22 @@ class FirVis {
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
 
+        vis.initFIRVis();
+        vis.initSortedFIRVis();
+        vis.wrangleData();
+    }
+
+    initFIRVis() {
+
+        let vis = this
+
+        // sort data by FIR
+        vis.data.sort((a,b) => {return b.fir - a.fir})
+
+        // append div container for tooltip
+        vis.tooltip = d3.select("body").append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'divTooltip')
 
         // Create legend
         vis.allContestantDotLegendData = ["Received first impression rose", "Did not receive first impression rose", "Eliminated"]
@@ -81,9 +95,68 @@ class FirVis {
 
         vis.gFill.call(vis.sliderFill);
 
-        console.log(vis.sliderFill.value())
+        // console.log(vis.sliderFill.value())
 
-        vis.wrangleData();
+    }
+
+    initSortedFIRVis() {
+        let vis = this;
+
+        // sort data by FIR and then by winner
+        vis.data.sort((a,b) => {return b.fir - a.fir || b.winner - a.winner})
+
+        // create sorted array of contestants
+        vis.allContestantCirclesSorted = vis.svg
+            .selectAll(".allContestantCirclesSorted")
+            .enter()
+            .append('g')
+            .data(vis.data)
+
+        vis.allContestantCirclesSorted.enter().append('circle')
+            .attr('class', 'allContestantCirclesSorted')
+            .attr('cx', function(d, i){
+                return vis.padding + 15*(i % 26)
+            })
+            .attr('cy', function(d, i){
+                return 2*vis.padding + 15*Math.floor(i / 26) + 600
+            })
+            .attr('r', 5)
+            .attr('fill', function(d){
+                // if contestant has been eliminated, fill circle gray
+                if (d.winner === 1 && d.fir === 1) {
+                    return 'rgba(255,49,49,0.62)'
+                } else if (d.winner === 1 && d.fir === 0){
+                    return '#cce5cc'
+                } else if (d.winner === 0){
+                    return '#525750'
+                }
+            })
+            .on("mouseover", function(event,d){
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
+                     <p style="font-weight: bold;">${d.name}</p>
+                     <p style="line-height: 0.5"> Season: ${d.season}</p>
+                     <p style="line-height: 0.5"> Elim Week: ${d.elim_week}</p>                     
+                 </div>\``);
+
+                d3.select(this)
+                    .style("stroke", "black")
+            })
+            .on("mouseout", function(){
+                d3.select(this)
+                    .attr("opacity", "1")
+                    .attr("stroke-width", 0)
+
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
+            });
+
     }
 
     wrangleData(){
@@ -97,11 +170,12 @@ class FirVis {
         let vis = this;
 
         // create circle containers
-        let allContestantCircles = vis.svg.selectAll('circle')
+        let allContestantCircles = vis.svg.selectAll('.allContestantCircles')
             .data(vis.data);
 
         // append circles
         allContestantCircles.enter().append('circle')
+            .attr("class", "allContestantCircles")
             .merge(allContestantCircles)
             .attr('cx', function(d, i){
                 return vis.padding + 15*(i % 26)
@@ -119,6 +193,31 @@ class FirVis {
                 } else{
                     return '#cce5cc'
                 }
+            })
+            .on("mouseover", function(event,d){
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
+                     <p style="font-weight: bold;">${d.name}</p>
+                     <p style="line-height: 0.5"> Season: ${d.season}</p>
+                     <p style="line-height: 0.5"> Elim Week: ${d.elim_week}</p>                     
+                 </div>\``);
+
+                d3.select(this)
+                    .style("stroke", "black")
+            })
+            .on("mouseout", function(){
+                d3.select(this)
+                    .attr("opacity", "1")
+                    .attr("stroke-width", 0)
+
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
             });
 
         allContestantCircles.exit().remove();
