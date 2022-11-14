@@ -9,14 +9,6 @@ class DotsVis {
 
     initVis(){
         let vis = this
-        vis.initAllDotsVis();
-        vis.initWinnerDotsVis();
-
-        vis.wrangleData();
-    }
-
-    initAllDotsVis(){
-        let vis = this
 
         // Margin object with properties for the four directions
         vis.margin = {top: 20, right: 40, bottom: 20, left: 20};
@@ -27,18 +19,31 @@ class DotsVis {
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
-        // DOT PLOT 1: FOR ALL CONTESTANTS
         vis.svg = d3.select("#" + vis.parentElement)
             .append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
 
+        vis.initAllDotsVis();
+        vis.initWinnerDotsVis();
+
+        vis.wrangleData();
+    }
+
+    initAllDotsVis(){
+        let vis = this
+
+        // DOT PLOT 1: FOR ALL CONTESTANTS
+
         // create circle containers
-        vis.allContestantCircles = vis.svg.selectAll('circle')
+        vis.allContestantCircles = vis.svg.selectAll('.allContestantCircles')
             .data(vis.data);
 
         // append circles
-        vis.allContestantCircles.enter().append('circle')
+        vis.allContestantCircles.enter()
+            .append('circle')
+            .attr("class", "allContestantCircles")
+            .merge(vis.allContestantCircles)
             .attr('cx', function(d){
                 return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (vis.width/21)))();
             })
@@ -84,25 +89,29 @@ class DotsVis {
     }
 
     initWinnerDotsVis(){
+        let vis = this
 
         // CREATE DOT PLOT 2: DIFFERENTIATE WINNERS
 
-        vis.winnerDifferentiatedDots = vis.svg.selectAll("circle")
-            .append("g")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
+        vis.winnerDifferentiatedDots = vis.svg
+            .selectAll(".winnerDifferentiatedDots")
+            .enter()
+            .append('g')
+            .data(vis.data)
 
         // create circle containers
-        vis.winnerDifferentiatedCircles = vis.winnerDifferentiatedDots.selectAll('circle')
-            .data(vis.data);
+        // vis.winnerDifferentiatedCircles = vis.allContestantCircles.selectAll('.winnerDifferentiatedCircles')
+        //     .data(vis.data);
 
         // append circles
-        vis.winnerDifferentiatedCircles.enter().append('circle')
+        vis.winnerDifferentiatedDots.enter()
+            .append('circle')
+            .attr('class', 'winnerDifferentiatedDots')
             .attr('cx', function(d){
                 return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/30)), (d.season * (vis.width/21)))();
             })
             .attr('cy', function(d){
-                return d3.randomUniform(vis.margin.top, vis.height)()
+                return (600 + d3.randomUniform(vis.margin.top, vis.height)())
             })
             .attr('r', function(d){
                 if(d.winner === 1){
