@@ -27,6 +27,7 @@ class DotsVis {
         // Add visualization
         vis.initAllDotsVis();
         vis.initWinnerDotsVis();
+        vis.initElimWeekDotsVis();
 
         vis.wrangleData();
     }
@@ -108,8 +109,8 @@ class DotsVis {
         vis.allContestantDotLegend.enter()
             .append("rect")
             .attr("class","allContestantDotLegend")
-            .attr("width",20)
-            .attr("height",20)
+            .attr("width",15)
+            .attr("height",15)
             .attr("fill", (d,i) => vis.allContestantDotLegendColors[i])
             .attr('y', 10)
             .attr('x',(d,i) => i*250 + vis.margin.left)
@@ -118,8 +119,8 @@ class DotsVis {
             .append("text")
             .attr("class","allContestantDotLegend-label")
             .text(d => d)
-            .attr('y', 25)
-            .attr('x',(d,i) => vis.margin.left + 30 + i*250)
+            .attr('y', 22)
+            .attr('x',(d,i) => vis.margin.left + 20 + i*250)
             .style("font-size", "16px");
     }
 
@@ -201,6 +202,150 @@ class DotsVis {
             .text(d => "S" + d.season)
             .style("font-size", 12)
 
+    }
+
+    initElimWeekDotsVis(){
+        let vis = this
+
+        // CREATE DOT PLOT 2: DIFFERENTIATE WINNERS
+
+        vis.elimWeekDifferentiatedCircles = vis.svg
+            .selectAll(".elimWeekDifferentiatedCircles")
+            .enter()
+            .append('g')
+            .data(vis.data)
+
+        // append circles
+        vis.elimWeekDifferentiatedCircles.enter()
+            .append('circle')
+            .attr('class', 'elimWeekDifferentiatedCircles')
+            .attr('cx', function(d){
+                if (d.show === "Bachelorette"){
+                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+                }
+                else{
+                    return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
+                }
+            })
+            .attr('cy', function(d){
+                if (d.show === "Bachelorette"){
+                    return 400 + 90 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
+                }
+                else{
+                    return 400 + d3.randomUniform(vis.margin.top + vis.padding, 100)()
+                }
+            })
+            .attr('r', function(d){
+                if(d.winner === 1){
+                    return 6
+                }
+                else{
+                    return 3
+                }
+            })
+            .attr('fill', function(d,i){
+                if(d.show == "Bachelorette"){
+                    if(d.winner === 1){
+                        return '#2d87ad'
+                    }
+                    else if(d.elim_week === 10){
+                        return '#4690b3'
+                    }
+                    else if(d.elim_week === 9){
+                        return '#5a99ba'
+                    }
+                    else if(d.elim_week === 8){
+                        return '#6ba2c0'
+                    }
+                    else if(d.elim_week === 7){
+                        return '#7cacc6'
+                    }
+                    else if(d.elim_week === 6){
+                        return '#8cb5cd'
+                    }
+                    else if(d.elim_week === 5){
+                        return '#9cbed3'
+                    }
+                    else if(d.elim_week === 4){
+                        return '#abc8da'
+                    }
+                    else if(d.elim_week === 3){
+                        return '#bbd2e0'
+                    }
+                    else if(d.elim_week === 2){
+                        return '#cadbe7'
+                    }
+                    else if(d.elim_week === 1){
+                        return '#d9e5ed'
+                    }
+                    else {
+                        return '#d9e5ed'
+                    }
+                }
+                else{
+                    if(d.winner === 1){
+                        return '#AD6A1C'
+                    }
+                    else if(d.elim_week === 10){
+                        return '#b67631'
+                    }
+                    else if(d.elim_week === 9){
+                        return '#bf8244'
+                    }
+                    else if(d.elim_week === 8){
+                        return '#c88f57'
+                    }
+                    else if(d.elim_week === 7){
+                        return '#d09b6a'
+                    }
+                    else if(d.elim_week === 6){
+                        return '#d8a87d'
+                    }
+                    else if(d.elim_week === 5){
+                        return '#dfb590'
+                    }
+                    else if(d.elim_week === 4){
+                        return '#e6c2a3'
+                    }
+                    else if(d.elim_week === 3){
+                        return '#eccfb7'
+                    }
+                    else if(d.elim_week === 2){
+                        return '#f2ddcb'
+                    }
+                    else if(d.elim_week === 1){
+                        return '#f8eadf'
+                    }
+                    else {
+                        return '#f8eadf'
+                    }
+
+                }
+            });
+
+        // ADD LABELS TO CLUSTERS
+        vis.elimWeekDifferentiatedCircles.enter()
+            .append("text")
+            .attr("class", "allContestantCirclesSeasonLabels")
+            .merge(vis.elimWeekDifferentiatedCircles)
+            .attr('x', function(d){
+                if (d.show === "Bachelorette"){
+                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+                }
+                else{
+                    return ((d.season - 1) * (vis.width/21) + (vis.width/50));
+                }
+            })
+            .attr('y', function(d){
+                if (d.show === "Bachelorette"){
+                    return 400 + 90 + 100 + vis.margin.top
+                }
+                else{
+                    return 400 + 100 + vis.margin.top
+                }
+            })
+            .text(d => "S" + d.season)
+            .style("font-size", 12)
     }
 
     wrangleData(){
