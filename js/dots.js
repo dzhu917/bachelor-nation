@@ -150,10 +150,10 @@ class DotsVis {
             })
             .attr('y', function(d){
                 if (d.show === "Bachelorette"){
-                    return 110 + 100 + vis.margin.top
+                    return 115 + 100 + vis.margin.top
                 }
                 else{
-                    return 110 + vis.margin.top
+                    return 115 + vis.margin.top
                 }
             })
             .text(d => "S" + d.season)
@@ -256,13 +256,13 @@ class DotsVis {
             .transition()
             .attr('cy', function(d){
                 if (d.show === "Bachelor" & d.winner === 1){
-                    return 100
+                    return 115
                 }
                 else if (d.show === "Bachelor" & d.winner === 0){
                     return vis.margin.top + vis.padding + d.elim_week * 6
                 }
                 else if (d.show === "Bachelorette" & d.winner === 1){
-                    return 100 + 100
+                    return 115 + 100
                 }
                 else{
                     return vis.margin.top + vis.padding + d.elim_week * 6 + 100
