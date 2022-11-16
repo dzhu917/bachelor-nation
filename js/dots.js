@@ -30,6 +30,11 @@ class DotsVis {
             .attr('class', "tooltip")
             .attr('id', 'divTooltip')
 
+        // create group to fill white space below
+        vis.zoomedgroup = vis.svg
+            .append("g")
+            .attr("id", "zoomedgroup")
+
         // CREATE LEGEND FOR DOT PLOT 1
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
         vis.allContestantDotLegendColors = ["#75D6FF", "#FAB05A"]
@@ -269,7 +274,7 @@ class DotsVis {
                 }
             })
             .attr('r', d => d.winner === 1 ? 6 : 3)
-            .attr('fill', function(d,i){
+            .attr('fill', function(d){
                 if(d.show == "Bachelorette"){
                     if(d.winner === 1){return '#2d87ad'}
                     else if(d.elim_week === 10){return '#4690b3'}
@@ -299,6 +304,21 @@ class DotsVis {
                     else {return '#f8eadf'}
                 }
             })
+
+        vis.zoomedgroup.enter()
+            .append("text")
+            .attr("x", 500)
+            .attr("y", 500)
+            .text("testing")
+
+        vis.allContestantCircles.on("click", function(){
+                console.log("clicked");
+                d3.select(this)
+                    .attr("fill", "black");
+            })
+
+        // implement timeline
+        // vis.timeline =
     }
 
 }
