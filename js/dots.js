@@ -328,8 +328,33 @@ class DotsVis {
                     .attr("transform", "translate(0," + 520 + ")")
                     .call(vis.zoomedgroupXAxis);
 
+                vis.dotgroup
+                    .enter()
+                    .merge(vis.allContestantCircles)
+                    .append("circle")
+                    .attr("cx", function (d) {
+                        console.log(d.season)
+                        return vis.zoomedgroupX(d.elim_week);
+                    })
+                    .attr("cy", 300)
+                    .attr("r", 5)
+                    .style("fill", "black");
+
+                vis.dotgroup.exit().remove();
+
+                console.log(d3.select(this)._groups[0][0].__data__)
+
                 document.getElementById("selectedShow").innerText = d3.select(this)._groups[0][0].__data__.show;
                 document.getElementById("selectedSeason").innerText = d3.select(this)._groups[0][0].__data__.season;
+                document.getElementById("selectedName").innerText = d3.select(this)._groups[0][0].__data__.name;
+                document.getElementById("selectedAge").innerText = d3.select(this)._groups[0][0].__data__.age;
+                document.getElementById("selectedOccupation").innerText = d3.select(this)._groups[0][0].__data__.occupation;
+
+                // vis.zoomedgroupDots = vis.allContestantCircles
+                //     .enter()
+                //     .append('g')
+                //     .selectAll("zoomedgroupdot")
+                //     .merge(vis.allContestantCircles)
 
                 d3.select(this).attr("fill", "black");
         })
