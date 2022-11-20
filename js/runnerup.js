@@ -288,18 +288,15 @@ updateRunnerup(){
             vis.allContestantDot
             .selectAll(".allHighlights")
             .attr("opacity", function(d, i) {
-                if (d.runner_up === 1 && d.fir === 1){
                     if ((d.show === "Bachelorette" && (d.season == 5 || d.season == 10 || d.season == 12)) ||
                         (d.show === "Bachelor" && (d.season == 12 || d.season == 14))){
                         return 0.5
                     }else{
                         return 0.0
-                    }}
+                    }
 
 
-                else{
-                    return 0
-                }
+
             })
             
             vis.allContestantDot
