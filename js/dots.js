@@ -31,8 +31,10 @@ class DotsVis {
             .attr('id', 'divTooltip')
 
         // create group to fill white space below
-        vis.zoomedgroup = vis.svg
+        vis.zoomedgroup = vis.dotgroup
+            .selectAll(".zoomedgroup")
             .append("g")
+            .data(vis.data)
             .attr("id", "zoomedgroup")
 
         // CREATE LEGEND FOR DOT PLOT 1
@@ -305,17 +307,32 @@ class DotsVis {
                 }
             })
 
-        vis.zoomedgroup.enter()
-            .append("text")
-            .attr("x", 500)
-            .attr("y", 500)
-            .text("testing")
+        vis.zoomedgroupX = d3.scaleLinear()
+            .range([vis.margin.left, vis.width - vis.margin.right])
+            .domain([1, 10]);
 
-        vis.allContestantCircles.on("click", function(){
-                console.log("clicked");
-                d3.select(this)
-                    .attr("fill", "black");
+        vis.zoomedgroupXAxis = d3.axisBottom()
+            .scale(vis.zoomedgroupX);
+
+        vis.allContestantCircles
+            .on("mouseover", function(d){
+                d3.select(this).attr("opacity", "0.5");
             })
+            .on("mouseout", function(d){
+                d3.select(this).attr("opacity", "1");
+            })
+            .on("click", function(d,i){
+
+                vis.dotgroup.append("g")
+                    .attr("class", "x-axis axis")
+                    .attr("transform", "translate(0," + 520 + ")")
+                    .call(vis.zoomedgroupXAxis);
+
+                document.getElementById("selectedShow").innerText = d3.select(this)._groups[0][0].__data__.show;
+                document.getElementById("selectedSeason").innerText = d3.select(this)._groups[0][0].__data__.season;
+
+                d3.select(this).attr("fill", "black");
+        })
 
         // implement timeline
         // vis.timeline =
