@@ -23,6 +23,7 @@ Promise.all(promises)
         data[1].forEach(function(d){
             d.season = +d.season;
             d.winner = +d.winner;
+            d.runner_up = +d.runner_up;
             d.elim_week = +d.elim_week;
             d.fir = +d.fir;
         });
@@ -49,6 +50,7 @@ function createVis(data) {
 
     myDots = new DotsVis('vis', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
+    myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
 }
 
 /*
@@ -71,7 +73,13 @@ function clean(chartType){
             .transition()
             .attr("opacity", 0)
     }
+    if (chartType !== "runnerup"){
+        d3.select("#runnerupgroup")
+            .transition()
+            .attr("opacity", 0)
+    }
 }
+
 function draw1(){
     console.log("draw1");
 
@@ -112,6 +120,29 @@ function draw5(){
     myFIR.updateVis();
 }
 
+function draw6(){
+    console.log("draw6");
+
+    clean("dot");
+
+    myRunnerup.updateRunnerup();
+}
+
+function draw7(){
+    console.log("draw7");
+
+    clean("dot");
+
+    myRunnerup.updateRunnerupFIR();
+}
+
+function draw8(){
+    console.log("draw8");
+
+    clean("dot");
+
+    myRunnerup.updateRunnerupRoses();
+}
 
 // Enables scrolling function
 // Loads text and draws graph on scroll
@@ -123,6 +154,9 @@ let activationFunctions = [
     draw3,
     draw4,
     draw5,
+    draw6,
+    draw7,
+    draw8,
 ]
 
 let scroll = scroller()
