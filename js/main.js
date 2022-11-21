@@ -86,7 +86,7 @@ function clean(chartType){
             .attr("opacity", 0)
     }
     if (chartType !== "#mapgroup"){
-        d3.select("#runnerupgroup")
+        d3.select("#mapgroup")
             .transition()
             .attr("opacity", 0)
     }
@@ -159,7 +159,7 @@ function draw8(){
 function draw9(){
     console.log("draw9");
 
-    clean("hometown");
+    clean("dot");
 
     myHometowns.updateVis();
 }

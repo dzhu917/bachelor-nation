@@ -1,5 +1,3 @@
-// this is a test
-
 class FirVis {
 
     constructor(parentElement, data) {
