@@ -89,9 +89,7 @@ class DotsVis {
             .enter()
             .append('circle')
             .attr("class", "allContestantCircles")
-            .on("mouseover", function(event,d){
-
-                console.log("mouseover");
+            .on("mouseenter", function(event,d){
 
                 vis.tooltip
                     .style("opacity", 1)
