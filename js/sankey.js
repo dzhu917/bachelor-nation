@@ -84,6 +84,7 @@ class FirVis {
         vis.wrangleData();
     }
 
+    // not being implemented
     initSortedFIRVis() {
         let vis = this;
 
@@ -121,6 +122,7 @@ class FirVis {
                     .style("opacity", 1)
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
+                    // tooltip
                     .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
                      <p style="font-weight: bold;">${d.name}</p>
                      <p style="line-height: 0.5"> Season: ${d.season}</p>
