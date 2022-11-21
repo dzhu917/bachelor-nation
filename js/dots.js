@@ -328,11 +328,13 @@ class DotsVis {
                     .attr("transform", "translate(0," + 520 + ")")
                     .call(vis.zoomedgroupXAxis);
 
+
                 vis.dotgroup
                     .enter()
                     .merge(vis.allContestantCircles)
                     .append("circle")
                     .attr("cx", function (d) {
+                        console.log(d)
                         console.log(d.season)
                         return vis.zoomedgroupX(d.elim_week);
                     })
@@ -346,9 +348,10 @@ class DotsVis {
 
                 document.getElementById("selectedShow").innerText = d3.select(this)._groups[0][0].__data__.show;
                 document.getElementById("selectedSeason").innerText = d3.select(this)._groups[0][0].__data__.season;
-                document.getElementById("selectedName").innerText = d3.select(this)._groups[0][0].__data__.name;
+                document.getElementById("selectedName").innerText = vis.titleCase(d3.select(this)._groups[0][0].__data__.name);
                 document.getElementById("selectedAge").innerText = d3.select(this)._groups[0][0].__data__.age;
                 document.getElementById("selectedOccupation").innerText = d3.select(this)._groups[0][0].__data__.occupation;
+                document.getElementById("selectedElimWeek").innerText = d3.select(this)._groups[0][0].__data__.elim_week;
 
                 // vis.zoomedgroupDots = vis.allContestantCircles
                 //     .enter()
@@ -361,6 +364,12 @@ class DotsVis {
 
         // implement timeline
         // vis.timeline =
+    }
+
+    titleCase(str) {
+        return str.toLowerCase().split(' ').map(function(word) {
+            return word.replace(word[0], word[0].toUpperCase());
+        }).join(' ');
     }
 
 }
