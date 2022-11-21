@@ -85,7 +85,7 @@ function clean(chartType){
             .transition()
             .attr("visibility", "hidden")
     }
-    if (chartType !== "#mapgroup"){
+    if (chartType !== "map"){
         d3.select("#mapgroup")
             .transition()
             .attr("opacity", 0)
@@ -159,7 +159,7 @@ function draw8(){
 function draw9(){
     console.log("draw9");
 
-    clean("dot");
+    clean("map");
 
     myHometowns.updateVis();
 }
