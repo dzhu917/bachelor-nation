@@ -172,9 +172,9 @@ class FirVis {
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
-                     <p style="font-weight: bold;">${d.name}</p>
+                     <p style="font-weight: bold;">${vis.titleCase(d.name)}</p>
                      <p style="line-height: 0.5"> Season: ${d.season}</p>
-                     <p style="line-height: 0.5"> Elim Week: ${d.elim_week}</p>                     
+                     <p style="line-height: 0.5"> Elim Week: ${vis.winnerPrint(d.elim_week)}</p>                     
                  </div>\``);
 
                 d3.select(this)
@@ -212,5 +212,20 @@ class FirVis {
             });
 
         allContestantCircles.exit().remove();
+    }
+
+    titleCase(str) {
+        return str.toLowerCase().split(' ').map(function(word) {
+            return word.replace(word[0], word[0].toUpperCase());
+        }).join(' ');
+    }
+
+    winnerPrint(week){
+        if (Number.isNaN(week)){
+            return "Winner";
+        }
+        else{
+            return week;
+        }
     }
 }

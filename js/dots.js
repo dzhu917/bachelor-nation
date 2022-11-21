@@ -184,13 +184,13 @@ class DotsVis {
             .transition()
             .attr('r', d => d.winner === 1 ? 6 : 3)
             .attr('fill', function(d){
-                if(d.show === "Bachelorette" & d.winner === 1){
+                if(d.show === "Bachelor" & d.winner === 1){
                     return '#2D87AD'
                 }
-                else if(d.show === "Bachelorette" & d.winner === 0){
+                else if(d.show === "Bachelor" & d.winner === 0){
                     return '#75D6FF'
                 }
-                else if(d.show === "Bachelor" & d.winner === 1){
+                else if(d.show === "Bachelorette" & d.winner === 1){
                     return '#AD6A1C'
                 }
                 else {
@@ -327,6 +327,16 @@ class DotsVis {
                     .attr("class", "x-axis axis")
                     .attr("transform", "translate(0," + 520 + ")")
                     .call(vis.zoomedgroupXAxis);
+
+                vis.dotgroup.append("text")
+                    .attr("class", "chart-label")
+                    .attr("transform", "translate(10," + 280 + ")")
+                    .text("Season timeline: Hover over each contestant below for their age & occupation!");
+
+                vis.dotgroup.append("text")
+                    .attr("class", "x-axis-label")
+                    .attr("transform", "translate(320," + 560 + ")")
+                    .text("Elimination Week");
 
                 vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
                 vis.changeSelectedSeasonColor(d.target.__data__.season, d.target.__data__.show);
