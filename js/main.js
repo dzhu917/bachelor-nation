@@ -55,7 +55,7 @@ function createVis(data) {
     myDots = new DotsVis('vis', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
-    myHometowns = new MapVis('mapDiv', hometown_data);
+    // myHometowns = new MapVis('mapDiv', hometown_data);
 
     draw1();
 }
@@ -177,7 +177,7 @@ let activationFunctions = [
     draw6,
     draw7,
     draw8,
-    draw9
+    // draw9
 ]
 
 let scroll = scroller()
