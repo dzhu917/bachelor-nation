@@ -148,7 +148,7 @@ class RunnerupVis {
         vis.data = vis.data.filter(d => d.winner == 1 || d.runner_up == 1)
     }
 
-updateRunnerup(){
+    updateRunnerup(){
         let vis = this;
         
         vis.runnerupgroup
