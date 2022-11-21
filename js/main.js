@@ -51,6 +51,8 @@ function createVis(data) {
     myDots = new DotsVis('vis', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
+
+    draw1();
 }
 
 /*

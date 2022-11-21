@@ -405,7 +405,7 @@ class DotsVis {
                      <p style="font-weight: bold;">${vis.titleCase(d.name)}</p>
                      <p style="line-height: 0.5"> Show: ${d.show}</p>
                      <p style="line-height: 0.5"> Season: ${d.season}</p>
-                     <p style="line-height: 0.5"> Elim Week: ${d.elim_week}</p>     
+                     <p style="line-height: 0.5"> Elim Week: ${vis.winnerPrint(d.elim_week)}</p>     
                      <p style="line-height: 0.5"> Age: ${d.age}</p>
                      <p style="line-height: 0.5"> Occupation: ${d.occupation}</p>                
                  </div>\``);
