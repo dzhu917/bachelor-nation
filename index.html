@@ -24,21 +24,26 @@
 				<h1>Bachelor Nation: Visualized</h1>
 			</div>
 			<p style="line-height: 2">If you've been on social media or watch TV, you've probably heard of ABC's Bachelor
+			<h6 style="line-height: 1.7">If you've been on social media or watch TV, you've probably heard of ABC's Bachelor
 				franchise. Every season, one person is crowned the Bachelor or Bachelorette, and a group of contestants
 				vie for their love by going on dates throughout the season. Contestants are eliminated every week
 				at rose ceremonies, during which the Bachelor(ette) grants a rose to contestants chosen
 				to move forward.</p>
 			<br>
 			<p style="line-height: 2">The franchise has run for a while — the Bachelor has 21 seasons, and
+			<h6 style="line-height: 1.7">The franchise has run for a while — the Bachelor has 21 seasons, and
 				the Bachelorette has 13. With hundreds of contestants who have gone through this unconventional process
 				of finding love, we wondered what a visualization of the franchise might look like. Who tends to win the
 				Bachelor(ette)'s heart? Do first impression roses mean anything? We dove into the data behind the franchise, its
 				contestants, and how it all pans out!
 			</p>
+				contestants, the roses issued each season, and how it all pans out!
+			</h6>
 		</div>
 		<div class="row">
 			<div class="col-4" id="vis-text">
 				<div id="sections">
+
 					<section class="step">
 						<div class="row justify-content-center">
 							<h4>The Big Picture: All Contestants</h4>
@@ -46,20 +51,10 @@
 								and the orange ones represent Bachelorette contestants. Each cluster contains one season of contestants.</p>
 							<br>
 							<p><b>Toggle over each contestant to find out more about them!</b></p>
-							<!--
-							<div style="margin-bottom: 10px">
-								<select id='categorySelector' class="custom-select align-self-center" style="width: 30%" onchange="categoryChange()">
-									<option value="allContestants" selected>All Contestants</option>
-									<option value="winnerDiff">Winners</option>
-									<option value="elimWeek">Elimination Week</option>
-									<option value="sortedElimWeek">Sorted Elimination Week</option>
-								</select>
-							</div>
-							-->
 						</div>
 					</section>
+
 					<section class="step">
-						<div class="row justify-content-center">
 							<div class="align-self-center">
 								<h4>And The Winner Is...</h4>
 								<p>Winners in each season (i.e. the contestant selected by the Bachelor/Bachelorette at the end
@@ -68,14 +63,15 @@
 							<p id="value-fill"></p>
 							
 							<div id="firDiv" style="height: 150vh; width: 100%;"></div>
-						</div>
 					</section>
+
 					<section class="step">
 						<h4>Contestant Elimination</h4>
 						<p>Contestants are eliminated each week, as the Bachelor/Bachelorette develops deeper relationships.
 							We've indicated elimination week through color here: the lighter the color of the dot, the earlier
 						the contestant was eliminated. Winners, therefore, are represented by the darkest dot in each cluster.</p>
 					</section>
+
 					<section class="step">
 						<h4>Trickle-Down Elimination</h4>
 						<p>Here, contestants are sorted based on elimination week — as you can see, contestants are eliminated week by week
@@ -95,6 +91,7 @@
 							</tr>
 						</table>
 					</section>
+
 					<section class="step">
 						<h4>First impression roses as an indicator of success</h4>
 						<p>In the first week of each season, one contestant received a "First Impression Rose".</p>
@@ -104,39 +101,31 @@
 						<div id="slider"></div>
 					</section>
 					<section class="step">
-						<h4>Second-Best</h4>
-						<p>Comparing winners with the runner-up in each season can give us deeper insight into the Bachelor(ette) process.
-							We've plotted the winner and runner-up in each season as a pair of dots. The winner is represented by the
-							dot on top, and the runner-up is represented by the dot below.
-						</p>
+						<h4>Who are our runner-ups?</h4>
+						<p>In each season, only one contestant can be crowned a winner (i.e. get engaged to the Bachelor(ette).
+						The show usually depicts the Bachelor(ette)'s choice between the final two contestants as heart-wrenching
+						and nearly impossible, because of how deep both relationships have become.</p>
+						<p>If the runner-ups and winners are really so difficult to choose between, how do their paths differ
+							from each other? Is there any way to predict who will win and who will come in second place?</p>
+						<h4>For each season, we've placed the winner and runner-ups side by side.</h4>
 					</section>
+
 					<section class="step">
-						<h4>First impressions matter</h4>
-						<P>
-							Looking at the first impression roses, we can see a difference between the two shows, the Bachelor and the Bachelorette.
-							For the Bachelor, the first-impression rose is a not a clear differentiating factor between winners and runner-ups. Only 24% of 
-							first-impression roses end up in this top two bracket.
-						</P>
-						<p>
-							The first-impression rose is a more reliable indicator for the Bachelorette, where 46% of first-impression roses make it to the 
-							final two. In addition, between the final two, when a first-impression rose has been in play, they are much more likely to win the season,
-							with only one runner-up getting the first-impression rose.
-						</p>
+						<p> fir</p>
 					</section>
+
 					<section class="step">
-						<h4>Date It 'Til You Make It</h4>
-						<p>
-							Dates are a less reliable indicator for success during the season, with winners and runner-ups receiving roughly the same number of dates.
-							In generally though between the final two, the winner receives more dates than the runner-up.
-						</p>
+						<p>dates</p>
 					</section>
 				</div>
 			</div>
-			<div class="col-8">	
+
+			<div class="col-8">
 				<div class="sticky-top">
 					<div id="vis"></div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 
@@ -157,6 +146,7 @@
 	<script src="js/sankey.js"></script>
 	<script src="js/dots.js"></script>
 	<script src="js/runnerup.js"></script>
+	<script src="js/hometowns.js"></script>
 
 	<!-- main -->
 	<script src="js/main.js"></script>

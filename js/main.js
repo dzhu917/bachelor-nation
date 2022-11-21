@@ -4,10 +4,13 @@ let myDots;
 let simulation, nodes;
 let svg;
 let myFIR;
+let myHometowns;
+let myRunnerup;
 
 let promises = [
     d3.csv("data/bachelorette-data.csv"),
-    d3.csv("data/contestant-data-simplified-1.csv")
+    d3.csv("data/contestant-data-simplified-1.csv"),
+    d3.json("data/hometowns.geojson")
 ];
 
 Promise.all(promises)
@@ -37,6 +40,7 @@ Promise.all(promises)
 function createVis(data) {
     bachelorette_data = data[0];
     contestant_data = data[1];
+    hometown_data = data[2];
 
     let margins = {top: 20, right: 20, bottom: 50, left: 20};
     let width = document.getElementById("vis").getBoundingClientRect().width - margins.left - margins.right;
@@ -51,6 +55,7 @@ function createVis(data) {
     myDots = new DotsVis('vis', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
+    myHometowns = new MapVis('mapDiv', hometown_data);
 
     draw1();
 }
@@ -80,6 +85,12 @@ function clean(chartType){
             .transition()
             .attr("visibility", "hidden")
     }
+    if (chartType !== "#mapgroup"){
+        d3.select("#mapgroup")
+            .transition()
+            .attr("opacity", 0)
+    }
+
 }
 
 function draw1(){
@@ -145,6 +156,13 @@ function draw8(){
 
     myRunnerup.updateRunnerupRoses();
 }
+function draw9(){
+    console.log("draw9");
+
+    clean("dot");
+
+    myHometowns.updateVis();
+}
 
 // Enables scrolling function
 // Loads text and draws graph on scroll
@@ -159,6 +177,7 @@ let activationFunctions = [
     draw6,
     draw7,
     draw8,
+    draw9
 ]
 
 let scroll = scroller()
