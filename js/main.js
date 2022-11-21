@@ -53,9 +53,9 @@ function createVis(data) {
                     .attr('height', height);
 
     myDots = new DotsVis('vis', contestant_data);
-    // myHometowns = new MapVis('mapDiv', hometown_data);
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
+    myHometowns = new MapVis('mapDiv', hometown_data);
 
     draw1();
 }
@@ -85,6 +85,12 @@ function clean(chartType){
             .transition()
             .attr("opacity", 0)
     }
+    if (chartType !== "#mapgroup"){
+        d3.select("#runnerupgroup")
+            .transition()
+            .attr("opacity", 0)
+    }
+
 }
 
 function draw1(){
@@ -150,6 +156,13 @@ function draw8(){
 
     myRunnerup.updateRunnerupRoses();
 }
+function draw9(){
+    console.log("draw9");
+
+    clean("hometown");
+
+    myHometowns.updateVis();
+}
 
 // Enables scrolling function
 // Loads text and draws graph on scroll
@@ -164,6 +177,7 @@ let activationFunctions = [
     draw6,
     draw7,
     draw8,
+    draw9
 ]
 
 let scroll = scroller()
