@@ -89,10 +89,11 @@ class DotsVis {
             .enter()
             .append('circle')
             .attr("class", "allContestantCircles")
+            .merge(vis.allContestantCircles)
             .on("mouseover", function(event,d){
 
                 vis.tooltip
-                    .style("opacity", 1)
+                    .style("visibility", 1)
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
@@ -106,16 +107,15 @@ class DotsVis {
             })
             .on("mouseout", function(){
                 d3.select(this)
-                    .attr("opacity", "1")
+                    .attr("visibility", "1")
                     .attr("stroke-width", 0)
 
                 vis.tooltip
-                    .style("opacity", 0)
+                    .style("visibility", 0)
                     .style("left", 0)
                     .style("top", 0)
                     .html(``);
             })
-            .merge(vis.allContestantCircles)
             .transition()
             .attr('cx', function(d){
                 if (d.show === "Bachelorette"){
@@ -165,7 +165,8 @@ class DotsVis {
                 }
             })
             .text(d => "S" + d.season)
-            .style("font-size", 12)
+            .style("font-size", 12);
+
     }
 
     updateVisWinner(){
