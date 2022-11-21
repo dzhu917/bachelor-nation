@@ -28,3 +28,13 @@ body {
     text-align: justify;
 }
 
+.chart-label, .x-axis-label, .allContestantDotLegend-label{
+    font-family: "Roboto Serif";
+    font-weight: 400;
+}
+
+table{
+    font-family: "Roboto Serif";
+    font-weight: 400;
+}
+

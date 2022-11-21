@@ -95,9 +95,9 @@ class DotsVis {
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
-                     <p style="font-weight: bold;">${d.name}</p>
+                     <p style="font-weight: bold;">${vis.titleCase(d.name)}</p>
                      <p style="line-height: 0.5"> Season: ${d.season}</p>
-                     <p style="line-height: 0.5"> Elim Week: ${d.elim_week}</p>                     
+                     <p style="line-height: 0.5"> Elim Week: ${vis.winnerPrint(d.elim_week)}</p>                     
                  </div>\``);
 
                 d3.select(this)
@@ -331,7 +331,7 @@ class DotsVis {
                 vis.dotgroup.append("text")
                     .attr("class", "chart-label")
                     .attr("transform", "translate(10," + 280 + ")")
-                    .text("Season timeline: Hover over each contestant below for their age & occupation!");
+                    .text("Season timeline: Hover over each contestant below to see their age & occupation!");
 
                 vis.dotgroup.append("text")
                     .attr("class", "x-axis-label")

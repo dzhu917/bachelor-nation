@@ -49,14 +49,14 @@ class FirVis {
             .attr("height",15)
             .attr("fill", (d,i) => vis.allContestantDotLegendColors[i])
             .attr('y', 10)
-            .attr('x',(d,i) => i*250 + vis.margin.left)
+            .attr('x',(d,i) => i*300 + vis.margin.left)
 
         vis.allContestantDotLegend.enter()
             .append("text")
             .attr("class","allContestantDotLegend-label")
             .text(d => d)
             .attr('y', 25)
-            .attr('x',(d,i) => 20 + i*250 + vis.margin.left)
+            .attr('x',(d,i) => 20 + i*300 + vis.margin.left)
 
         // CREATE SLIDER
         vis.sliderFill = d3.sliderBottom()
