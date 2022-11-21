@@ -78,7 +78,7 @@ function clean(chartType){
     if (chartType !== "runnerup"){
         d3.select("#runnerupgroup")
             .transition()
-            .attr("opacity", 0)
+            .attr("visibility", "hidden")
     }
 }
 
@@ -125,7 +125,7 @@ function draw5(){
 function draw6(){
     console.log("draw6");
 
-    clean("dot");
+    clean("runnerup");
 
     myRunnerup.updateRunnerup();
 }
@@ -133,7 +133,7 @@ function draw6(){
 function draw7(){
     console.log("draw7");
 
-    clean("dot");
+    clean("runnerup");
 
     myRunnerup.updateRunnerupFIR();
 }
@@ -141,7 +141,7 @@ function draw7(){
 function draw8(){
     console.log("draw8");
 
-    clean("dot");
+    clean("runnerup");
 
     myRunnerup.updateRunnerupRoses();
 }
