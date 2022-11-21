@@ -90,33 +90,6 @@ class DotsVis {
             .append('circle')
             .attr("class", "allContestantCircles")
             .merge(vis.allContestantCircles)
-            .on("mouseover", function(event,d){
-
-                vis.tooltip
-                    .style("visibility", 1)
-                    .style("left", event.pageX + 20 + "px")
-                    .style("top", event.pageY + "px")
-                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
-                     <p style="font-weight: bold;">${d.name}</p>
-                     <p style="line-height: 0.5"> Season: ${d.season}</p>
-                     <p style="line-height: 0.5"> Elim Week: ${vis.winnerPrint(d.elim_week)}</p>                     
-                 </div>\``);
-
-                d3.select(this)
-                    .style("stroke", "black")
-            })
-            .on("mouseout", function(){
-                d3.select(this)
-                    .attr("visibility", "1")
-                    .attr("stroke-width", 0)
-
-                vis.tooltip
-                    .style("visibility", 0)
-                    .style("left", 0)
-                    .style("top", 0)
-                    .html(``);
-            })
-            .transition()
             .attr('cx', function(d){
                 if (d.show === "Bachelorette"){
                     return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
@@ -140,6 +113,38 @@ class DotsVis {
                 }else{
                     return '#75D6FF'
                 }
+            })
+
+        vis.allContestantCircles.transition();
+
+        vis.allContestantCircles.on("mouseover", function(event,d){
+
+            d3.select(this).style("stroke", "black")
+
+            console.log("mouseover!")
+
+            vis.tooltip
+                .style("opacity", 1)
+                .style("left", event.pageX + 20 + "px")
+                .style("top", event.pageY + "px")
+                .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
+                 <p style="font-weight: bold;">${d.name}</p>
+                 <p style="line-height: 0.5"> Season: ${d.season}</p>
+                 <p style="line-height: 0.5"> Elim Week: ${vis.winnerPrint(d.elim_week)}</p>                     
+             </div>\``);
+
+
+            })
+            .on("mouseout", function(){
+                d3.select(this)
+                    .attr("opacity", "1")
+                    .attr("stroke-width", 0)
+
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
             });
 
         // ADD LABELS TO CLUSTERS
@@ -166,6 +171,10 @@ class DotsVis {
             })
             .text(d => "S" + d.season)
             .style("font-size", 12);
+
+        vis.allContestantCircles
+            .exit()
+            .remove()
 
     }
 
