@@ -328,48 +328,160 @@ class DotsVis {
                     .attr("transform", "translate(0," + 520 + ")")
                     .call(vis.zoomedgroupXAxis);
 
-
-                vis.dotgroup
-                    .enter()
-                    .merge(vis.allContestantCircles)
-                    .append("circle")
-                    .attr("cx", function (d) {
-                        console.log(d)
-                        console.log(d.season)
-                        return vis.zoomedgroupX(d.elim_week);
-                    })
-                    .attr("cy", 300)
-                    .attr("r", 5)
-                    .style("fill", "black");
+                vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
+                vis.changeSelectedSeasonColor(d.target.__data__.season, d.target.__data__.show);
 
                 vis.dotgroup.exit().remove();
 
-                console.log(d3.select(this)._groups[0][0].__data__)
-
                 document.getElementById("selectedShow").innerText = d3.select(this)._groups[0][0].__data__.show;
                 document.getElementById("selectedSeason").innerText = d3.select(this)._groups[0][0].__data__.season;
-                document.getElementById("selectedName").innerText = vis.titleCase(d3.select(this)._groups[0][0].__data__.name);
-                document.getElementById("selectedAge").innerText = d3.select(this)._groups[0][0].__data__.age;
-                document.getElementById("selectedOccupation").innerText = d3.select(this)._groups[0][0].__data__.occupation;
-                document.getElementById("selectedElimWeek").innerText = d3.select(this)._groups[0][0].__data__.elim_week;
-
-                // vis.zoomedgroupDots = vis.allContestantCircles
-                //     .enter()
-                //     .append('g')
-                //     .selectAll("zoomedgroupdot")
-                //     .merge(vis.allContestantCircles)
-
-                d3.select(this).attr("fill", "black");
         })
 
-        // implement timeline
-        // vis.timeline =
+    }
+
+    renderZoomedGroup(season_input, show_input){
+        let vis = this;
+
+        vis.dotgroup.selectAll('.zoomedgroupdots').remove()
+
+        // Filter data based on input season
+        vis.filteredData = vis.data.filter(function (d) {
+            return d.season === season_input & d.show === show_input;
+        });
+
+        // Create new set of dots using filtered data
+        vis.dotgroup.append('g')
+            .selectAll("zoomedgroupdots")
+            .data(vis.filteredData)
+            .enter()
+            .append("circle")
+            //.merge(vis.dotgroup)
+            .attr("class", "zoomedgroupdots")
+            .attr("cx", function(d){
+                if (d.winner != 1){return vis.zoomedgroupX(d.elim_week)}
+                else{return vis.zoomedgroupX(10) + 10}
+            })
+            .attr("cy", d3.randomUniform(vis.margin.top + vis.padding + 250, vis.margin.top + vis.padding + 450))
+            .attr("r", function(d){
+                if(d.winner != 1){return 8}
+                else{return 12}
+            })
+            .attr('fill', function(d){
+                if(d.show == "Bachelorette"){
+                    if(d.winner === 1){return '#2d87ad'}
+                    else if(d.elim_week === 10){return '#4690b3'}
+                    else if(d.elim_week === 9){return '#5a99ba'}
+                    else if(d.elim_week === 8){return '#6ba2c0'}
+                    else if(d.elim_week === 7){return '#7cacc6'}
+                    else if(d.elim_week === 6){return '#8cb5cd'}
+                    else if(d.elim_week === 5){return '#9cbed3'}
+                    else if(d.elim_week === 4){return '#abc8da'}
+                    else if(d.elim_week === 3){return '#bbd2e0'}
+                    else if(d.elim_week === 2){return '#cadbe7'}
+                    else if(d.elim_week === 1){return '#d9e5ed'}
+                    else {return '#d9e5ed'}
+                }
+                else{
+                    if(d.winner === 1){return '#AD6A1C'}
+                    else if(d.elim_week === 10){return '#b67631'}
+                    else if(d.elim_week === 9){return '#bf8244'}
+                    else if(d.elim_week === 8){return '#c88f57'}
+                    else if(d.elim_week === 7){return '#d09b6a'}
+                    else if(d.elim_week === 6){return '#d8a87d'}
+                    else if(d.elim_week === 5){return '#dfb590'}
+                    else if(d.elim_week === 4){return '#e6c2a3'}
+                    else if(d.elim_week === 3){return '#eccfb7'}
+                    else if(d.elim_week === 2){return '#f2ddcb'}
+                    else if(d.elim_week === 1){return '#f8eadf'}
+                    else {return '#f8eadf'}
+                }
+            })
+            .on("mouseover", function(event,d){
+                vis.tooltip
+                    .style("opacity", 1)
+                    .style("left", event.pageX + 20 + "px")
+                    .style("top", event.pageY + "px")
+                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
+                     <p style="font-weight: bold;">${vis.titleCase(d.name)}</p>
+                     <p style="line-height: 0.5"> Show: ${d.show}</p>
+                     <p style="line-height: 0.5"> Season: ${d.season}</p>
+                     <p style="line-height: 0.5"> Elim Week: ${d.elim_week}</p>     
+                     <p style="line-height: 0.5"> Age: ${d.age}</p>
+                     <p style="line-height: 0.5"> Occupation: ${d.occupation}</p>                
+                 </div>\``);
+
+                d3.select(this)
+                    .style("stroke", "black")
+            })
+            .on("mouseout", function(){
+                d3.select(this)
+                    .attr("opacity", "1")
+                    .attr("stroke-width", 0)
+
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html(``);
+            })
+
+        vis.dotgroup.exit().remove();
+
+    }
+
+    changeSelectedSeasonColor(season_input, show_input){
+        let vis = this;
+
+        vis.allContestantCircles
+            .merge(vis.allContestantCircles)
+            .attr("fill", function(d){
+                if(d.season === season_input & d.show === show_input){
+                    return "lightgray";
+                }
+                else if (d.show == "Bachelorette"){
+                    if(d.winner === 1){return '#2d87ad'}
+                    else if(d.elim_week === 10){return '#4690b3'}
+                    else if(d.elim_week === 9){return '#5a99ba'}
+                    else if(d.elim_week === 8){return '#6ba2c0'}
+                    else if(d.elim_week === 7){return '#7cacc6'}
+                    else if(d.elim_week === 6){return '#8cb5cd'}
+                    else if(d.elim_week === 5){return '#9cbed3'}
+                    else if(d.elim_week === 4){return '#abc8da'}
+                    else if(d.elim_week === 3){return '#bbd2e0'}
+                    else if(d.elim_week === 2){return '#cadbe7'}
+                    else if(d.elim_week === 1){return '#d9e5ed'}
+                    else {return '#d9e5ed'}
+                }
+                else{
+                    if(d.winner === 1){return '#AD6A1C'}
+                    else if(d.elim_week === 10){return '#b67631'}
+                    else if(d.elim_week === 9){return '#bf8244'}
+                    else if(d.elim_week === 8){return '#c88f57'}
+                    else if(d.elim_week === 7){return '#d09b6a'}
+                    else if(d.elim_week === 6){return '#d8a87d'}
+                    else if(d.elim_week === 5){return '#dfb590'}
+                    else if(d.elim_week === 4){return '#e6c2a3'}
+                    else if(d.elim_week === 3){return '#eccfb7'}
+                    else if(d.elim_week === 2){return '#f2ddcb'}
+                    else if(d.elim_week === 1){return '#f8eadf'}
+                    else {return '#f8eadf'}
+                }
+            })
     }
 
     titleCase(str) {
         return str.toLowerCase().split(' ').map(function(word) {
             return word.replace(word[0], word[0].toUpperCase());
         }).join(' ');
+    }
+
+    winnerPrint(week){
+        if (Number.isNaN(week)){
+            return "Winner";
+        }
+        else{
+            return week;
+        }
     }
 
 }
