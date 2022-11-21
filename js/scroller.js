@@ -5,7 +5,7 @@ function scroller(){
     let sectionPositions
    
     let currentIndex = -1
-    let containerStart = 0;
+    let visStart = document.getElementById('description').getBoundingClientRect().bottom;
 
     function scroll(){
         d3.select(window)
@@ -35,7 +35,7 @@ function scroller(){
     }
 
     function position() {
-        let pos = window.pageYOffset - 300 - containerStart;
+        let pos = window.pageYOffset - 300 - visStart;
         let sectionIndex = d3.bisect(sectionPositions, pos);
         sectionIndex = Math.min(sections.size()-1, sectionIndex);
     
