@@ -6,6 +6,7 @@ let svg;
 let myFIR;
 let myHometowns;
 let myRunnerup;
+let myTreeMap;
 
 let promises = [
     d3.csv("data/bachelorette-data.csv"),
@@ -55,6 +56,7 @@ function createVis(data) {
     myDots = new DotsVis('vis', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
+    myTreeMap = new TreeMapVis('treemapDiv', contestant_data)
     // myHometowns = new MapVis('mapDiv', hometown_data);
 
     draw1();
@@ -89,6 +91,11 @@ function clean(chartType){
         d3.select("#mapgroup")
             .transition()
             .attr("opacity", 0)
+    }
+    if (chartType !== "treemap"){
+        d3.select("#treemapgroup")
+            .transition()
+            .attr("visibility", "hidden")
     }
 
 }
@@ -163,6 +170,13 @@ function draw9(){
 
     myHometowns.updateVis();
 }
+function draw10(){
+    console.log("draw10");
+
+    clean("treemap");
+
+    myTreeMap.updateVis();
+}
 
 // Enables scrolling function
 // Loads text and draws graph on scroll
@@ -174,9 +188,10 @@ let activationFunctions = [
     draw3,
     draw4,
     draw5,
+    draw10,
     draw6,
     draw7,
-    draw8,
+    draw8
     // draw9
 ]
 
