@@ -21,8 +21,7 @@ class FirVis {
 
         vis.sankeygroup = vis.svg
             .append("g")
-            .attr("id", "sankeygroup")
-            .attr("opacity", 0)
+            .attr("id", "sankeygroup");
 
         // append div container for tooltip
         vis.tooltip = d3.select("body").append('div')
@@ -157,7 +156,7 @@ class FirVis {
 
         vis.sankeygroup
             .transition()
-            .attr("opacity", 1);
+            .attr("visibility", "visible");
 
         // create circle containers
         let allContestantCircles = vis.sankeygroup.selectAll('.allContestantCircles')

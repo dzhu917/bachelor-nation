@@ -22,8 +22,7 @@ class DotsVis {
 
         vis.dotgroup = vis.svg
             .append("g")
-            .attr("id", "dotgroup")
-            .attr("opacity", 1)
+            .attr("id", "dotgroup");
 
         // append div container for tooltip
         vis.tooltip = d3.select("body").append('div')
@@ -78,7 +77,7 @@ class DotsVis {
 
         vis.dotgroup
             .transition()
-            .attr("opacity", 1);
+            .attr("visibility", "visible");
 
         // create circle containers
         vis.allContestantCircles = vis.dotgroup
@@ -181,7 +180,7 @@ class DotsVis {
 
         vis.dotgroup
             .transition()
-            .attr("opacity", 1);
+            .attr("visibility", "visible");
 
         // create circle containers
         vis.allContestantCircles = vis.dotgroup
@@ -213,7 +212,7 @@ class DotsVis {
 
         vis.dotgroup
             .transition()
-            .attr("opacity", 1);
+            .attr("visibility", "visible");
 
         vis.allContestantCircles = vis.dotgroup
             .selectAll(".allContestantCircles")
@@ -260,7 +259,7 @@ class DotsVis {
 
         vis.dotgroup
             .transition()
-            .attr("opacity", 1);
+            .attr("visibility", "visible");
 
         // create circle containers
         vis.allContestantCircles = vis.dotgroup
@@ -374,7 +373,6 @@ class DotsVis {
             .data(vis.filteredData)
             .enter()
             .append("circle")
-            //.merge(vis.dotgroup)
             .attr("class", "zoomedgroupdots")
             .attr("cx", function(d){
                 if (d.winner != 1){return vis.zoomedgroupX(d.elim_week)}

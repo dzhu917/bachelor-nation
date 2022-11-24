@@ -23,7 +23,7 @@ class TreeMapVis {
         vis.treemapgroup = vis.svg
             .append("g")
             .attr("id", "treemapgroup")
-            .attr("opacity", 0)
+            .attr("opacity", 1)
 
         // append div container for tooltip
         vis.tooltip = d3.select("body").append('div')

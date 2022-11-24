@@ -75,12 +75,12 @@ function clean(chartType){
     if (chartType !== "dot"){
         d3.select("#dotgroup")
             .transition()
-            .attr("opacity", 0)
+            .attr("visibility", "hidden")
     }
     if (chartType !== "fir"){
         d3.select("#sankeygroup")
             .transition()
-            .attr("opacity", 0)
+            .attr("visibility", "hidden")
     }
     if (chartType !== "runnerup"){
         d3.select("#runnerupgroup")
@@ -90,7 +90,7 @@ function clean(chartType){
     if (chartType !== "map"){
         d3.select("#mapgroup")
             .transition()
-            .attr("opacity", 0)
+            .attr("visibility", "hidden")
     }
     if (chartType !== "treemap"){
         d3.select("#treemapgroup")
