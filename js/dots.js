@@ -22,7 +22,8 @@ class DotsVis {
 
         vis.dotgroup = vis.svg
             .append("g")
-            .attr("id", "dotgroup");
+            .attr("id", "dotgroup")
+            .attr("visibility", "hidden");
 
         // append div container for tooltip
         vis.tooltip = d3.select("body").append('div')

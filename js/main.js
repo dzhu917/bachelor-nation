@@ -82,6 +82,11 @@ function clean(chartType){
             .transition()
             .attr("visibility", "hidden")
     }
+    if (chartType !== "treemap"){
+        d3.select("#treemapgroup")
+            .transition()
+            .attr("visibility", "hidden")
+    }
     if (chartType !== "runnerup"){
         d3.select("#runnerupgroup")
             .transition()
@@ -89,11 +94,6 @@ function clean(chartType){
     }
     if (chartType !== "map"){
         d3.select("#mapgroup")
-            .transition()
-            .attr("visibility", "hidden")
-    }
-    if (chartType !== "treemap"){
-        d3.select("#treemapgroup")
             .transition()
             .attr("visibility", "hidden")
     }

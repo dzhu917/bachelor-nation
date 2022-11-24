@@ -21,7 +21,8 @@ class FirVis {
 
         vis.sankeygroup = vis.svg
             .append("g")
-            .attr("id", "sankeygroup");
+            .attr("id", "sankeygroup")
+            .attr("visibility", "hidden");
 
         // append div container for tooltip
         vis.tooltip = d3.select("body").append('div')

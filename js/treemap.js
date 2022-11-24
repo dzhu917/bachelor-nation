@@ -8,7 +8,7 @@ class TreeMapVis {
     }
 
     initVis(){
-        let vis = this
+        let vis = this;
 
         // Margin object with properties for the four directions
         vis.margin = {top: 20, right: 40, bottom: 20, left: 20};
@@ -23,12 +23,12 @@ class TreeMapVis {
         vis.treemapgroup = vis.svg
             .append("g")
             .attr("id", "treemapgroup")
-            .attr("opacity", 1)
+            .attr("visibility", "hidden");
 
         // append div container for tooltip
-        vis.tooltip = d3.select("body").append('div')
-            .attr('class', "tooltip")
-            .attr('id', 'divTooltip')
+        // vis.tooltip = d3.select("body").append('div')
+        //     .attr('class', "tooltip")
+        //     .attr('id', 'divTooltip')
 
         vis.wrangleData();
     }
@@ -44,10 +44,12 @@ class TreeMapVis {
 
         vis.treemapgroup
             .transition()
-            .attr("opacity", 1);
+            .attr("visibility", "visible");
 
         vis.treemapgroup
             .append("text")
+            .attr("x", 500)
+            .attr("y", 300)
             .text("testing testing")
 
         // vis.allContestantCircles = vis.dotgroup
