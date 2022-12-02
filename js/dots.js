@@ -224,7 +224,7 @@ class DotsVis {
             .transition()
             .attr('r', d => d.winner === 1 ? 6 : 3)
             .attr('fill', function(d,i){
-                if(d.show == "Bachelorette"){
+                if(d.show == "Bachelor"){
                     if(d.winner === 1){return '#2d87ad'}
                     else if(d.elim_week === 10){return '#4690b3'}
                     else if(d.elim_week === 9){return '#5a99ba'}
@@ -289,7 +289,7 @@ class DotsVis {
             })
             .attr('r', d => d.winner === 1 ? 6 : 3)
             .attr('fill', function(d){
-                if(d.show == "Bachelorette"){
+                if(d.show == "Bachelor"){
                     if(d.winner === 1){return '#2d87ad'}
                     else if(d.elim_week === 10){return '#4690b3'}
                     else if(d.elim_week === 9){return '#5a99ba'}
