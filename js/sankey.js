@@ -32,7 +32,7 @@ class FirVis {
         
         // Create legend
         vis.allContestantDotLegendData = ["Got first impression rose", "Did not get first impression rose", "Eliminated"]
-        vis.allContestantDotLegendColors = ["rgba(255,49,49,0.62)", '#cce5cc', "#525750"]
+        vis.allContestantDotLegendColors = ["rgba(255,49,49,0.62)", '#269CE0', "#525750"]
 
         vis.allContestantDotLegend = vis.sankeygroup
             .selectAll(".allContestantDotLegend")
@@ -207,7 +207,7 @@ class FirVis {
                 } else if (d.fir === 1){
                     return 'rgba(255,49,49,0.62)'
                 } else{
-                    return '#cce5cc'
+                    return '#269CE0'
                 }
             });
 
