@@ -34,9 +34,11 @@ class RunnerupVis {
             .attr('class', "tooltip")
             .attr('id', 'divTooltip')
 
+        /*
         // CREATE LEGEND FOR DOT PLOT 1
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
         vis.allContestantDotLegendColors = ["#75D6FF", "#FAB05A"]
+*/
 
         vis.allContestantDotLegend = vis.runnerupgroup
             .append('g')
@@ -46,6 +48,23 @@ class RunnerupVis {
         vis.contestantLabel = vis.allContestantDotLegend
             .append("g")
             .attr("id", "contestantLabel")
+
+        vis.contestantLabel
+            .append("text")
+            .text("Bachelor contestants")
+            .attr('y', 22)
+            .attr('x', 0)
+            .style("font-size", "16px")
+
+        vis.contestantLabel
+            .append("text")
+            .text("Bachelorette contestants")
+            .attr('y', (vis.height * (3 / 5 + 1 / 5 / 4)))
+            .attr('x', 0)
+            .style("font-size", "16px")
+
+        
+            /*
 
         vis.contestantLabel
             .selectAll("rect")
@@ -69,7 +88,7 @@ class RunnerupVis {
             .attr('y', 22)
             .attr('x', (d, i) => vis.margin.left + 20 + i * 250)
             .style("font-size", "16px");
-
+*/
         vis.seasons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13]
 
         vis.seasonLabel = vis.allContestantDotLegend

@@ -12,6 +12,12 @@ p {
     font-weight: 400;
 }
 
+text {
+    fill: white;
+    opacity: 0.83;
+    font-family: "Roboto Serif";
+}
+
 body {
     background: #242635;
     padding: 5vh;
