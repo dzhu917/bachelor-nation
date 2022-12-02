@@ -22,7 +22,7 @@ class FirVis {
         vis.sankeygroup = vis.svg
             .append("g")
             .attr("id", "sankeygroup")
-            .attr("visibility", "hidden")
+            .attr("visibility", "hidden");
 
         // append div container for tooltip
         vis.tooltip = d3.select("body").append('div')
@@ -156,7 +156,8 @@ class FirVis {
         let vis = this;
 
         vis.sankeygroup
-            .attr("visibility", "visible")
+            .transition()
+            .attr("visibility", "visible");
 
         // create circle containers
         let allContestantCircles = vis.sankeygroup.selectAll('.allContestantCircles')
@@ -171,7 +172,7 @@ class FirVis {
                     .style("left", event.pageX + 20 + "px")
                     .style("top", event.pageY + "px")
                     .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
-                     <p style="font-weight: bold;">${vis.titleCase(d.name)}</p>
+                     <p style="font-weight: bold;">${d.name}</p>
                      <p style="line-height: 0.5"> Season: ${d.season}</p>
                      <p style="line-height: 0.5"> Elim Week: ${vis.winnerPrint(d.elim_week)}</p>                     
                  </div>\``);

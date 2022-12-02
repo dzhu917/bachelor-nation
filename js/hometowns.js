@@ -40,13 +40,25 @@ class MapVis {
         vis.path = d3.geoPath()
             .projection(vis.projection);
 
-        // draw countries
-        vis.countries = vis.svg.selectAll(".country")
-            .data(vis.data)
-            .enter().append("path")
-            .attr('class', 'country')
-            .attr("d", vis.path)
 
+        // add sphere
+        // vis.svg.append("path")
+        //     .datum({type: "Sphere"})
+        //     .attr("class", "graticule")
+        //     .attr('fill', '#ADDEFF')
+        //     .attr("stroke","rgba(129,129,129,0.35)")
+        //     .attr("d", vis.path);
+
+        console.log(vis.data.objects.state)
+        // convert your TopoJSON data into GeoJSON data structure
+        // vis.world = topojson.feature(vis.data, vis.data.objects.state).features
+
+        // draw countries
+        // vis.countries = vis.svg.selectAll(".country")
+        //     .data(vis.world)
+        //     .enter().append("path")
+        //     .attr('class', 'country')
+        //     .attr("d", vis.path)
         vis.wrangleData();
     }
 
