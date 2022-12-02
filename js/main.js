@@ -59,7 +59,7 @@ function createVis(data) {
     myTreeMap = new TreeMapVis('treemapDiv', contestant_data)
     // myHometowns = new MapVis('mapDiv', hometown_data);
 
-    draw1();
+    drawIntro();
 }
 
 /*
@@ -97,7 +97,33 @@ function clean(chartType){
             .transition()
             .attr("visibility", "hidden")
     }
+    if (chartType !== "intro"){
+        d3.select("#intro")
+            .html(null);
+    }
 
+}
+
+function drawIntro(){
+    console.log("drawIntro");
+
+    clean("intro");
+
+    d3.select("#intro")
+        .html(`<p>If you've been on social media or watch TV, you've probably heard of ABC's Bachelor
+        franchise. Every season, one person is crowned the Bachelor or Bachelorette, and a group of contestants
+        vie for their love by going on dates throughout the season. Contestants are eliminated every week
+        at rose ceremonies, during which the Bachelor(ette) grants a rose to contestants chosen
+        to move forward.</p>
+    <br>
+    <p>The franchise has run for a while — the Bachelor has 21 seasons, and
+        the Bachelorette has 13. With hundreds of contestants who have gone through this unconventional process
+        of finding love, we wondered what a visualization of the franchise might look like. Who tends to win the
+        Bachelor(ette)'s heart? Do first impression roses mean anything? We dove into the data behind the franchise, its
+        contestants, and how it all pans out!
+    </p>
+    <br>
+    <p>Scroll to explore the data!</p>`); 
 }
 
 function draw1(){
@@ -183,6 +209,7 @@ function draw10(){
 
 // Array of all graph functions
 let activationFunctions = [
+    drawIntro,
     draw1,
     draw2,
     draw3,
@@ -202,9 +229,11 @@ scroll()
 let lastIndex, activeIndex = 0
 
 scroll.on('active', function(index){
+    console.log("index", index);
     d3.selectAll('.step')
         .transition().duration(500)
         .style('opacity', function (d, i) {return i === index ? 1 : 0.1;});
+
     
     activeIndex = index
     let sign = (activeIndex - lastIndex) < 0 ? -1 : 1; 
