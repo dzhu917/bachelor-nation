@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>CS171 Final Project</title>
+	<title>Bachelor Nation, Visualized 🌹</title>
 
 	<!-- Load CSS libraries -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -19,30 +19,18 @@
 
 <body>
 	<div class="container-fluid">
-		<div class="row" style="height: 50vh" id="description">
-			<div class="align-self-center">
-				<h1>Bachelor Nation: Visualized</h1>
-			</div>
-			<p style="line-height: 1.7">If you've been on social media or watch TV, you've probably heard of ABC's Bachelor
-				franchise. Every season, one person is crowned the Bachelor or Bachelorette, and a group of contestants
-				vie for their love by going on dates throughout the season. Contestants are eliminated every week
-				at rose ceremonies, during which the Bachelor(ette) grants a rose to contestants chosen
-				to move forward.</p>
-			<br>
-			<p style="line-height: 1.7">The franchise has run for a while — the Bachelor has 21 seasons, and
-				the Bachelorette has 13. With hundreds of contestants who have gone through this unconventional process
-				of finding love, we wondered what a visualization of the franchise might look like. <b>Who tends to win the
-				Bachelor(ette)'s heart? Do first impression roses mean anything? We dove into the data behind the franchise, its
-				contestants, and how it all pans out!<b>
-			</p>
-		</div>
 		<div class="row">
 			<div class="col-4" id="vis-text">
 				<div id="sections">
+					<section class="step">
+						<div class="row justify-content-center">
+							<h1>🌹Bachelor Nation: Visualized 🌹</h1>
+						</div>
+					</section>
 
 					<section class="step">
 						<div class="row justify-content-center">
-							<h4>The Big Picture: All Contestants</h4>
+							<h4>✨The Bigger Picture: Our Entire Contestant Line-Up✨</h4>
 							<p>To the right, we've represented each contestant as a dot. The blue ones represent Bachelor contestants,
 								and the orange ones represent Bachelorette contestants. Each cluster contains one season of contestants.</p>
 							<br>
@@ -52,7 +40,7 @@
 
 					<section class="step">
 							<div class="align-self-center">
-								<h4>And The Winner Is...</h4>
+								<h4>🏆And The Winner Is...🏆</h4>
 								<p>Winners in each season (i.e. the contestant selected by the Bachelor/Bachelorette at the end
 									of the season are differentiated by size. Interestingly, Bachelor Season 11 did not have a winner! During the final rose ceremony, Brad Womack became the first bachelor
 									in the history of the show to reject every contestant.</p>
@@ -63,14 +51,14 @@
 					</section>
 
 					<section class="step">
-						<h4>Contestant Elimination</h4>
+						<h4>🤷Contestant Elimination🤷</h4>
 						<p>Contestants are eliminated each week, as the Bachelor/Bachelorette develops deeper relationships.
 							We've indicated elimination week through color here: the lighter the color of the dot, the earlier
 						the contestant was eliminated. Winners, therefore, are represented by the darkest dot in each cluster.</p>
 					</section>
 
 					<section class="step">
-						<h4>Trickle-Down Elimination</h4>
+						<h4>⏬Trickle-Down Elimination⏬</h4>
 						<p>Here, contestants are sorted based on elimination week — as you can see, contestants are eliminated week by week
 						until only one contestant remains. This winner gets engaged to the Bachelor(ette).</p>
 						<br>
@@ -95,7 +83,7 @@
 					</section>
 
 					<section class="step">
-						<h4>First impression roses as an indicator of success</h4>
+						<h4>🌹First impression roses as an indicator of success🌹</h4>
 						<p>In the first week of each season, one contestant received a "First Impression Rose".</p>
 						<p>Out of all Bachelor and Bachelorette seasons, 26 first impression roses were given out. Of the contestants
 							who received a first impression rose, 7 (27%) of them would go on to win the show. In contrast,
@@ -108,7 +96,7 @@
 					</section>
 
 					<section class="step">
-						<h4>Runner-ups vs. Winners</h4>
+						<h4>🤝Runner-ups vs. Winners🤝</h4>
 						<p>In each season, only one contestant can be crowned a winner (i.e. get engaged to the Bachelor(ette).
 						The show usually depicts the Bachelor(ette)'s choice between the final two contestants as heart-wrenching
 						and nearly impossible, because of how deep both relationships have become.</p>
@@ -119,12 +107,12 @@
 					</section>
 
 					<section class="step">
-						<h4>First-Impression Roses: Do they make a difference?</h4>
+						<h4>🥀First-Impression Roses: Do they make a difference?🥀</h4>
 						<p>We've marked first-impression rose receivers in red.</p>
 					</section>
 
 					<section class="step">
-						<h4>Number of Dates: Do they make a difference?</h4>
+						<h4>💞Number of Dates: Do they make a difference?💞</h4>
 						<p>The size of each contestant circle has been changed based on the number of dates. The larger
 						the circle, the more dates the contestant has been on.</p>
 					</section>
@@ -133,6 +121,7 @@
 
 			<div class="col-8">
 				<div class="sticky-top">
+					<div id="intro"></div>
 					<div id="vis"></div>
 				</div>
 			</div>
@@ -158,7 +147,6 @@
 	<script src="js/dots.js"></script>
 	<script src="js/runnerup.js"></script>
 	<script src="js/hometowns.js"></script>
-	<script src="js/treemap.js"></script>
 
 	<!-- main -->
 	<script src="js/main.js"></script>

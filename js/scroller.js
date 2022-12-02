@@ -5,7 +5,7 @@ function scroller(){
     let sectionPositions
    
     let currentIndex = -1
-    let visStart = document.getElementById('description').getBoundingClientRect().bottom;
+    let visStart = 0;
 
     function scroll(){
         d3.select(window)

@@ -224,7 +224,7 @@ class DotsVis {
             .transition()
             .attr('r', d => d.winner === 1 ? 6 : 3)
             .attr('fill', function(d,i){
-                if(d.show == "Bachelorette"){
+                if(d.show == "Bachelor"){
                     if(d.winner === 1){return '#2d87ad'}
                     else if(d.elim_week === 10){return '#4690b3'}
                     else if(d.elim_week === 9){return '#5a99ba'}
@@ -271,22 +271,25 @@ class DotsVis {
             .merge(vis.allContestantCircles)
             .transition()
             .attr('cy', function(d){
-                if (d.show === "Bachelor" & d.winner === 1){
+                if (d.show === "Bachelor" & isNaN(d.elim_week)){
                     return 115
                 }
-                else if (d.show === "Bachelor" & d.winner === 0){
-                    return vis.margin.top + vis.padding + d.elim_week * 6
-                }
-                else if (d.show === "Bachelorette" & d.winner === 1){
+                else if (d.show === "Bachelorette" & isNaN(d.elim_week)){
                     return 115 + 100
                 }
+                else if (d.show === "Bachelor" & d.winner === 0){
+                    return vis.margin.top + vis.padding + (Number(d.elim_week) * 6)
+                }
+                else if (d.show === "Bachelorette" & d.winner === 0){
+                    return vis.margin.top + vis.padding + (Number(d.elim_week) * 6) + 100
+                }
                 else{
-                    return vis.margin.top + vis.padding + d.elim_week * 6 + 100
+                    return 0;
                 }
             })
             .attr('r', d => d.winner === 1 ? 6 : 3)
             .attr('fill', function(d){
-                if(d.show == "Bachelorette"){
+                if(d.show == "Bachelor"){
                     if(d.winner === 1){return '#2d87ad'}
                     else if(d.elim_week === 10){return '#4690b3'}
                     else if(d.elim_week === 9){return '#5a99ba'}
@@ -385,7 +388,7 @@ class DotsVis {
                 else{return 12}
             })
             .attr('fill', function(d){
-                if(d.show == "Bachelorette"){
+                if(d.show == "Bachelor"){
                     if(d.winner === 1){return '#2d87ad'}
                     else if(d.elim_week === 10){return '#4690b3'}
                     else if(d.elim_week === 9){return '#5a99ba'}
@@ -485,12 +488,6 @@ class DotsVis {
                     else {return '#f8eadf'}
                 }
             })
-    }
-
-    titleCase(str) {
-        return str.toLowerCase().split(' ').map(function(word) {
-            return word.replace(word[0], word[0].toUpperCase());
-        }).join(' ');
     }
 
     winnerPrint(week){
