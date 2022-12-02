@@ -1,5 +1,6 @@
 let bachelorette_data;
 let contestant_data;
+let hometown_data;
 let myDots;
 let simulation, nodes;
 let svg;
@@ -57,7 +58,7 @@ function createVis(data) {
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
     myTreeMap = new TreeMapVis('treemapDiv', contestant_data)
-    // myHometowns = new MapVis('mapDiv', hometown_data);
+    myHometowns = new MapVis('mapDiv', contestant_data);
 
     draw1();
 }
@@ -187,12 +188,12 @@ let activationFunctions = [
     draw2,
     draw3,
     draw4,
+    draw9,
     draw5,
     draw10,
     draw6,
     draw7,
     draw8
-    // draw9
 ]
 
 let scroll = scroller()
