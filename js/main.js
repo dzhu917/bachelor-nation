@@ -78,7 +78,7 @@ function clean(chartType){
     if (chartType !== "fir"){
         d3.select("#sankeygroup")
             .transition()
-            .attr("opacity", 0)
+            .attr("visibility", "hidden")
     }
     if (chartType !== "runnerup"){
         d3.select("#runnerupgroup")
