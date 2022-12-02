@@ -104,20 +104,20 @@ function drawIntro(){
     clean("intro");
 
     d3.select("#intro")
-        .html(`<p>If you've been on social media or watch TV, you've probably heard of ABC's Bachelor
+        .html(`<p style="line-height: 1.7">If you've been on social media or watch TV, you've probably heard of ABC's Bachelor
         franchise. Every season, one person is crowned the Bachelor or Bachelorette, and a group of contestants
         vie for their love by going on dates throughout the season. Contestants are eliminated every week
         at rose ceremonies, during which the Bachelor(ette) grants a rose to contestants chosen
         to move forward.</p>
-    <br>
-    <p>The franchise has run for a while — the Bachelor has 21 seasons, and
-        the Bachelorette has 13. With hundreds of contestants who have gone through this unconventional process
-        of finding love, we wondered what a visualization of the franchise might look like. Who tends to win the
-        Bachelor(ette)'s heart? Do first impression roses mean anything? We dove into the data behind the franchise, its
-        contestants, and how it all pans out!
-    </p>
-    <br>
-    <p>Scroll to explore the data!</p>`); 
+        <br>
+        <p style="line-height: 1.7">The franchise has run for a while — the Bachelor has 21 seasons, and
+            the Bachelorette has 13. With hundreds of contestants who have gone through this unconventional process
+            of finding love, we wondered what a visualization of the franchise might look like. <b>Who tends to win the
+            Bachelor(ette)'s heart? Do first impression roses mean anything? We dove into the data behind the franchise, its
+            contestants, and how it all pans out!
+        </p>
+        <br>
+        <p>Scroll to explore the data!</p>`); 
 }
 
 function draw1(){
