@@ -117,7 +117,7 @@ function drawIntro(){
             contestants, and how it all pans out!
         </p>
         <br>
-        <p>Scroll to explore the data!</p>`); 
+        <h2>Scroll to explore the data!</h2>`);
 }
 
 function draw1(){
