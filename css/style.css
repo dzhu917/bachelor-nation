@@ -30,7 +30,7 @@ body {
 .step {
     margin-bottom: 100px;
     height: 650px;
-    text-align: justify;
+    text-align: left;
 }
 
 .chart-label, .x-axis-label, .allContestantDotLegend-label{
