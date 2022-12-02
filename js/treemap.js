@@ -52,14 +52,16 @@ class TreeMapVis {
             .attr("y", 300)
             .text("testing testing")
 
-        vis.root = d3.stratify()
-            .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
-            .parentId(function(d) { return d.occupation; })   // Name of the parent (column name is parent in csv)
-            (vis.data);
+        console.log(vis.data);
 
-        console.log(vis.root);
-        
-        vis.root.sum(function(d) { return +d.value })
+        // vis.root = d3.stratify()
+        //     .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
+        //     .parentId(function(d) { return d.occupation; })   // Name of the parent (column name is parent in csv)
+        //     (vis.data);
+
+        // console.log(vis.root);
+
+        // vis.root.sum(function(d) { return +d.value })
 
 
 

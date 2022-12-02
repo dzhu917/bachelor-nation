@@ -317,7 +317,7 @@ class DotsVis {
             })
 
         vis.zoomedgroupX = d3.scaleLinear()
-            .range([vis.margin.left, vis.width - vis.margin.right])
+            .range([vis.margin.left, vis.width - vis.margin.right - 120])
             .domain([1, 10]);
 
         vis.zoomedgroupXAxis = d3.axisBottom()
@@ -344,7 +344,7 @@ class DotsVis {
 
                 vis.dotgroup.append("text")
                     .attr("class", "x-axis-label")
-                    .attr("transform", "translate(320," + 560 + ")")
+                    .attr("transform", "translate(300," + 560 + ")")
                     .text("Elimination Week");
 
                 vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
@@ -425,7 +425,7 @@ class DotsVis {
                      <p style="line-height: 0.5"> Season: ${d.season}</p>
                      <p style="line-height: 0.5"> Elim Week: ${vis.winnerPrint(d.elim_week)}</p>     
                      <p style="line-height: 0.5"> Age: ${d.age}</p>
-                     <p style="line-height: 0.5"> Occupation: ${d.occupation}</p>                
+                     <p style="line-height: 0.9"> Occupation: ${d.occupation}</p>                
                  </div>\``);
 
                 d3.select(this)
