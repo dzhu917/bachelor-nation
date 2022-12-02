@@ -11,7 +11,7 @@ let myRunnerup;
 let promises = [
     d3.csv("data/bachelorette-data.csv"),
     d3.csv("data/contestant-data-simplified-1.csv"),
-    d3.json("data/hometowns.geojson")
+    d3.json("data/hometowns.json")
 ];
 
 Promise.all(promises)
@@ -56,7 +56,7 @@ function createVis(data) {
     myDots = new DotsVis('vis', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
-    myHometowns = new MapVis('mapDiv', contestant_data);
+    myHometowns = new MapVis('mapDiv', hometown_data);
 
     drawIntro();
 }
