@@ -271,17 +271,20 @@ class DotsVis {
             .merge(vis.allContestantCircles)
             .transition()
             .attr('cy', function(d){
-                if (d.show === "Bachelor" & d.winner === 1){
+                if (d.show === "Bachelor" & isNaN(d.elim_week)){
                     return 115
                 }
-                else if (d.show === "Bachelor" & d.winner === 0){
-                    return vis.margin.top + vis.padding + d.elim_week * 6
-                }
-                else if (d.show === "Bachelorette" & d.winner === 1){
+                else if (d.show === "Bachelorette" & isNaN(d.elim_week)){
                     return 115 + 100
                 }
+                else if (d.show === "Bachelor" & d.winner === 0){
+                    return vis.margin.top + vis.padding + (Number(d.elim_week) * 6)
+                }
+                else if (d.show === "Bachelorette" & d.winner === 0){
+                    return vis.margin.top + vis.padding + (Number(d.elim_week) * 6) + 100
+                }
                 else{
-                    return vis.margin.top + vis.padding + d.elim_week * 6 + 100
+                    return 0;
                 }
             })
             .attr('r', d => d.winner === 1 ? 6 : 3)
@@ -317,7 +320,7 @@ class DotsVis {
             })
 
         vis.zoomedgroupX = d3.scaleLinear()
-            .range([vis.margin.left, vis.width - vis.margin.right])
+            .range([vis.margin.left, vis.width - vis.margin.right - 120])
             .domain([1, 10]);
 
         vis.zoomedgroupXAxis = d3.axisBottom()
@@ -344,7 +347,7 @@ class DotsVis {
 
                 vis.dotgroup.append("text")
                     .attr("class", "x-axis-label")
-                    .attr("transform", "translate(320," + 560 + ")")
+                    .attr("transform", "translate(300," + 560 + ")")
                     .text("Elimination Week");
 
                 vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
@@ -425,7 +428,7 @@ class DotsVis {
                      <p style="line-height: 0.5"> Season: ${d.season}</p>
                      <p style="line-height: 0.5"> Elim Week: ${vis.winnerPrint(d.elim_week)}</p>     
                      <p style="line-height: 0.5"> Age: ${d.age}</p>
-                     <p style="line-height: 0.5"> Occupation: ${d.occupation}</p>                
+                     <p style="line-height: 0.9"> Occupation: ${d.occupation}</p>                
                  </div>\``);
 
                 d3.select(this)
@@ -485,12 +488,6 @@ class DotsVis {
                     else {return '#f8eadf'}
                 }
             })
-    }
-
-    titleCase(str) {
-        return str.toLowerCase().split(' ').map(function(word) {
-            return word.replace(word[0], word[0].toUpperCase());
-        }).join(' ');
     }
 
     winnerPrint(week){

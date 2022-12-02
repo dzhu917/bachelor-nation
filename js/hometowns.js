@@ -24,21 +24,21 @@ class MapVis {
         vis.mapgroup = vis.svg
             .append("g")
             .attr("id", "mapgroup")
-            .attr("opacity", 0)
+            .attr("visibility", "hidden")
 
         // append div container for tooltip
-        vis.tooltip = d3.select("body").append('div')
-            .attr('class', "tooltip")
-            .attr('id', 'divTooltip')
+        // vis.tooltip = d3.select("body").append('div')
+        //     .attr('class', "tooltip")
+        //     .attr('id', 'divTooltip')
 
         // create a projection
-        vis.projection = d3.geoStereographic() // geoOrthographic()
-            .translate([vis.width / 2, vis.height / 2])
-            .scale(230)
-
-        // define a geo generator and pass your projection to it
-        vis.path = d3.geoPath()
-            .projection(vis.projection);
+        // vis.projection = d3.geoStereographic() // geoOrthographic()
+        //     .translate([vis.width / 2, vis.height / 2])
+        //     .scale(230)
+        //
+        // // define a geo generator and pass your projection to it
+        // vis.path = d3.geoPath()
+        //     .projection(vis.projection);
 
 
         // add sphere
@@ -49,7 +49,7 @@ class MapVis {
         //     .attr("stroke","rgba(129,129,129,0.35)")
         //     .attr("d", vis.path);
 
-        console.log(vis.data.objects.state)
+        // console.log(vis.data.objects.state)
         // convert your TopoJSON data into GeoJSON data structure
         // vis.world = topojson.feature(vis.data, vis.data.objects.state).features
 
@@ -65,6 +65,7 @@ class MapVis {
     wrangleData(){
         let vis = this;
 
+        vis.updateVis();
     }
 
     updateVis() {
@@ -73,7 +74,12 @@ class MapVis {
 
         vis.mapgroup
             .transition()
-            .attr("opacity", 1);
+            .attr("visibility", "visible");
 
+        vis.mapgroup
+            .append("text")
+            .attr("x", 500)
+            .attr("y", 300)
+            .text("hometown map")
     }
 }
