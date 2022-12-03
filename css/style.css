@@ -12,6 +12,12 @@ p {
     font-weight: 400;
 }
 
+text {
+    fill: white;
+    opacity: 0.83;
+    font-family: "Roboto Serif";
+}
+
 body {
     background: #242635;
     padding: 5vh;
@@ -24,7 +30,7 @@ body {
 .step {
     margin-bottom: 100px;
     height: 650px;
-    text-align: justify;
+    text-align: left;
 }
 
 .chart-label, .x-axis-label, .allContestantDotLegend-label, .allContestantCirclesSeasonLabels{
