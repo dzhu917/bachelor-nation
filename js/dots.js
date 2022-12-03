@@ -338,6 +338,7 @@ class DotsVis {
                 vis.dotgroup.append("g")
                     .attr("class", "x-axis axis")
                     .attr("transform", "translate(0," + 520 + ")")
+                    .style("stroke", "white")
                     .call(vis.zoomedgroupXAxis);
 
                 vis.dotgroup.append("text")
@@ -459,7 +460,7 @@ class DotsVis {
                 if(d.season === season_input & d.show === show_input){
                     return "lightgray";
                 }
-                else if (d.show == "Bachelorette"){
+                else if (d.show == "Bachelor"){
                     if(d.winner === 1){return '#2d87ad'}
                     else if(d.elim_week === 10){return '#4690b3'}
                     else if(d.elim_week === 9){return '#5a99ba'}
