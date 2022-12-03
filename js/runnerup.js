@@ -40,7 +40,7 @@ class RunnerupVis {
         vis.allContestantDotLegend = vis.runnerupgroup
             .append('g')
             .attr("id", "allContestantDotLegend")
-            .attr("visibility", "visible")
+            .attr("visibility", "hidden")
 
         vis.contestantLabel = vis.allContestantDotLegend
             .append("g")
