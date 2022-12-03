@@ -39,7 +39,7 @@ class DotsVis {
 
         // CREATE LEGEND FOR DOT PLOT 1
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
-        vis.allContestantDotLegendColors = ["#75D6FF", "#FAB05A"]
+        vis.allContestantDotLegendColors = ["#F59BBB", "#deffb0"]
 
         vis.allContestantDotLegend = vis.dotgroup
             .selectAll(".allContestantDotLegend")
@@ -109,9 +109,9 @@ class DotsVis {
             .attr('r', 3)
             .attr('fill', function(d,i){
                 if(d.show === "Bachelorette"){
-                    return '#FAB05A'
+                    return '#F59BBB'
                 }else{
-                    return '#75D6FF'
+                    return '#deffb0'
                 }
             })
 
@@ -191,19 +191,19 @@ class DotsVis {
         vis.allContestantCircles
             .merge(vis.allContestantCircles)
             .transition()
-            .attr('r', d => d.winner === 1 ? 6 : 3)
+            .attr('r', d => d.winner === 1 ? 7 : 3)
             .attr('fill', function(d){
-                if(d.show === "Bachelor" & d.winner === 1){
-                    return '#2D87AD'
+                if(d.show === "Bachelor" && d.winner === 1){
+                    return '#72d700'
                 }
-                else if(d.show === "Bachelor" & d.winner === 0){
-                    return '#75D6FF'
+                else if(d.show === "Bachelor" && d.winner === 0){
+                    return '#deffb0'
                 }
-                else if(d.show === "Bachelorette" & d.winner === 1){
-                    return '#AD6A1C'
+                else if(d.show === "Bachelorette" && d.winner === 1){
+                    return '#ec095a'
                 }
                 else {
-                    return '#FAB05A'
+                    return '#F59BBB'
                 }
             });
     }
@@ -225,21 +225,21 @@ class DotsVis {
             .attr('r', d => d.winner === 1 ? 6 : 3)
             .attr('fill', function(d,i){
                 if(d.show == "Bachelor"){
-                    if(d.winner === 1){return '#2d87ad'}
-                    else if(d.elim_week === 10){return '#4690b3'}
-                    else if(d.elim_week === 9){return '#5a99ba'}
-                    else if(d.elim_week === 8){return '#6ba2c0'}
-                    else if(d.elim_week === 7){return '#7cacc6'}
-                    else if(d.elim_week === 6){return '#8cb5cd'}
-                    else if(d.elim_week === 5){return '#9cbed3'}
-                    else if(d.elim_week === 4){return '#abc8da'}
-                    else if(d.elim_week === 3){return '#bbd2e0'}
-                    else if(d.elim_week === 2){return '#cadbe7'}
-                    else if(d.elim_week === 1){return '#d9e5ed'}
-                    else {return '#d9e5ed'}
+                    if(d.winner === 1){return '#72d700'}
+                    else if(d.elim_week === 10){return '#7fdb27'}
+                    else if(d.elim_week === 9){return '#8cdf3b'}
+                    else if(d.elim_week === 8){return '#97e34c'}
+                    else if(d.elim_week === 7){return '#a3e75c'}
+                    else if(d.elim_week === 6){return '#adeb6a'}
+                    else if(d.elim_week === 5){return '#b8ef79'}
+                    else if(d.elim_week === 4){return '#c2f387'}
+                    else if(d.elim_week === 3){return '#cbf794'}
+                    else if(d.elim_week === 2){return '#d5fba2'}
+                    else if(d.elim_week === 1){return '#deffb0'}
+                    else {return '#deffb0'}
                 }
                 else{
-                    if(d.winner === 1){return '#AD6A1C'}
+                    if(d.winner === 1){return '#ec095a'}
                     else if(d.elim_week === 10){return '#b67631'}
                     else if(d.elim_week === 9){return '#bf8244'}
                     else if(d.elim_week === 8){return '#c88f57'}
@@ -250,7 +250,7 @@ class DotsVis {
                     else if(d.elim_week === 3){return '#eccfb7'}
                     else if(d.elim_week === 2){return '#f2ddcb'}
                     else if(d.elim_week === 1){return '#f8eadf'}
-                    else {return '#f8eadf'}
+                    else {return '#F59BBB'}
                 }
             });
     }
@@ -368,9 +368,10 @@ class DotsVis {
         vis.dotgroup.selectAll('.zoomedgroupdots').remove()
 
         // Filter data based on input season
-        vis.filteredData = vis.data.filter(function (d) {
-            return d.season === season_input & d.show === show_input;
-        });
+        vis.filteredData = vis.data.filter(function (d) {return d.season === season_input & d.show === show_input;})
+            .sort((a, b) => d3.descending(a.elim_week, b.elim_week))
+
+        console.log(this.filteredData)
 
         // Create new set of dots using filtered data
         vis.dotgroup.append('g')
@@ -381,9 +382,11 @@ class DotsVis {
             .attr("class", "zoomedgroupdots")
             .attr("cx", function(d){
                 if (d.winner != 1){return vis.zoomedgroupX(d.elim_week)}
-                else{return vis.zoomedgroupX(10) + 10}
+                else{return vis.zoomedgroupX(10) + 25}
             })
-            .attr("cy", d3.randomUniform(vis.margin.top + vis.padding + 250, vis.margin.top + vis.padding + 450))
+            .attr("cy", function(d){
+                return (vis.margin.top + vis.padding + 270 + d.num_in_elim_week * 280 / 14)
+            })
             .attr("r", function(d){
                 if(d.winner != 1){return 8}
                 else{return 12}
