@@ -40,7 +40,6 @@ class RunnerupVis {
         vis.allContestantDotLegend = vis.runnerupgroup
             .append('g')
             .attr("id", "allContestantDotLegend")
-            .attr("visibility", "hidden")
 
         vis.contestantLabel = vis.allContestantDotLegend
             .append("g")
@@ -127,6 +126,79 @@ class RunnerupVis {
             .attr('stroke-opacity', 0)
             .attr("fill-opacity", 0)
 
+        vis.ruIntroLegend = d3.select("#ru-intro-legend")
+            .append("svg")
+            .attr("id", "ru-intro-legend-svg")
+            .attr("height", 200)
+        
+        vis.ruIntroLegend
+            .append("circle")
+            .attr("cx", 20)
+            .attr("cy", 20)
+            .attr("r", 5)
+            .attr("fill", "#D7A7A0")
+
+        vis.ruIntroLegend
+            .append("text")
+            .text("← Winner")
+            .attr("x", 40)
+            .attr("y", 25)
+
+        vis.ruIntroLegend
+            .append("circle")
+            .attr("cx", 20)
+            .attr("cy", 60)
+            .attr("r", 5)
+            .attr("fill", "#D7A7A0")
+
+        vis.ruIntroLegend
+            .append("text")
+            .text("← Runner up")
+            .attr("x", 40)
+            .attr("y", 65)
+
+        vis.ruIntroLegend
+            .append("text")
+            .text("S*")
+            .attr("x", 20)
+            .attr("y", 100)
+            .attr("text-anchor", "middle")
+            .style("font-size", 12)
+
+        vis.ruFirLegend = d3.select("#ru-fir-legend")
+            .append("svg")
+            .attr("id", "ru-fir-legend-svg")
+            .attr("height", 200)
+        
+        vis.ruFirLegend
+            .append("circle")
+            .attr("cx", 20)
+            .attr("cy", 20)
+            .attr("r", 5)
+            .attr("fill", "#D7A7A0")
+
+        vis.ruFirLegend
+            .append("text")
+            .text("← Received first impression rose")
+            .attr("x", 40)
+            .attr("y", 25)
+
+        vis.ruFirLegend
+            .append("rect")
+            .attr("x", 5)
+            .attr("y", 60)
+            .attr("height", 60)
+            .attr("width", 35)
+            .attr("stroke-width", 5)
+            .attr('stroke', function (d, i) {
+                return d > 0 ? "#D7A7A0" : "#E0D188"
+            })
+            .attr('stroke-opacity', 0.5)
+            .attr("fill-opacity", 0)
+            .attr("stroke-dasharray", "7,7")
+
+
+
         vis.wrangleData();
     }
 
@@ -154,6 +226,7 @@ updateRunnerup() {
             .enter()
             .append('circle')
             .attr("class", "allContestantCircles")
+            .merge(vis.allContestantCircles)
             .on("mouseover", function (event, d) {
                 vis.tooltip
                     .style("opacity", 1)
@@ -178,12 +251,11 @@ updateRunnerup() {
                     .style("top", 0)
                     .html(``);
             })
-            .merge(vis.allContestantCircles)
             .transition()
             .attr("opacity", d => (d.winner == 1 || d.runner_up == 1) ? 1 : 0)
             .attr('cx', function (d) {
                 if (d.show === "Bachelor" && d.season == 11) {
-                    if (d.name === "DEANNA P") {
+                    if (d.name === "Deanna P") {
                         return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) + (vis.width / 75));
                     }
                     return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) - (vis.width / 75));
@@ -269,6 +341,7 @@ updateRunnerup() {
             .enter()
             .append('circle')
             .attr("class", "allContestantCircles")
+            .merge(vis.allContestantCircles)
             .on("mouseover", function (event, d) {
                 vis.tooltip
                     .style("opacity", 1)
@@ -293,12 +366,11 @@ updateRunnerup() {
                     .style("top", 0)
                     .html(``);
             })
-            .merge(vis.allContestantCircles)
             .transition()
             .attr("opacity", d => (d.winner == 1 || d.runner_up == 1) ? 1 : 0)
             .attr('cx', function (d) {
                 if (d.show === "Bachelor" && d.season == 11) {
-                    if (d.name === "DEANNA P") {
+                    if (d.name === "Deanna P") {
                         return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) + (vis.width / 75));
                     }
                     return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) - (vis.width / 75));
@@ -427,7 +499,7 @@ updateRunnerup() {
             .transition()
             .attr('cx', function (d) {
                 if (d.show === "Bachelor" && d.season == 11) {
-                    if (d.name === "DEANNA P") {
+                    if (d.name === "Deanna P") {
                         return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) + (vis.width / 75));
                     }
                     return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) - (vis.width / 75));
