@@ -40,7 +40,6 @@ class RunnerupVis {
         vis.allContestantDotLegend = vis.runnerupgroup
             .append('g')
             .attr("id", "allContestantDotLegend")
-            .attr("visibility", "hidden")
 
         vis.contestantLabel = vis.allContestantDotLegend
             .append("g")
@@ -127,6 +126,156 @@ class RunnerupVis {
             .attr('stroke-opacity', 0)
             .attr("fill-opacity", 0)
 
+        vis.ruIntroLegend = d3.select("#ru-intro-legend")
+            .append("svg")
+            .attr("id", "ru-intro-legend-svg")
+            .attr("height", 200)
+        
+        vis.ruIntroLegend
+            .append("circle")
+            .attr("cx", 20)
+            .attr("cy", 20)
+            .attr("r", 5)
+            .attr("fill", "#D7A7A0")
+
+        vis.ruIntroLegend
+            .append("text")
+            .text("← Winner")
+            .attr("x", 40)
+            .attr("y", 25)
+
+        vis.ruIntroLegend
+            .append("circle")
+            .attr("cx", 20)
+            .attr("cy", 60)
+            .attr("r", 5)
+            .attr("fill", "#D7A7A0")
+
+        vis.ruIntroLegend
+            .append("text")
+            .text("← Runner up")
+            .attr("x", 40)
+            .attr("y", 65)
+
+        vis.ruIntroLegend
+            .append("text")
+            .text("S*")
+            .attr("x", 20)
+            .attr("y", 100)
+            .attr("text-anchor", "middle")
+            .style("font-size", 12)
+
+        vis.ruFirLegend = d3.select("#ru-fir-legend")
+            .append("svg")
+            .attr("id", "ru-fir-legend-svg")
+            .attr("height", 200)
+            .attr("width", 350)
+        
+        vis.ruFirLegend
+            .append("circle")
+            .attr("cx", 40)
+            .attr("cy", 20)
+            .attr("r", 5)
+            .attr("fill", "#FF0000")
+
+        vis.ruFirLegend
+            .append("text")
+            .text("← Received first impression rose")
+            .attr("x", 60)
+            .attr("y", 25)
+
+        vis.ruFirLegend
+            .append("rect")
+            .attr("x", 5)
+            .attr("y", 60)
+            .attr("height", 60)
+            .attr("width", 35)
+            .attr("stroke-width", 5)
+            .attr('stroke', function (d, i) {
+                return d > 0 ? "#D7A7A0" : "#E0D188"
+            })
+            .attr('stroke-opacity', 0.5)
+            .attr("fill-opacity", 0)
+            .attr("stroke-dasharray", "7,7")
+
+        vis.ruFirLegend
+            .append("text")
+            .text("← Winner did not receive the")
+            .attr("x", 60)
+            .attr("y", 80)
+
+        vis.ruFirLegend
+            .append("text")
+            .text("first impression rose")
+            .attr("x", 60)
+            .attr("y", 100)
+
+        vis.ruDatesLegend = d3.select("#ru-dates-legend")
+            .append("svg")
+            .attr("id", "ru-dates-legend-svg")
+            .attr("height", 200)
+            .attr("width", 350)
+
+        vis.ruDatesLegend
+            .append("circle")
+            .attr("cx", 20)
+            .attr("cy", 20)
+            .attr("r", 5)
+            .attr("fill", "#D7A7A0")
+
+        vis.ruDatesLegend
+            .append("circle")
+            .attr("cx", 95)
+            .attr("cy", 20)
+            .attr("r", Math.sqrt(4) * 5)
+            .attr("fill", "#D7A7A0")
+
+        vis.ruDatesLegend
+            .append("circle")
+            .attr("cx", 170)
+            .attr("cy", 20)
+            .attr("r", Math.sqrt(7) * 5)
+            .attr("fill", "#D7A7A0")
+
+        // insert x axes with tickes 1, 4, and 7 using d3.axes
+        vis.ruDatesLegend
+            .append("g")
+            .attr("id", "bottom")
+            .attr("transform", "translate(20, 50)")
+        
+        
+        let scale = d3.scaleOrdinal().domain(["1 date", "4 dates", "7 dates"]).range([0, 75, 150]);
+
+        let axisBottom = d3.axisBottom(scale)
+
+        d3.select('#bottom').call(axisBottom);
+            
+        vis.ruDatesLegend
+            .append("rect")
+            .attr("x", 5)
+            .attr("y", 100)
+            .attr("height", 60)
+            .attr("width", 35)
+            .attr("stroke-width", 5)
+            .attr('stroke', function (d, i) {
+                return d > 0 ? "#D7A7A0" : "#E0D188"
+            })
+            .attr('stroke-opacity', 0.5)
+            .attr("fill-opacity", 0)
+            .attr("stroke-dasharray", "7,7")
+
+        vis.ruDatesLegend
+            .append("text")
+            .text("← Winner went on fewer dates")
+            .attr("x", 60)
+            .attr("y", 120)
+
+        vis.ruDatesLegend
+            .append("text")
+            .text("than the runner up")
+            .attr("x", 60)
+            .attr("y", 140)
+        
         vis.wrangleData();
     }
 
@@ -154,6 +303,7 @@ updateRunnerup() {
             .enter()
             .append('circle')
             .attr("class", "allContestantCircles")
+            .merge(vis.allContestantCircles)
             .on("mouseover", function (event, d) {
                 vis.tooltip
                     .style("opacity", 1)
@@ -161,7 +311,7 @@ updateRunnerup() {
                     .style("top", event.pageY + "px")
                     .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
                  <p style="color: #242635; font-weight: bold;">${d.name}</p>
-                 <p style="color: #242635; line-height: 0.5"> ${d.show} season ${d.season} ${d.winner == 1 ? "winner" : "runner-up"}</p>                 
+                 <p style="color: #242635"> ${d.show} season ${d.season} ${d.winner == 1 ? "winner" : "runner-up"}</p>                 
              </div>\``);
 
                 d3.select(this)
@@ -178,12 +328,11 @@ updateRunnerup() {
                     .style("top", 0)
                     .html(``);
             })
-            .merge(vis.allContestantCircles)
             .transition()
             .attr("opacity", d => (d.winner == 1 || d.runner_up == 1) ? 1 : 0)
             .attr('cx', function (d) {
                 if (d.show === "Bachelor" && d.season == 11) {
-                    if (d.name === "DEANNA P") {
+                    if (d.name === "Deanna P") {
                         return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) + (vis.width / 75));
                     }
                     return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) - (vis.width / 75));
@@ -269,6 +418,7 @@ updateRunnerup() {
             .enter()
             .append('circle')
             .attr("class", "allContestantCircles")
+            .merge(vis.allContestantCircles)
             .on("mouseover", function (event, d) {
                 vis.tooltip
                     .style("opacity", 1)
@@ -276,7 +426,7 @@ updateRunnerup() {
                     .style("top", event.pageY + "px")
                     .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
                  <p style="color: #242635; font-weight: bold;">${d.name}</p>
-                 <p style="color: #242635; line-height: 0.5"> ${d.show} season ${d.season} ${d.winner == 1 ? "winner" : "runner-up"}</p>                 
+                 <p style="color: #242635;"> ${d.show} season ${d.season} ${d.winner == 1 ? "winner" : "runner-up"}</p>                 
              </div>\``);
 
                 d3.select(this)
@@ -293,12 +443,11 @@ updateRunnerup() {
                     .style("top", 0)
                     .html(``);
             })
-            .merge(vis.allContestantCircles)
             .transition()
             .attr("opacity", d => (d.winner == 1 || d.runner_up == 1) ? 1 : 0)
             .attr('cx', function (d) {
                 if (d.show === "Bachelor" && d.season == 11) {
-                    if (d.name === "DEANNA P") {
+                    if (d.name === "Deanna P") {
                         return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) + (vis.width / 75));
                     }
                     return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) - (vis.width / 75));
@@ -406,8 +555,8 @@ updateRunnerup() {
                     .style("top", event.pageY + "px")
                     .html(`<div style="border: thin solid grey; border-radius: 5px; background: white; padding: 3px;">
                  <p style="color: #242635; font-weight: bold;">${d.name}</p>
-                 <p style="color: #242635; line-height: 0.5"> ${d.show} season ${d.season} ${d.winner == 1 ? "winner" : "runner-up"}</p>
-                 <p style="color: #242635; line-height: 0.5"> Went on ${d.roses} dates</p>                 
+                 <p style="color: #242635;"> ${d.show} season ${d.season} ${d.winner == 1 ? "winner" : "runner-up"}</p>
+                 <p style="color: #242635;"> Went on ${d.roses} dates</p>                 
              </div>\``);
 
                 d3.select(this)
@@ -427,7 +576,7 @@ updateRunnerup() {
             .transition()
             .attr('cx', function (d) {
                 if (d.show === "Bachelor" && d.season == 11) {
-                    if (d.name === "DEANNA P") {
+                    if (d.name === "Deanna P") {
                         return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) + (vis.width / 75));
                     }
                     return ((d.season - 1) % 7 * (vis.width / 7) + (vis.width / 14) - (vis.width / 75));

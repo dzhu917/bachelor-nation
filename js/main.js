@@ -1,6 +1,4 @@
 let contestant_data;
-let hometown_data;
-let updated_data;
 let myDots;
 let simulation, nodes;
 let svg;
@@ -9,7 +7,7 @@ let mySlot;
 let myRunnerup;
 
 let promises = [
-    d3.csv("data/contestant-data-simplified-1.csv"),
+    d3.csv("data/contestant-data.csv"),
     d3.json("data/hometowns.json")
 ];
 
@@ -31,8 +29,6 @@ Promise.all(promises)
 
 function createVis(data) {
     contestant_data = data[0];
-    hometown_data = data[1];
-    // updated_data = data[2];
 
     let margins = {top: 20, right: 20, bottom: 50, left: 20};
     let width = document.getElementById("vis").getBoundingClientRect().width - margins.left - margins.right;
@@ -48,7 +44,6 @@ function createVis(data) {
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
     //mySlot = new SlotVis('slotDiv');
-    // myHometowns = new MapVis('mapDiv', hometown_data);
 
     drawIntro();
 }
@@ -69,11 +64,6 @@ function clean(chartType){
             .transition()
             .attr("visibility", "hidden")
     }
-    // if (chartType !== "map"){
-    //     d3.select("#mapgroup")
-    //         .transition()
-    //         .attr("visibility", "hidden")
-    // }
     if (chartType !== "intro"){
         d3.select("#intro")
             .html(null);

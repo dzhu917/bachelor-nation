@@ -183,8 +183,17 @@ button {
     text-align: center;
 }
 
+
 .credits{
     margin-top: 2vh;
     width: 100%;
-    text-align: center;
+    text-align: center
+}
+
+#bottom line{
+    stroke: white;
+}
+
+#bottom path{
+    stroke: white;
 }

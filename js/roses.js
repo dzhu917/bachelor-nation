@@ -5,9 +5,9 @@ canvas.height = window.innerHeight;
 
 var context = canvas.getContext("2d");
 var img = new Image();
-img.src = "data/rose.gif"
+img.src = "img/rose.gif"
 var img_sparkle = new Image();
-img_sparkle.src = "data/sparkles.png"
+img_sparkle.src = "img/sparkles.png"
 
 var numRoses = 20;
 var rose = [];
