@@ -1,5 +1,5 @@
 # bachelor-nation
-CS 171 Final Project
+### CS 171 Final Project by Kevin Tan, Kelsey Wu, and Diana Zhu
 
 The README file must give an overview of what you are handing in: which parts are your code, which parts are libraries, 
 and so on. The README must also explain any non-obvious features of your interface.
