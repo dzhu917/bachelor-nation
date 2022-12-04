@@ -27,12 +27,12 @@ function Rose(x, y){
         }
     }
     this.show = function(){
-        context.drawImage(img, this.x, this.y, 30, 30);
+        context.drawImage(img, this.x, this.y, 40, 40);
     }
 }
 
 function draw() {
-    context.fillStyle = 'black'; // black background
+    context.fillStyle = '#242635';
     context.fillRect(0, 0, canvas.width, canvas.height);
     for (var i = 0; i < numRoses; i++) {
         rose[i].show();
