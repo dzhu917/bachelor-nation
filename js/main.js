@@ -1,4 +1,3 @@
-let bachelorette_data;
 let contestant_data;
 let hometown_data;
 let updated_data;
@@ -10,7 +9,6 @@ let myHometowns;
 let myRunnerup;
 
 let promises = [
-    d3.csv("data/bachelorette-data.csv"),
     d3.csv("data/contestant-data-simplified-1.csv"),
     d3.json("data/hometowns.json"),
     d3.csv("data/updated_data.csv")
@@ -41,10 +39,9 @@ Promise.all(promises)
     });
 
 function createVis(data) {
-    bachelorette_data = data[0];
-    contestant_data = data[1];
-    hometown_data = data[2];
-    updated_data = data[3];
+    contestant_data = data[0];
+    hometown_data = data[1];
+    updated_data = data[2];
 
     let margins = {top: 20, right: 20, bottom: 50, left: 20};
     let width = document.getElementById("vis").getBoundingClientRect().width - margins.left - margins.right;
