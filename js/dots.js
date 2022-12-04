@@ -35,7 +35,7 @@ class DotsVis {
             .selectAll(".zoomedgroup")
             .append("g")
             .data(vis.data)
-            .attr("id", "zoomedgroup")
+            .attr("id", "zoomedgroup");
 
         // CREATE LEGEND FOR DOT PLOT 1
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
@@ -338,11 +338,13 @@ class DotsVis {
                 vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
                 vis.changeSelectedSeasonColor(d.target.__data__.season, d.target.__data__.show);
 
-                vis.dotgroup.exit().remove();
+                vis.zoomedgroup.exit().remove();
 
                 document.getElementById("selectedShow").innerText = d3.select(this)._groups[0][0].__data__.show;
                 document.getElementById("selectedSeason").innerText = d3.select(this)._groups[0][0].__data__.season;
         })
+
+        vis.dotgroup.exit().remove();
 
     }
 
@@ -356,7 +358,7 @@ class DotsVis {
             .sort((a, b) => d3.descending(a.elim_week, b.elim_week))
 
         vis.dotgroup.append("g")
-            .attr("class", "x-axis axis")
+            .attr("class", "x-axis axis zoomedgroupdots")
             .attr("transform", "translate(0," + 340 + ")")
             .style("font-size", "15px")
             .call(vis.zoomedgroupXAxis);
