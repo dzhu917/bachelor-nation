@@ -194,13 +194,13 @@ class DotsVis {
             .attr('r', d => d.winner === 1 ? 7 : 3)
             .attr('fill', function(d){
                 if(d.show === "Bachelor" && d.winner === 1){
-                    return '#72d700'
+                    return '#66c000'
                 }
                 else if(d.show === "Bachelor" && d.winner === 0){
                     return '#deffb0'
                 }
                 else if(d.show === "Bachelorette" && d.winner === 1){
-                    return '#ec095a'
+                    return '#ff005a'
                 }
                 else {
                     return '#F59BBB'
