@@ -25,8 +25,8 @@ This file creates our second main visualization, which explores the success rate
 This file creates our last main visualization, which compares the winners and the runner ups of each season by whether they received a first impression rose. The next linked view updates the visualization so that each contestant circle's radius is adjusted based on the number of dates they went on over the course of the show. 
 
 ### roses.js 
-This file creates the rose and glitter animations on the first slide. 
+This file creates the falling image animations at the top of the page. 
 
-Our project uses Bootstrap for its CSS framework and the JavaScript library D3.js for its interactive visualizations. There are no need to download any additional libraries to run this project - all data and code required is contained within this Github repository. 
+Our project uses Bootstrap for its CSS framework and the JavaScript library D3.js for its interactive visualizations. There is no need to download any additional libraries to run this project - all data and code required is contained within this Github repository. 
 
 
