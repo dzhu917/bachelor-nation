@@ -339,7 +339,6 @@ class DotsVis {
             .attr("class", "winner-chart-label")
             .attr("x", winnerchartlabelx)
             .attr("y", "330")
-            //.attr("transform", "translate(vis.width - vis.margin.right - 300 + 70," + 340 + ")")
             .style("font-size", "15px")
             .text("Winner")
             .attr("visibility", "hidden");
