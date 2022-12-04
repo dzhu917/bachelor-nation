@@ -1,9 +1,7 @@
 let contestant_data;
 let myDots;
-let simulation, nodes;
 let svg;
 let myFIR;
-let mySlot;
 let myRunnerup;
 
 let promises = [
@@ -43,7 +41,6 @@ function createVis(data) {
     myDots = new DotsVis('vis', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
-    //mySlot = new SlotVis('slotDiv');
 
     drawIntro();
 }
