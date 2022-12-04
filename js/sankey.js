@@ -33,7 +33,6 @@ class FirVis {
         // Create legend
         vis.allContestantDotLegendData = ["Got first impression rose", "Did not get first impression rose", "Eliminated"]
         vis.allContestantDotLegendColors = ["rgba(255,49,49,0.62)", '#269CE0', "#525750"]
-
         vis.allContestantDotLegend = vis.sankeygroup
             .selectAll(".allContestantDotLegend")
             .enter()
@@ -78,6 +77,16 @@ class FirVis {
             .attr('transform', 'translate(30,30)');
 
         vis.gFill.call(vis.sliderFill);
+
+        // add divider line
+        vis.dividerRect = vis.sankeygroup
+            .append('rect')
+            .attr("width", 385)
+            .attr("height",2)
+            .attr("fill", '#C8BAFB')
+            .attr('x', 25)
+            .attr('y', 85)
+            .attr('opacity', .5)
 
         vis.wrangleData();
     }
@@ -135,7 +144,11 @@ class FirVis {
                 return vis.padding + 15*(i % 26)
             })
             .attr('cy', function(d, i){
-                return 2*vis.padding + 15*Math.floor(i / 26)
+                if (i < 26){
+                    return 2*vis.padding + 15*Math.floor(i / 26)
+                } else {
+                    return 2*vis.padding + 40 + 15*Math.floor(i / 26)
+                }
             })
             .attr('r', 5)
             .attr('fill', function(d){
