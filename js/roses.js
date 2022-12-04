@@ -1,3 +1,5 @@
+// Adapted from the tutorial https://www.youtube.com/watch?v=T9bReBQ801Q
+
 var canvas = document.getElementById("myCanvas");
 // set boundaries for roses
 canvas.style.opacity = ".6";
