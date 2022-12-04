@@ -382,6 +382,7 @@ class DotsVis {
             .style("font-size", "18px")
             .style("font-weight", "bold")
             .style("fill", "#C8BAFB")
+            .style("font-family", "Syne")
             .text("Contestants grouped by elimination week");
 
         // Create new set of dots using filtered data
