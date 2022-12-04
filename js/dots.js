@@ -39,7 +39,7 @@ class DotsVis {
 
         // CREATE LEGEND FOR DOT PLOT 1
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
-        vis.allContestantDotLegendColors = ["#F59BBB", "#deffb0"]
+        vis.allContestantDotLegendColors = ["#deffb0", "#F59BBB"]
 
         vis.allContestantDotLegend = vis.dotgroup
             .selectAll(".allContestantDotLegend")
@@ -222,35 +222,35 @@ class DotsVis {
         vis.allContestantCircles
             .merge(vis.allContestantCircles)
             .transition()
-            .attr('r', d => d.winner === 1 ? 6 : 3)
+            .attr('r', d => d.winner === 1 ? 7 : 3)
             .attr('fill', function(d,i){
                 if(d.show == "Bachelor"){
-                    if(d.winner === 1){return '#72d700'}
-                    else if(d.elim_week === 10){return '#7fdb27'}
-                    else if(d.elim_week === 9){return '#8cdf3b'}
-                    else if(d.elim_week === 8){return '#97e34c'}
-                    else if(d.elim_week === 7){return '#a3e75c'}
-                    else if(d.elim_week === 6){return '#adeb6a'}
-                    else if(d.elim_week === 5){return '#b8ef79'}
-                    else if(d.elim_week === 4){return '#c2f387'}
-                    else if(d.elim_week === 3){return '#cbf794'}
-                    else if(d.elim_week === 2){return '#d5fba2'}
-                    else if(d.elim_week === 1){return '#deffb0'}
-                    else {return '#deffb0'}
+                    if(d.winner === 1){return '#66c000'}
+                    else if(d.elim_week === 10){return '#69be1c'}
+                    else if(d.elim_week === 9){return '#8ad746'}
+                    else if(d.elim_week === 8){return '#96d95b'}
+                    else if(d.elim_week === 7){return '#a7ea6c'}
+                    else if(d.elim_week === 6){return '#b4e583'}
+                    else if(d.elim_week === 5){return '#c4ea99'}
+                    else if(d.elim_week === 4){return '#d0ecac'}
+                    else if(d.elim_week === 3){return '#d3ecb8'}
+                    else if(d.elim_week === 2){return '#e4fccb'}
+                    else if(d.elim_week === 1){return '#ffffff'}
+                    else {return 'rgba(255,255,255,0.45)'}
                 }
                 else{
-                    if(d.winner === 1){return '#ec095a'}
-                    else if(d.elim_week === 10){return '#b67631'}
-                    else if(d.elim_week === 9){return '#bf8244'}
-                    else if(d.elim_week === 8){return '#c88f57'}
-                    else if(d.elim_week === 7){return '#d09b6a'}
-                    else if(d.elim_week === 6){return '#d8a87d'}
-                    else if(d.elim_week === 5){return '#dfb590'}
-                    else if(d.elim_week === 4){return '#e6c2a3'}
-                    else if(d.elim_week === 3){return '#eccfb7'}
-                    else if(d.elim_week === 2){return '#f2ddcb'}
-                    else if(d.elim_week === 1){return '#f8eadf'}
-                    else {return '#F59BBB'}
+                    if(d.winner === 1){return '#ff005a'}
+                    else if(d.elim_week === 10){return '#f82254'}
+                    else if(d.elim_week === 9){return '#f34c6b'}
+                    else if(d.elim_week === 8){return '#ff6b82'}
+                    else if(d.elim_week === 7){return '#fc7e8e'}
+                    else if(d.elim_week === 6){return '#fd96a2'}
+                    else if(d.elim_week === 5){return '#ffb1b9'}
+                    else if(d.elim_week === 4){return '#ff9da6'}
+                    else if(d.elim_week === 3){return '#ffc3c6'}
+                    else if(d.elim_week === 2){return '#ffd2d4'}
+                    else if(d.elim_week === 1){return '#ffffff'}
+                    else {return 'rgba(255,255,255,0.45)'}
                 }
             });
     }
@@ -288,43 +288,70 @@ class DotsVis {
                 }
             })
             .attr('r', d => d.winner === 1 ? 6 : 3)
-            .attr('fill', function(d){
+            .attr('fill', function(d,i){
                 if(d.show == "Bachelor"){
-                    if(d.winner === 1){return '#2d87ad'}
-                    else if(d.elim_week === 10){return '#4690b3'}
-                    else if(d.elim_week === 9){return '#5a99ba'}
-                    else if(d.elim_week === 8){return '#6ba2c0'}
-                    else if(d.elim_week === 7){return '#7cacc6'}
-                    else if(d.elim_week === 6){return '#8cb5cd'}
-                    else if(d.elim_week === 5){return '#9cbed3'}
-                    else if(d.elim_week === 4){return '#abc8da'}
-                    else if(d.elim_week === 3){return '#bbd2e0'}
-                    else if(d.elim_week === 2){return '#cadbe7'}
-                    else if(d.elim_week === 1){return '#d9e5ed'}
-                    else {return '#d9e5ed'}
+                    if(d.winner === 1){return '#66c000'}
+                    else if(d.elim_week === 10){return '#69be1c'}
+                    else if(d.elim_week === 9){return '#8ad746'}
+                    else if(d.elim_week === 8){return '#96d95b'}
+                    else if(d.elim_week === 7){return '#a7ea6c'}
+                    else if(d.elim_week === 6){return '#b4e583'}
+                    else if(d.elim_week === 5){return '#c4ea99'}
+                    else if(d.elim_week === 4){return '#d0ecac'}
+                    else if(d.elim_week === 3){return '#d3ecb8'}
+                    else if(d.elim_week === 2){return '#e4fccb'}
+                    else if(d.elim_week === 1){return '#ffffff'}
+                    else {return 'rgba(255,255,255,0.45)'}
                 }
                 else{
-                    if(d.winner === 1){return '#AD6A1C'}
-                    else if(d.elim_week === 10){return '#b67631'}
-                    else if(d.elim_week === 9){return '#bf8244'}
-                    else if(d.elim_week === 8){return '#c88f57'}
-                    else if(d.elim_week === 7){return '#d09b6a'}
-                    else if(d.elim_week === 6){return '#d8a87d'}
-                    else if(d.elim_week === 5){return '#dfb590'}
-                    else if(d.elim_week === 4){return '#e6c2a3'}
-                    else if(d.elim_week === 3){return '#eccfb7'}
-                    else if(d.elim_week === 2){return '#f2ddcb'}
-                    else if(d.elim_week === 1){return '#f8eadf'}
-                    else {return '#f8eadf'}
+                    if(d.winner === 1){return '#ff005a'}
+                    else if(d.elim_week === 10){return '#f82254'}
+                    else if(d.elim_week === 9){return '#f34c6b'}
+                    else if(d.elim_week === 8){return '#ff6b82'}
+                    else if(d.elim_week === 7){return '#fc7e8e'}
+                    else if(d.elim_week === 6){return '#fd96a2'}
+                    else if(d.elim_week === 5){return '#ffb1b9'}
+                    else if(d.elim_week === 4){return '#ff9da6'}
+                    else if(d.elim_week === 3){return '#ffc3c6'}
+                    else if(d.elim_week === 2){return '#ffd2d4'}
+                    else if(d.elim_week === 1){return '#ffffff'}
+                    else {return 'rgba(255,255,255,0.45)'}
                 }
-            })
+            });
 
         vis.zoomedgroupX = d3.scaleLinear()
-            .range([vis.margin.left, vis.width - vis.margin.right - 120])
+            .range([10 + vis.margin.left, vis.width - vis.margin.right - 300])
             .domain([1, 10]);
 
-        vis.zoomedgroupXAxis = d3.axisBottom()
+        vis.zoomedgroupXAxis = d3.axisTop()
             .scale(vis.zoomedgroupX);
+
+        vis.zoomedgroupText = vis.dotgroup.append("text")
+            .attr("class", "chart-label")
+            .attr("transform", "translate(15," + 300 + ")")
+            .style("font-size", "15px")
+            .text("Hover over each contestant below to see their age & occupation!")
+            .attr("visibility", "hidden");
+
+        let winnerchartlabelx = vis.width - vis.margin.right - 300 + 50;
+
+        vis.zoomedgroupWinnerLabel = vis.dotgroup.append("text")
+            .attr("class", "winner-chart-label")
+            .attr("x", winnerchartlabelx)
+            .attr("y", "330")
+            //.attr("transform", "translate(vis.width - vis.margin.right - 300 + 70," + 340 + ")")
+            .style("font-size", "15px")
+            .text("Winner")
+            .attr("visibility", "hidden");
+
+        vis.zoomedgroupAxisLabel = vis.dotgroup.append("text")
+            .attr("class", "x-axis-label")
+            .attr("transform", "translate(15," + 280 + ")")
+            .style("font-size", "18px")
+            .style("font-weight", "bold")
+            .style("fill", "#C8BAFB")
+            .text("Contestants grouped by elimination week")
+            .attr("visibility", "hidden");
 
         vis.allContestantCircles
             .on("mouseover", function(d){
@@ -337,19 +364,13 @@ class DotsVis {
 
                 vis.dotgroup.append("g")
                     .attr("class", "x-axis axis")
-                    .attr("transform", "translate(0," + 520 + ")")
-                    .style("stroke", "white")
+                    .attr("transform", "translate(0," + 340 + ")")
+                    .style("font-size", "15px")
                     .call(vis.zoomedgroupXAxis);
 
-                vis.dotgroup.append("text")
-                    .attr("class", "chart-label")
-                    .attr("transform", "translate(10," + 280 + ")")
-                    .text("Season timeline: Hover over each contestant below to see their age & occupation!");
-
-                vis.dotgroup.append("text")
-                    .attr("class", "x-axis-label")
-                    .attr("transform", "translate(300," + 560 + ")")
-                    .text("Elimination Week");
+                vis.zoomedgroupText.attr("visibility", "visible");
+                vis.zoomedgroupWinnerLabel.attr("visibility", "visible");
+                vis.zoomedgroupAxisLabel.attr("visibility", "visible");
 
                 vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
                 vis.changeSelectedSeasonColor(d.target.__data__.season, d.target.__data__.show);
@@ -371,8 +392,6 @@ class DotsVis {
         vis.filteredData = vis.data.filter(function (d) {return d.season === season_input & d.show === show_input;})
             .sort((a, b) => d3.descending(a.elim_week, b.elim_week))
 
-        console.log(this.filteredData)
-
         // Create new set of dots using filtered data
         vis.dotgroup.append('g')
             .selectAll("zoomedgroupdots")
@@ -382,43 +401,43 @@ class DotsVis {
             .attr("class", "zoomedgroupdots")
             .attr("cx", function(d){
                 if (d.winner != 1){return vis.zoomedgroupX(d.elim_week)}
-                else{return vis.zoomedgroupX(10) + 25}
+                else{return vis.zoomedgroupX(10) + 70}
             })
             .attr("cy", function(d){
-                return (vis.margin.top + vis.padding + 270 + d.num_in_elim_week * 280 / 14)
+                return (vis.margin.top + vis.padding + 300 + d.num_in_elim_week * 270 / 14)
             })
             .attr("r", function(d){
                 if(d.winner != 1){return 8}
                 else{return 12}
             })
-            .attr('fill', function(d){
+            .attr('fill', function(d,i){
                 if(d.show == "Bachelor"){
-                    if(d.winner === 1){return '#2d87ad'}
-                    else if(d.elim_week === 10){return '#4690b3'}
-                    else if(d.elim_week === 9){return '#5a99ba'}
-                    else if(d.elim_week === 8){return '#6ba2c0'}
-                    else if(d.elim_week === 7){return '#7cacc6'}
-                    else if(d.elim_week === 6){return '#8cb5cd'}
-                    else if(d.elim_week === 5){return '#9cbed3'}
-                    else if(d.elim_week === 4){return '#abc8da'}
-                    else if(d.elim_week === 3){return '#bbd2e0'}
-                    else if(d.elim_week === 2){return '#cadbe7'}
-                    else if(d.elim_week === 1){return '#d9e5ed'}
-                    else {return '#d9e5ed'}
+                    if(d.winner === 1){return '#66c000'}
+                    else if(d.elim_week === 10){return '#69be1c'}
+                    else if(d.elim_week === 9){return '#8ad746'}
+                    else if(d.elim_week === 8){return '#96d95b'}
+                    else if(d.elim_week === 7){return '#a7ea6c'}
+                    else if(d.elim_week === 6){return '#b4e583'}
+                    else if(d.elim_week === 5){return '#c4ea99'}
+                    else if(d.elim_week === 4){return '#d0ecac'}
+                    else if(d.elim_week === 3){return '#d3ecb8'}
+                    else if(d.elim_week === 2){return '#e4fccb'}
+                    else if(d.elim_week === 1){return '#ffffff'}
+                    else {return 'rgba(255,255,255,0.45)'}
                 }
                 else{
-                    if(d.winner === 1){return '#AD6A1C'}
-                    else if(d.elim_week === 10){return '#b67631'}
-                    else if(d.elim_week === 9){return '#bf8244'}
-                    else if(d.elim_week === 8){return '#c88f57'}
-                    else if(d.elim_week === 7){return '#d09b6a'}
-                    else if(d.elim_week === 6){return '#d8a87d'}
-                    else if(d.elim_week === 5){return '#dfb590'}
-                    else if(d.elim_week === 4){return '#e6c2a3'}
-                    else if(d.elim_week === 3){return '#eccfb7'}
-                    else if(d.elim_week === 2){return '#f2ddcb'}
-                    else if(d.elim_week === 1){return '#f8eadf'}
-                    else {return '#f8eadf'}
+                    if(d.winner === 1){return '#ff005a'}
+                    else if(d.elim_week === 10){return '#f82254'}
+                    else if(d.elim_week === 9){return '#f34c6b'}
+                    else if(d.elim_week === 8){return '#ff6b82'}
+                    else if(d.elim_week === 7){return '#fc7e8e'}
+                    else if(d.elim_week === 6){return '#fd96a2'}
+                    else if(d.elim_week === 5){return '#ffb1b9'}
+                    else if(d.elim_week === 4){return '#ff9da6'}
+                    else if(d.elim_week === 3){return '#ffc3c6'}
+                    else if(d.elim_week === 2){return '#ffd2d4'}
+                    else if(d.elim_week === 1){return '#ffffff'}
+                    else {return 'rgba(255,255,255,0.45)'}
                 }
             })
             .on("mouseover", function(event,d){
@@ -459,37 +478,37 @@ class DotsVis {
 
         vis.allContestantCircles
             .merge(vis.allContestantCircles)
-            .attr("fill", function(d){
+            .attr('fill', function(d,i){
                 if(d.season === season_input & d.show === show_input){
-                    return "lightgray";
+                    return "#C8BAFB";
                 }
-                else if (d.show == "Bachelor"){
-                    if(d.winner === 1){return '#2d87ad'}
-                    else if(d.elim_week === 10){return '#4690b3'}
-                    else if(d.elim_week === 9){return '#5a99ba'}
-                    else if(d.elim_week === 8){return '#6ba2c0'}
-                    else if(d.elim_week === 7){return '#7cacc6'}
-                    else if(d.elim_week === 6){return '#8cb5cd'}
-                    else if(d.elim_week === 5){return '#9cbed3'}
-                    else if(d.elim_week === 4){return '#abc8da'}
-                    else if(d.elim_week === 3){return '#bbd2e0'}
-                    else if(d.elim_week === 2){return '#cadbe7'}
-                    else if(d.elim_week === 1){return '#d9e5ed'}
-                    else {return '#d9e5ed'}
+                else if(d.show == "Bachelor"){
+                    if(d.winner === 1){return '#66c000'}
+                    else if(d.elim_week === 10){return '#69be1c'}
+                    else if(d.elim_week === 9){return '#8ad746'}
+                    else if(d.elim_week === 8){return '#96d95b'}
+                    else if(d.elim_week === 7){return '#a7ea6c'}
+                    else if(d.elim_week === 6){return '#b4e583'}
+                    else if(d.elim_week === 5){return '#c4ea99'}
+                    else if(d.elim_week === 4){return '#d0ecac'}
+                    else if(d.elim_week === 3){return '#d3ecb8'}
+                    else if(d.elim_week === 2){return '#e4fccb'}
+                    else if(d.elim_week === 1){return '#ffffff'}
+                    else {return 'rgba(255,255,255,0.45)'}
                 }
                 else{
-                    if(d.winner === 1){return '#AD6A1C'}
-                    else if(d.elim_week === 10){return '#b67631'}
-                    else if(d.elim_week === 9){return '#bf8244'}
-                    else if(d.elim_week === 8){return '#c88f57'}
-                    else if(d.elim_week === 7){return '#d09b6a'}
-                    else if(d.elim_week === 6){return '#d8a87d'}
-                    else if(d.elim_week === 5){return '#dfb590'}
-                    else if(d.elim_week === 4){return '#e6c2a3'}
-                    else if(d.elim_week === 3){return '#eccfb7'}
-                    else if(d.elim_week === 2){return '#f2ddcb'}
-                    else if(d.elim_week === 1){return '#f8eadf'}
-                    else {return '#f8eadf'}
+                    if(d.winner === 1){return '#ff005a'}
+                    else if(d.elim_week === 10){return '#f82254'}
+                    else if(d.elim_week === 9){return '#f34c6b'}
+                    else if(d.elim_week === 8){return '#ff6b82'}
+                    else if(d.elim_week === 7){return '#fc7e8e'}
+                    else if(d.elim_week === 6){return '#fd96a2'}
+                    else if(d.elim_week === 5){return '#ffa1aa'}
+                    else if(d.elim_week === 4){return '#ff9da6'}
+                    else if(d.elim_week === 3){return '#ffc7ca'}
+                    else if(d.elim_week === 2){return '#ffd2d4'}
+                    else if(d.elim_week === 1){return '#ffffff'}
+                    else {return 'rgba(255,255,255,0.45)'}
                 }
             })
     }

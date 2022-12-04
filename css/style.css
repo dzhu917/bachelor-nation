@@ -33,8 +33,15 @@ body {
     text-align: left;
 }
 
-.chart-label, .x-axis-label, .allContestantDotLegend-label, .allContestantCirclesSeasonLabels{
-    fill: rgba(255, 255, 255, 0.83);
+.x-axis-label, .winner-chart-label, .allContestantDotLegend-label, .allContestantCirclesSeasonLabels{
+    fill: white;
+    font-family: "Roboto Serif";
+    font-weight: 400;
+}
+
+.chart-label{
+    fill: white;
+    font-size: 13px;
     font-family: "Roboto Serif";
     font-weight: 400;
 }
@@ -46,6 +53,7 @@ body {
 table{
     font-family: "Roboto Serif";
     font-weight: 400;
+    background-color: #C8BAFB;
 }
 
 .scroll-down {
