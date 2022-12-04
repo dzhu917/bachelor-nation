@@ -121,7 +121,7 @@ class RunnerupVis {
             .attr('height', vis.height / 5 - 6)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d < 0 ? "#D7A7A0" : "#E0D188"
+                return d < 0 ? "#DEFFBO" : "#F59BBB"
             })
             .attr('stroke-opacity', 0)
             .attr("fill-opacity", 0)
@@ -129,38 +129,49 @@ class RunnerupVis {
         vis.ruIntroLegend = d3.select("#ru-intro-legend")
             .append("svg")
             .attr("id", "ru-intro-legend-svg")
-            .attr("height", 200)
+            .attr("height", 125)
+
+        vis.ruIntroLegend
+            .append("rect")
+            .attr("x", 5)
+            .attr("y", 5)
+            .attr("width", 60)
+            .attr("height", 100)
+            .attr("fill-opacity", 0)
+            .attr("stroke", "#D7A7A0")
+            .attr("stroke-width", 1)
+
         
         vis.ruIntroLegend
             .append("circle")
-            .attr("cx", 20)
+            .attr("cx", 35)
             .attr("cy", 20)
             .attr("r", 5)
-            .attr("fill", "#D7A7A0")
+            .attr("fill", "#66c000")
 
         vis.ruIntroLegend
             .append("text")
             .text("← Winner")
-            .attr("x", 40)
+            .attr("x", 70)
             .attr("y", 25)
 
         vis.ruIntroLegend
             .append("circle")
-            .attr("cx", 20)
+            .attr("cx", 35)
             .attr("cy", 60)
             .attr("r", 5)
-            .attr("fill", "#D7A7A0")
+            .attr("fill", "#DEFFB0")
 
         vis.ruIntroLegend
             .append("text")
             .text("← Runner up")
-            .attr("x", 40)
+            .attr("x", 70)
             .attr("y", 65)
 
         vis.ruIntroLegend
             .append("text")
-            .text("S*")
-            .attr("x", 20)
+            .text("S1")
+            .attr("x", 35)
             .attr("y", 100)
             .attr("text-anchor", "middle")
             .style("font-size", 12)
@@ -175,8 +186,8 @@ class RunnerupVis {
             .append("circle")
             .attr("cx", 40)
             .attr("cy", 20)
-            .attr("r", 5)
-            .attr("fill", "#FF0000")
+            .attr("r", 8)
+            .attr("fill", "#C8BAFB")
 
         vis.ruFirLegend
             .append("text")
@@ -192,7 +203,7 @@ class RunnerupVis {
             .attr("width", 35)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d > 0 ? "#D7A7A0" : "#E0D188"
+                return d < 0 ? "#DEFFBO" : "#F59BBB"
             })
             .attr('stroke-opacity', 0.5)
             .attr("fill-opacity", 0)
@@ -221,21 +232,21 @@ class RunnerupVis {
             .attr("cx", 20)
             .attr("cy", 20)
             .attr("r", 5)
-            .attr("fill", "#D7A7A0")
+            .attr("fill", "#DEFFB0")
 
         vis.ruDatesLegend
             .append("circle")
             .attr("cx", 95)
             .attr("cy", 20)
             .attr("r", Math.sqrt(4) * 5)
-            .attr("fill", "#D7A7A0")
+            .attr("fill", "#DEFFB0")
 
         vis.ruDatesLegend
             .append("circle")
             .attr("cx", 170)
             .attr("cy", 20)
             .attr("r", Math.sqrt(7) * 5)
-            .attr("fill", "#D7A7A0")
+            .attr("fill", "#DEFFB0")
 
         // insert x axes with tickes 1, 4, and 7 using d3.axes
         vis.ruDatesLegend
@@ -258,7 +269,7 @@ class RunnerupVis {
             .attr("width", 35)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d > 0 ? "#D7A7A0" : "#E0D188"
+                return d < 0 ? "#DEFFBO" : "#F59BBB"
             })
             .attr('stroke-opacity', 0.5)
             .attr("fill-opacity", 0)
@@ -360,9 +371,19 @@ updateRunnerup() {
             .attr("r", 5)
             .attr('fill', function (d, i) {
                 if (d.show === "Bachelorette") {
-                    return '#E0D188'
+                    if (d.winner == 1) {
+                        return "#FF005A"
+                    }
+                    else{
+                        return '#F59BBB'
+                    }
                 } else {
-                    return '#D7A7A0'
+                    if (d.winner == 1) {
+                        return "#66C000"
+                    }
+                    else{
+                        return '#DEFFB0'
+                    }
                 }
             })
 
@@ -396,7 +417,7 @@ updateRunnerup() {
             .attr('height', vis.height / 5 - 6)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d < 0 ? "#D7A7A0" : "#E0D188"
+                return d < 0 ? "#DEFFBO" : "#F59BBB"
             })
             .attr('stroke-opacity', 0)
             .attr("fill-opacity", 0)
@@ -474,19 +495,24 @@ updateRunnerup() {
             })
             .attr("r", function(d) {
                 if ((d.show == "Bachelor" && (d.season == 11 || d.season == 14 || d.season == 16 || d.season == 17 || d.season == 21)) || (d.show == "Bachelorette" && (d.season == 4 || d.season == 6 || d.season == 9 || d.season == 11 || d.season == 12 || d.season == 13))) {
-                    return 5
+                    if (d.fir == 1) {
+                        return 8
+                    }
+                    else{
+                        return 5
+                    }
                 }
                 else {
                     return 0
                 }})
             .attr('fill', function (d, i) {
                 if (d.fir == 1) {
-                    return "#FF0000"
+                    return "#C8BAFB"
                 }
                 if (d.show === "Bachelorette") {
-                    return '#E0D188'
+                    return '#F59BBB'
                 } else {
-                    return '#D7A7A0'
+                    return '#DEFFB0'
                 }
             })
 
@@ -520,7 +546,7 @@ updateRunnerup() {
             .attr('height', vis.height / 5 - 6)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d > 0 ? "#D7A7A0" : "#E0D188"
+                return d < 0 ? "#DEFFBO" : "#F59BBB"
             })
             // change opacity if d.fir == 1
             .attr('stroke-opacity', function (d) {
@@ -604,9 +630,19 @@ updateRunnerup() {
             .attr("r", d => Math.sqrt(d.roses) * 5)
             .attr('fill', function (d, i) {
                 if (d.show === "Bachelorette") {
-                    return '#E0D188'
+                    if (d.winner == 1) {
+                        return "#FF005A"
+                    }
+                    else{
+                        return '#F59BBB'
+                    }
                 } else {
-                    return '#D7A7A0'
+                    if (d.winner == 1) {
+                        return "#66C000"
+                    }
+                    else{
+                        return '#DEFFB0'
+                    }
                 }
             })
 
@@ -640,7 +676,7 @@ updateRunnerup() {
             .attr('height', vis.height / 5 - 6)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d > 0 ? "#D7A7A0" : "#E0D188"
+                return d < 0 ? "#DEFFBO" : "#F59BBB"
             })
             .attr("stroke-opacity", function (d, i) {
                 if (d == -5 || d == -10 || d == -12 || d == 12 || d == 14) {
