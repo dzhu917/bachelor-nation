@@ -85,7 +85,7 @@ class FirVis {
             .attr("height",2)
             .attr("fill", '#C8BAFB')
             .attr('x', 25)
-            .attr('y', 80)
+            .attr('y', 85)
             .attr('opacity', .5)
 
         vis.wrangleData();
