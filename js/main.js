@@ -221,6 +221,10 @@ scroll.on('active', function(index){
         '11%',
         '22%',
         '92%',
+        '5%',
+        '69%',
+        '42%',
+        '0.5%'
     ];
     const doors = document.querySelectorAll('.door');
 
@@ -237,7 +241,7 @@ scroll.on('active', function(index){
 
             const boxes = door.querySelector('.boxes');
             const boxesClone = boxes.cloneNode(false);
-            const pool = ['❓'];
+            const pool = ['🔮'];
 
             if (!firstInit) {
                 const arr = [];
