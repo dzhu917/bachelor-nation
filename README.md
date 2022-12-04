@@ -27,6 +27,6 @@ This file creates our last main visualization, which compares the winners and th
 ### roses.js 
 This file creates the rose and glitter animations on the first slide. 
 
-This project uses Bootstrap for its CSS framework and the JavaScript library D3.js for its interactive visualizations. 
+Our project uses Bootstrap for its CSS framework and the JavaScript library D3.js for its interactive visualizations. There are no need to download any additional libraries to run this project - all data and code required is contained within this Github repository. 
 
 
