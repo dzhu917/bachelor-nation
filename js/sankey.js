@@ -24,7 +24,7 @@ class FirVis {
             .attr("id", "sankeygroup")
             .attr("visibility", "hidden");
 
-        // append div container for tooltip
+        // Append div container for tooltip
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'divTooltip')
@@ -46,16 +46,38 @@ class FirVis {
             .attr("height",15)
             .attr("fill", (d,i) => vis.allContestantDotLegendColors[i])
             .attr('y', 10)
-            .attr('x',(d,i) => i*300 + vis.margin.left)
+            .attr('x',(d,i) => {
+                if (i == 0){
+                    return vis.margin.left
+                }
+                else if (i == 1){
+                    return 225 + vis.margin.left
+                }
+                else{
+                    return 500 + vis.margin.left
+                }
+
+            })
 
         vis.allContestantDotLegend.enter()
             .append("text")
             .attr("class","allContestantDotLegend-label")
             .text(d => d)
             .attr('y', 25)
-            .attr('x',(d,i) => 20 + i*300 + vis.margin.left)
+            .attr('x',(d,i) => {
+                if (i == 0){
+                    return vis.margin.left + 20
+                }
+                else if (i == 1){
+                    return 225 + vis.margin.left + 20
+                }
+                else{
+                    return 500 + vis.margin.left + 20
+                }
 
-        // CREATE SLIDER
+            })
+
+        // Create slider
         vis.sliderFill = d3.sliderBottom()
             .min(0)
             .max(10)
@@ -78,7 +100,7 @@ class FirVis {
 
         vis.gFill.call(vis.sliderFill);
 
-        // add divider line
+        // Add divider line
         vis.dividerRect = vis.sankeygroup
             .append('rect')
             .attr("width", 385)
@@ -94,7 +116,7 @@ class FirVis {
     wrangleData(){
         let vis = this;
 
-        // sort data by FIR
+        // Sort data by FIR
         vis.data.sort((a,b) => {return b.fir - a.fir})
     }
 
@@ -106,11 +128,11 @@ class FirVis {
             .transition()
             .attr("visibility", "visible");
 
-        // create circle containers
+        // Create circle containers
         let allContestantCircles = vis.sankeygroup.selectAll('.allContestantCircles')
             .data(vis.data);
 
-        // append circles
+        // Append circles
         allContestantCircles.enter().append('circle')
             .attr("class", "allContestantCircles")
             .on("mouseover", function(event,d){
@@ -165,6 +187,7 @@ class FirVis {
         allContestantCircles.exit().remove();
     }
 
+    // Check if contestant is winner
     winnerPrint(week){
         if (Number.isNaN(week)){
             return "Winner";

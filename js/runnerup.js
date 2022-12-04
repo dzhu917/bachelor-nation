@@ -121,7 +121,7 @@ class RunnerupVis {
             .attr('height', vis.height / 5 - 6)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d < 0 ? "#DEFFBO" : "#F59BBB"
+                return d > 0 ? "#DEFFB0" : "#F59BBB"
             })
             .attr('stroke-opacity', 0)
             .attr("fill-opacity", 0)
@@ -203,7 +203,7 @@ class RunnerupVis {
             .attr("width", 35)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d < 0 ? "#DEFFBO" : "#F59BBB"
+                return d > 0 ? "#DEFFB0" : "#F59BBB"
             })
             .attr('stroke-opacity', 0.5)
             .attr("fill-opacity", 0)
@@ -269,7 +269,7 @@ class RunnerupVis {
             .attr("width", 35)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d < 0 ? "#DEFFBO" : "#F59BBB"
+                return d > 0 ? "#DEFFB0" : "#F59BBB"
             })
             .attr('stroke-opacity', 0.5)
             .attr("fill-opacity", 0)
@@ -417,7 +417,7 @@ updateRunnerup() {
             .attr('height', vis.height / 5 - 6)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d < 0 ? "#DEFFBO" : "#F59BBB"
+                return d > 0 ? "#DEFFB0" : "#F59BBB"
             })
             .attr('stroke-opacity', 0)
             .attr("fill-opacity", 0)
@@ -546,7 +546,7 @@ updateRunnerup() {
             .attr('height', vis.height / 5 - 6)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d < 0 ? "#DEFFBO" : "#F59BBB"
+                return d > 0 ? "#DEFFB0" : "#F59BBB"
             })
             // change opacity if d.fir == 1
             .attr('stroke-opacity', function (d) {
@@ -676,7 +676,7 @@ updateRunnerup() {
             .attr('height', vis.height / 5 - 6)
             .attr("stroke-width", 5)
             .attr('stroke', function (d, i) {
-                return d < 0 ? "#DEFFBO" : "#F59BBB"
+                return d > 0 ? "#DEFFB0" : "#F59BBB"
             })
             .attr("stroke-opacity", function (d, i) {
                 if (d == -5 || d == -10 || d == -12 || d == 12 || d == 14) {
