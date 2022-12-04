@@ -23,7 +23,7 @@ Bachelor,1,Rhonda ,0,0,3,0,,,,,0,3
 Bachelor,1,Kim ,0,0,4,0,,,,,0,0
 Bachelor,1,Shannon O,0,0,5,0,,,,,0,0
 Bachelor,1,Trista R,0,1,6,0,,,,,0,0
-Bachelor,1,Amanda M,1,0,N/A,0,,,,,0,0
+Bachelor,1,Amanda M,1,0,N/A,0,Event Planner,,,,0,0
 Bachelor,2,Amber ,0,0,1,0,,,,,0,0
 Bachelor,2,Camille ,0,0,1,0,,,,,0,1
 Bachelor,2,Cari ,0,0,1,0,,,,,0,2
@@ -47,7 +47,7 @@ Bachelor,2,Heather C,0,0,4,0,,,,,0,1
 Bachelor,2,Angela ,0,0,5,0,,,,,0,0
 Bachelor,2,Gwen G,0,0,6,0,,,,,0,0
 Bachelor,2,Brooke S,0,1,7,0,,,,,0,0
-Bachelor,2,Helene E,1,0,N/A,0,,,,,0,0
+Bachelor,2,Helene E,1,0,N/A,0,School Psychologist,,,,0,0
 Bachelor,3,Amy ,0,0,1,0,,,,,0,0
 Bachelor,3,Angela ,0,0,1,0,,,,,0,1
 Bachelor,3,Brooke ,0,0,1,0,,,,,0,2
@@ -72,7 +72,7 @@ Bachelor,3,Liz ,0,0,4,0,,,,,0,2
 Bachelor,3,Cristina ,0,0,5,0,,,,,0,0
 Bachelor,3,Tina ,0,0,6,0,,,,,0,0
 Bachelor,3,Kirsten ,0,1,7,0,,,,,0,0
-Bachelor,3,Jen ,1,0,N/A,0,,,,,0,0
+Bachelor,3,Jen ,1,0,N/A,0,Publicist,,,,0,0
 Bachelor,4,Darla ,0,0,1,0,,,,,0,0
 Bachelor,4,Heather ,0,0,1,0,,,,,0,1
 Bachelor,4,Julie ,0,0,1,0,,,,,0,2
@@ -173,7 +173,7 @@ Bachelor,7,Kindle ,0,0,4,0,,,,,1,1
 Bachelor,7,Kimberly ,0,0,5,0,,,,,3,0
 Bachelor,7,Sarah W ,0,0,6,0,,,,,2,0
 Bachelor,7,Krisily ,0,1,7,0,,,,,2,0
-Bachelor,7,Sarah B,1,0,N/A,0,,,,,5,0
+Bachelor,7,Sarah B,1,0,N/A,0,Nurse,,,,5,0
 Bachelor,8,Ali D,0,0,1,0,,,,,0,0
 Bachelor,8,Allie G,0,0,1,0,,,,,0,1
 Bachelor,8,April ,0,0,1,0,,,,,0,2
@@ -195,7 +195,7 @@ Bachelor,8,Jennifer ,0,0,3,0,,,,,0,0
 Bachelor,8,Shiloh ,0,0,3,0,,,,,0,1
 Bachelor,8,Jehan ,0,0,4,0,,,,,1,0
 Bachelor,8,Tara ,0,0,4,0,,,,,1,1
-Bachelor,8,Sarah B,0,0,5,0,,,,,1,0
+Bachelor,8,Sarah B,0,0,5,0,Kindergarten Teacher,,,,1,0
 Bachelor,8,Susan ,0,0,6,0,,,,,2,0
 Bachelor,8,Moana ,0,1,7,0,,,,,3,0
 Bachelor,8,Sarah S,1,0,N/A,0,Journalist,"Nelson, British Columbia",30,,4,0
@@ -328,7 +328,7 @@ Bachelor,13,Molly M,0,1,8,0,Department Store Buyer,"Brookfield, Wisconsin",24,,2
 Bachelor,13,Melissa R,1,0,N/A,0,Sales Representative,"Dallas, Texas",25,,5,0
 Bachelor,14,Caitlyn M,0,0,1,0,Spokesmodel,"Winfield, Illinois",24,,0,0
 Bachelor,14,Channy C,0,0,1,0,Mortgage Loan Officer,"Santa Rosa, California",29,,0,1
-Bachelor,14,Elizabeth Kr,0,0,1,0,"Captain, Air National Guard","Union, Kentucky",29,,0,2
+Bachelor,14,Elizabeth K,0,0,1,0,"Captain, Air National Guard","Union, Kentucky",29,,0,2
 Bachelor,14,Emily H,0,0,1,0,Casino Marketing Rep.,"Seattle, Washington",23,,0,3
 Bachelor,14,Kimberly S,0,0,1,0,NBA Dancer,"Norman, Oklahoma",24,,0,4
 Bachelor,14,Kirsten P,0,0,1,0,Waitress,"Aurora, Colorado",25,,0,5
@@ -339,7 +339,7 @@ Bachelor,14,Tiana K,0,0,1,0,Medical Technician,"Calgary, Alberta",31,,0,9
 Bachelor,14,Ashley E,0,0,2,0,Teacher,"Pittsburgh, Pennsylvania",29,,0,0
 Bachelor,14,Cristina M,0,0,2,0,Restaurant Manager,"San Diego, California",25,,0,1
 Bachelor,14,Rozlyn P,0,0,2,0,Model/Make-Up Artist,"Richmond, Virginia",28,,0,2
-Bachelor,14,Elizabeth Ki,0,0,3,0,Nanny,"Imperial, Nebraska",29,,1,0
+Bachelor,14,Elizabeth K,0,0,3,0,Nanny,"Imperial, Nebraska",29,,1,0
 Bachelor,14,Michelle K ,0,0,3,0,,,,,0,1
 Bachelor,14,Valishia S,0,0,3,0,Homemaker,"San Bernardino, California",32,,0,2
 Bachelor,14,Ashleigh H,0,0,4,0,Account Manager,"North Potomac, Maryland",25,,0,0
@@ -571,7 +571,7 @@ Bachelorette,1,Rob ,0,0,3,0,,,,,0,3
 Bachelorette,1,Greg T,0,0,4,0,,,,,0,0
 Bachelorette,1,Russ ,0,0,5,0,,,,,0,0
 Bachelorette,1,Charlie M,0,1,6,0,,,,,0,0
-Bachelorette,1,Ryan S,1,0,N/A,0,,,,,0,0
+Bachelorette,1,Ryan S,1,0,N/A,0,Firefighter,,,,0,0
 Bachelorette,2,Aaron ,0,0,1,0,,,,,0,0
 Bachelorette,2,Andy C,0,0,1,0,,,,,0,1
 Bachelorette,2,Anselm C,0,0,1,0,,,,,0,2
@@ -596,7 +596,7 @@ Bachelorette,2,Sean ,0,0,4,0,,,,,0,2
 Bachelorette,2,Lanny ,0,0,5,0,,,,,0,0
 Bachelorette,2,Chad ,0,0,6,0,,,,,0,0
 Bachelorette,2,Matthew H,0,1,7,0,,,,,0,0
-Bachelorette,2,Ian M,1,0,N/A,0,,,,,0,0
+Bachelorette,2,Ian M,1,0,N/A,0,Equity Research Sales,,,,0,0
 Bachelorette,3,Andrew ,0,0,1,0,,,,,0,0
 Bachelorette,3,Andy L,0,0,1,0,,,,,0,1
 Bachelorette,3,Chris C,0,0,1,0,,,,,0,2
@@ -612,16 +612,16 @@ Bachelorette,3,Jason I,0,0,2,0,,,,,0,1
 Bachelorette,3,Mark ,0,0,2,0,,,,,0,2
 Bachelorette,3,Matt M,0,0,2,0,,,,,0,3
 Bachelorette,3,Michael F,0,0,2,0,,,,,0,4
-Bachelorette,3,Ryan Sm,0,0,2,0,,,,,0,5
+Bachelorette,3,Ryan S,0,0,2,0,,,,,0,5
 Bachelorette,3,Stu L,0,0,2,0,,,,,0,6
 Bachelorette,3,Josh C,0,0,3,0,,,,,0,0
 Bachelorette,3,Keith ,0,0,3,1,,,,,0,1
 Bachelorette,3,Ben S,0,0,4,0,Entrepreneur,"Lubbock, Texas",28,,0,0
 Bachelorette,3,Fabrice L,0,0,4,0,,,,,0,1
 Bachelorette,3,Wendell J,0,0,5,0,,,,,0,0
-Bachelorette,3,Ryan Sh,0,0,6,0,,,,,0,0
+Bachelorette,3,Ryan S,0,0,6,0,,,,,0,0
 Bachelorette,3,John Paul M,0,1,7,0,,,,,0,0
-Bachelorette,3,Jerry F,1,0,N/A,0,,,,,0,0
+Bachelorette,3,Jerry F,1,0,N/A,0,Real Estate Agent,,,,0,0
 Bachelorette,4,Brian W,0,0,1,0,High school football coach,"Balch Springs, Texas",31,,0,0
 Bachelorette,4,Chandler F,0,0,1,0,Insurance rep.,"Virginia Beach, Virginia",25,,0,1
 Bachelorette,4,Donato C,0,0,1,0,Sales rep.,"Lexington, South Carolina",26,,0,2
@@ -854,34 +854,34 @@ Bachelorette,12,Luke P,0,0,8,0,War Veteran,"Burnet, Texas",31,,3,0
 Bachelorette,12,Chase M,0,0,9,0,Medical Sales Rep,"Castle Rock, Colorado",27,,2,0
 Bachelorette,12,Robby H,0,1,10,0,Former Competitive Swimmer,"St. Augustine, Florida",27,,4,0
 Bachelorette,12,Jordan R,1,0,N/A,1,Former Pro Quarterback,"Chico, California",27,,3,0
-Bachelorette,13,Blake K,0,0,1,0,,,,,0,0
-Bachelorette,13,Grant H,0,0,1,0,,,,,0,1
-Bachelorette,13,Jedidiah B,0,0,1,0,,,,,0,2
-Bachelorette,13,Kyle S,0,0,1,0,,,,,0,3
-Bachelorette,13,Michael B,0,0,1,0,,,,,0,4
-Bachelorette,13,Milton L,0,0,1,0,,,,,0,5
-Bachelorette,13,Mohit S,0,0,1,0,,,,,0,6
-Bachelorette,13,Rob H,0,0,1,0,,,,,0,7
-Bachelorette,13,Blake E,0,0,2,0,,,,,0,0
-Bachelorette,13,Demario J,0,0,2,0,,,,,0,1
-Bachelorette,13,Jamey K,0,0,2,0,,,,,0,2
-Bachelorette,13,Lucas Y,0,0,2,0,,,,,0,3
-Bachelorette,13,Brady E,0,0,3,0,,,,,0,0
-Bachelorette,13,Bryce P,0,0,3,0,,,,,0,1
-Bachelorette,13,Diggy M,0,0,3,0,,,,,0,2
-Bachelorette,13,Fred J,0,0,3,0,,,,,0,3
-Bachelorette,13,Iggy R,0,0,4,0,,,,,0,0
-Bachelorette,13,Jack S,0,0,4,0,,,,,0,1
-Bachelorette,13,Jonathan T,0,0,4,0,,,,,0,2
-Bachelorette,13,Anthony B,0,0,5,0,,,,,1,0
-Bachelorette,13,Josiah G,0,0,5,0,,,,,1,1
-Bachelorette,13,Lee G,0,0,5,0,,,,,0,2
-Bachelorette,13,Alex B,0,0,6,0,,,,,1,0
-Bachelorette,13,Kenny L,0,0,6,0,,,,,1,1
-Bachelorette,13,Will G,0,0,6,0,,,,,1,2
-Bachelorette,13,Adam G,0,0,7,0,,,,,0,0
-Bachelorette,13,Matt M,0,0,7,0,,,,,0,1
-Bachelorette,13,Dean U,0,0,8,0,,,,,3,0
-Bachelorette,13,Eric B,0,0,9,0,,,,,3,0
-Bachelorette,13,Peter K,0,1,10,0,,,,,3,0
-Bachelorette,13,Bryan A,1,0,N/A,1,,,,,6,0
+Bachelorette,13,Blake K,0,0,1,0,Aspiring Drummer,,,,0,0
+Bachelorette,13,Grant H,0,0,1,0,Emergency Physician,,,,0,1
+Bachelorette,13,Jedidiah B,0,0,1,0,ER Physician,,,,0,2
+Bachelorette,13,Kyle S,0,0,1,0,Marketing Consultant,,,,0,3
+Bachelorette,13,Michael B,0,0,1,0,Former Professional Basketball Player,,,,0,4
+Bachelorette,13,Milton L,0,0,1,0,Hotel Recreation Supervisor,,,,0,5
+Bachelorette,13,Mohit S,0,0,1,0,Product Manager,,,,0,6
+Bachelorette,13,Rob H,0,0,1,0,Law Student,,,,0,7
+Bachelorette,13,Blake E,0,0,2,0,US Marine Veteran,,,,0,0
+Bachelorette,13,Demario J,0,0,2,0,Executive Recruiter,,,,0,1
+Bachelorette,13,Jamey K,0,0,2,0,Sales Account Executive,,,,0,2
+Bachelorette,13,Lucas Y,0,0,2,0,Whaboom,,,,0,3
+Bachelorette,13,Brady E,0,0,3,0,Model,,,,0,0
+Bachelorette,13,Bryce P,0,0,3,0,Firefighter,,,,0,1
+Bachelorette,13,Diggy M,0,0,3,0,Senior Inventory Analyst,,,,0,2
+Bachelorette,13,Fred J,0,0,3,0,Executive Assistant,,,,0,3
+Bachelorette,13,Iggy R,0,0,4,0,Consulting Firm CEO,,,,0,0
+Bachelorette,13,Jack S,0,0,4,0,Attorney,,,,0,1
+Bachelorette,13,Jonathan T,0,0,4,0,Tickle Monster,,,,0,2
+Bachelorette,13,Anthony B,0,0,5,0,Education Software Manager,,,,1,0
+Bachelorette,13,Josiah G,0,0,5,0,Prosecuting Attorney,,,,1,1
+Bachelorette,13,Lee G,0,0,5,0,Singer-Songwriter,,,,0,2
+Bachelorette,13,Alex B,0,0,6,0,Information Systems Supervisor,,,,1,0
+Bachelorette,13,Kenny L,0,0,6,0,Professional Wrestler,,,,1,1
+Bachelorette,13,Will G,0,0,6,0,Sales Manager,,,,1,2
+Bachelorette,13,Adam G,0,0,7,0,Real Estate Agent,,,,0,0
+Bachelorette,13,Matt M,0,0,7,0,Construction Sales rep,,,,0,1
+Bachelorette,13,Dean U,0,0,8,0,Startup Recruiter,,,,3,0
+Bachelorette,13,Eric B,0,0,9,0,Personal Trainer,,,,3,0
+Bachelorette,13,Peter K,0,1,10,0,Business Owner,,,,3,0
+Bachelorette,13,Bryan A,1,0,N/A,1,Chiropractor,,,,6,0
