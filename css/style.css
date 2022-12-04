@@ -149,15 +149,16 @@ button {
 }
 
 #spinner{
-    background-color: #C8BAFB;
+    background-color: #d0c3ff;
     box-shadow: 3px 4px #5e5977;
 }
 
-#spinner:hover {background-color: #a99cd2
+#spinner:hover {
+    background-color: #a99cd2
 }
 
 #spinner:active{
-    background-color: #C8BAFB;
+    background-color: #d0c3ff;
     box-shadow: 3px 4px #5e5977;
     transform: translateY(4px);
 }
@@ -167,7 +168,8 @@ button {
     box-shadow: 3px 4px #919191;
 }
 
-#reseter:hover {background-color: #b2b2b2
+#reseter:hover {
+    background-color: #b2b2b2
 }
 
 #reseter:active{
