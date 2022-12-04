@@ -52,15 +52,6 @@ function createVis(data) {
     drawIntro();
 }
 
-/*
-let selectedCategory = document.getElementById('categorySelector').value;
-
-function categoryChange(){
-    selectedCategory = document.getElementById('categorySelector').value;
-    myDots.wrangleData();
-}
-*/
-
 function clean(chartType){
     if (chartType !== "dot"){
         d3.select("#dotgroup")
