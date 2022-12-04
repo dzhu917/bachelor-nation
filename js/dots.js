@@ -326,32 +326,6 @@ class DotsVis {
         vis.zoomedgroupXAxis = d3.axisTop()
             .scale(vis.zoomedgroupX);
 
-        vis.zoomedgroupText = vis.dotgroup.append("text")
-            .attr("class", "chart-label")
-            .attr("transform", "translate(15," + 300 + ")")
-            .style("font-size", "15px")
-            .text("Hover over each contestant below to see their age & occupation!")
-            .attr("visibility", "hidden");
-
-        let winnerchartlabelx = vis.width - vis.margin.right - 300 + 50;
-
-        vis.zoomedgroupWinnerLabel = vis.dotgroup.append("text")
-            .attr("class", "winner-chart-label")
-            .attr("x", winnerchartlabelx)
-            .attr("y", "330")
-            .style("font-size", "15px")
-            .text("Winner")
-            .attr("visibility", "hidden");
-
-        vis.zoomedgroupAxisLabel = vis.dotgroup.append("text")
-            .attr("class", "x-axis-label")
-            .attr("transform", "translate(15," + 280 + ")")
-            .style("font-size", "18px")
-            .style("font-weight", "bold")
-            .style("fill", "#C8BAFB")
-            .text("Contestants grouped by elimination week")
-            .attr("visibility", "hidden");
-
         vis.allContestantCircles
             .on("mouseover", function(d){
                 d3.select(this).attr("opacity", "0.5");
@@ -366,10 +340,6 @@ class DotsVis {
                     .attr("transform", "translate(0," + 340 + ")")
                     .style("font-size", "15px")
                     .call(vis.zoomedgroupXAxis);
-
-                vis.zoomedgroupText.attr("visibility", "visible");
-                vis.zoomedgroupWinnerLabel.attr("visibility", "visible");
-                vis.zoomedgroupAxisLabel.attr("visibility", "visible");
 
                 vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
                 vis.changeSelectedSeasonColor(d.target.__data__.season, d.target.__data__.show);
@@ -390,6 +360,29 @@ class DotsVis {
         // Filter data based on input season
         vis.filteredData = vis.data.filter(function (d) {return d.season === season_input & d.show === show_input;})
             .sort((a, b) => d3.descending(a.elim_week, b.elim_week))
+
+        vis.zoomedgroupText = vis.dotgroup.append("text")
+            .attr("class", "chart-label zoomedgroupdots")
+            .attr("transform", "translate(15," + 300 + ")")
+            .style("font-size", "15px")
+            .text("Hover over each contestant below to see their age & occupation!");
+
+        let winnerchartlabelx = vis.width - vis.margin.right - 300 + 50;
+
+        vis.zoomedgroupWinnerLabel = vis.dotgroup.append("text")
+            .attr("class", "winner-chart-label zoomedgroupdots")
+            .attr("x", winnerchartlabelx)
+            .attr("y", "330")
+            .style("font-size", "15px")
+            .text("Winner");
+
+        vis.zoomedgroupAxisLabel = vis.dotgroup.append("text")
+            .attr("class", "x-axis-label zoomedgroupdots")
+            .attr("transform", "translate(15," + 280 + ")")
+            .style("font-size", "18px")
+            .style("font-weight", "bold")
+            .style("fill", "#C8BAFB")
+            .text("Contestants grouped by elimination week");
 
         // Create new set of dots using filtered data
         vis.dotgroup.append('g')
