@@ -16,8 +16,6 @@ Our project aims to conduct an exploratory analysis of the Bachelor/Bachelorette
 
 ### scroller.js
 
-### sections.js 
-
 ### dots.js
 
 ### sankey.js
