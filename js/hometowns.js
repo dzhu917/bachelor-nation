@@ -1,85 +1,79 @@
 // this is a test
 
 class MapVis {
+  constructor(parentElement, data) {
+    this.parentElement = parentElement;
+    this.data = data;
 
-    constructor(parentElement, data) {
-        this.parentElement = parentElement;
-        this.data = data;
+    this.initVis();
+  }
+  initVis() {
+    let vis = this;
 
-        this.initVis()
+    // Margin object with properties for the four directions
+    vis.margin = { top: 20, right: 40, bottom: 20, left: 20 };
 
-    }
-    initVis() {
-        let vis = this
+    vis.padding = 30;
+    vis.svg = d3.select("#svg");
 
-        // Margin object with properties for the four directions
-        vis.margin = {top: 20, right: 40, bottom: 20, left: 20};
+    vis.width = vis.svg.style("width").replace("px", "");
+    vis.height = vis.svg.style("height").replace("px", "");
 
-        vis.padding = 30;
-        vis.svg = d3.select("#svg");
+    vis.mapgroup = vis.svg
+      .append("g")
+      .attr("id", "mapgroup")
+      .attr("visibility", "hidden");
 
-        vis.width = vis.svg.style("width").replace("px", "");
-        vis.height = vis.svg.style("height").replace("px", "");
+    // append div container for tooltip
+    // vis.tooltip = d3.select("body").append('div')
+    //     .attr('class', "tooltip")
+    //     .attr('id', 'divTooltip')
 
-        vis.mapgroup = vis.svg
-            .append("g")
-            .attr("id", "mapgroup")
-            .attr("visibility", "hidden")
+    // create a projection
+    // vis.projection = d3.geoStereographic() // geoOrthographic()
+    //     .translate([vis.width / 2, vis.height / 2])
+    //     .scale(230)
+    //
+    // // define a geo generator and pass your projection to it
+    // vis.path = d3.geoPath()
+    //     .projection(vis.projection);
 
-        // append div container for tooltip
-        // vis.tooltip = d3.select("body").append('div')
-        //     .attr('class', "tooltip")
-        //     .attr('id', 'divTooltip')
+    // add sphere
+    // vis.svg.append("path")
+    //     .datum({type: "Sphere"})
+    //     .attr("class", "graticule")
+    //     .attr('fill', '#ADDEFF')
+    //     .attr("stroke","rgba(129,129,129,0.35)")
+    //     .attr("d", vis.path);
 
-        // create a projection
-        // vis.projection = d3.geoStereographic() // geoOrthographic()
-        //     .translate([vis.width / 2, vis.height / 2])
-        //     .scale(230)
-        //
-        // // define a geo generator and pass your projection to it
-        // vis.path = d3.geoPath()
-        //     .projection(vis.projection);
+    // console.log(vis.data.objects.state)
+    // convert your TopoJSON data into GeoJSON data structure
+    // vis.world = topojson.feature(vis.data, vis.data.objects.state).features
 
+    // draw countries
+    // vis.countries = vis.svg.selectAll(".country")
+    //     .data(vis.world)
+    //     .enter().append("path")
+    //     .attr('class', 'country')
+    //     .attr("d", vis.path)
+    vis.wrangleData();
+  }
 
-        // add sphere
-        // vis.svg.append("path")
-        //     .datum({type: "Sphere"})
-        //     .attr("class", "graticule")
-        //     .attr('fill', '#ADDEFF')
-        //     .attr("stroke","rgba(129,129,129,0.35)")
-        //     .attr("d", vis.path);
+  wrangleData() {
+    let vis = this;
 
-        // console.log(vis.data.objects.state)
-        // convert your TopoJSON data into GeoJSON data structure
-        // vis.world = topojson.feature(vis.data, vis.data.objects.state).features
+    vis.updateVis();
+  }
 
-        // draw countries
-        // vis.countries = vis.svg.selectAll(".country")
-        //     .data(vis.world)
-        //     .enter().append("path")
-        //     .attr('class', 'country')
-        //     .attr("d", vis.path)
-        vis.wrangleData();
-    }
+  updateVis() {
+    let vis = this;
 
-    wrangleData(){
-        let vis = this;
+    vis.mapgroup.transition().attr("visibility", "visible");
 
-        vis.updateVis();
-    }
-
-    updateVis() {
-
-        let vis = this;
-
-        vis.mapgroup
-            .transition()
-            .attr("visibility", "visible");
-
-        vis.mapgroup
-            .append("text")
-            .attr("x", 500)
-            .attr("y", 300)
-            .text("hometown map")
-    }
+    vis.mapgroup
+      .append("text")
+      .attr("x", 500)
+      .attr("y", 300)
+      .text("hometown map");
+  }
 }
