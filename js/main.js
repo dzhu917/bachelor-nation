@@ -4,6 +4,7 @@ let svg;
 let myFIR;
 let myRunnerup;
 
+// Load in data
 let promises = [
     d3.csv("data/contestant-data.csv"),
     d3.json("data/hometowns.json")
