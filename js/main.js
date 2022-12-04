@@ -199,7 +199,10 @@ scroll.on('active', function(index){
     lastIndex = activeIndex;
 });
 
+// Slot machine widget function
 (function slotMachine() {
+
+    // Possible results
     const items = [
         '10%',
         '33%',
@@ -220,11 +223,14 @@ scroll.on('active', function(index){
         '42%',
         '0.5%'
     ];
+
     const doors = document.querySelectorAll('.door');
 
+    // Two buttons
     document.querySelector('#spinner').addEventListener('click', spin);
     document.querySelector('#reseter').addEventListener('click', init);
 
+    // Initialize shapes
     function init(firstInit = true, groups = 1, duration = 1) {
         for (const door of doors) {
             if (firstInit) {
@@ -237,6 +243,7 @@ scroll.on('active', function(index){
             const boxesClone = boxes.cloneNode(false);
             const pool = ['🔮'];
 
+            // Make sure to generate different result each time
             if (!firstInit) {
                 const arr = [];
                 for (let n = 0; n < (groups > 0 ? groups : 1); n++) {
@@ -281,6 +288,7 @@ scroll.on('active', function(index){
         }
     }
 
+    // Adds transition when spinning
     async function spin() {
         init(false, 1, 2);
 
@@ -292,6 +300,7 @@ scroll.on('active', function(index){
         }
     }
 
+    // Choose random element from array
     function shuffle([...arr]) {
         let m = arr.length;
         while (m) {
