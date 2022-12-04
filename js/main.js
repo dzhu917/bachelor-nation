@@ -165,13 +165,6 @@ function draw8(){
 
     myRunnerup.updateRunnerupRoses();
 }
-function draw9(){
-    console.log("draw9");
-
-    clean("map");
-
-    myHometowns.updateVis();
-}
 
 // Enables scrolling function
 // Loads text and draws graph on scroll
@@ -183,7 +176,6 @@ let activationFunctions = [
     draw2,
     draw3,
     draw4,
-    // draw9,
     draw5,
     draw6,
     draw7,
