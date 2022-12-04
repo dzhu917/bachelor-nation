@@ -194,13 +194,13 @@ class DotsVis {
             .attr('r', d => d.winner === 1 ? 7 : 3)
             .attr('fill', function(d){
                 if(d.show === "Bachelor" && d.winner === 1){
-                    return '#72d700'
+                    return '#66c000'
                 }
                 else if(d.show === "Bachelor" && d.winner === 0){
                     return '#deffb0'
                 }
                 else if(d.show === "Bachelorette" && d.winner === 1){
-                    return '#ec095a'
+                    return '#ff005a'
                 }
                 else {
                     return '#F59BBB'
@@ -287,7 +287,7 @@ class DotsVis {
                     return 0;
                 }
             })
-            .attr('r', d => d.winner === 1 ? 6 : 3)
+            .attr('r', d => d.winner === 1 ? 7 : 3)
             .attr('fill', function(d,i){
                 if(d.show == "Bachelor"){
                     if(d.winner === 1){return '#66c000'}
@@ -382,6 +382,7 @@ class DotsVis {
             .style("font-size", "18px")
             .style("font-weight", "bold")
             .style("fill", "#C8BAFB")
+            .style("font-family", "Syne")
             .text("Contestants grouped by elimination week");
 
         // Create new set of dots using filtered data

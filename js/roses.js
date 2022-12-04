@@ -1,5 +1,6 @@
 var canvas = document.getElementById("myCanvas");
 // set boundaries for roses
+canvas.style.opacity = ".6";
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -32,7 +33,7 @@ function Rose(x, y){
     this.y = y;
 
     this.fall = function(){
-        this.y = this.y+1;
+        this.y = this.y+.75;
         if(this.y > canvas.height){
             this.y = 0;
         }
@@ -47,7 +48,7 @@ function Heart(x, y){
     this.y = y;
 
     this.fall = function(){
-        this.y = this.y+1;
+        this.y = this.y+.5;
         if(this.y > canvas.height){
             this.y = 0;
         }
