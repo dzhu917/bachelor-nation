@@ -200,6 +200,7 @@ scroll.on('active', function(index){
 });
 
 // Slot machine widget function
+// Source: https://medium.com/@victortoschi/how-to-create-a-slot-machine-animation-with-css-and-javascript-9073ab9db9ea
 (function slotMachine() {
 
     // Possible results
