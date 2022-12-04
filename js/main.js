@@ -5,7 +5,7 @@ let myDots;
 let simulation, nodes;
 let svg;
 let myFIR;
-let myHometowns;
+// let myHometowns;
 let myRunnerup;
 
 let promises = [
@@ -32,7 +32,7 @@ Promise.all(promises)
 function createVis(data) {
     contestant_data = data[0];
     hometown_data = data[1];
-    updated_data = data[2];
+    // updated_data = data[2];
 
     let margins = {top: 20, right: 20, bottom: 50, left: 20};
     let width = document.getElementById("vis").getBoundingClientRect().width - margins.left - margins.right;
@@ -47,7 +47,7 @@ function createVis(data) {
     myDots = new DotsVis('vis', contestant_data);
     myFIR = new FirVis('firDiv', contestant_data);
     myRunnerup = new RunnerupVis('runnerupDiv', contestant_data);
-    myHometowns = new MapVis('mapDiv', hometown_data);
+    // myHometowns = new MapVis('mapDiv', hometown_data);
 
     drawIntro();
 }
@@ -77,11 +77,11 @@ function clean(chartType){
             .transition()
             .attr("visibility", "hidden")
     }
-    if (chartType !== "map"){
-        d3.select("#mapgroup")
-            .transition()
-            .attr("visibility", "hidden")
-    }
+    // if (chartType !== "map"){
+    //     d3.select("#mapgroup")
+    //         .transition()
+    //         .attr("visibility", "hidden")
+    // }
     if (chartType !== "intro"){
         d3.select("#intro")
             .html(null);
@@ -192,7 +192,7 @@ let activationFunctions = [
     draw2,
     draw3,
     draw4,
-    draw9,
+    // draw9,
     draw5,
     draw6,
     draw7,
