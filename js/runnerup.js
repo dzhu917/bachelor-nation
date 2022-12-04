@@ -139,7 +139,7 @@ class RunnerupVis {
             .attr("height", 100)
             .attr("fill-opacity", 0)
             .attr("stroke", "#D7A7A0")
-            .attr("stroke-width", 1)
+            .attr("stroke-width", 2)
 
         
         vis.ruIntroLegend
