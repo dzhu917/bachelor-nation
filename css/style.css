@@ -152,3 +152,11 @@ button {
     width: 100%;
     text-align: center;
 }
+
+#bottom line{
+stroke: white;
+}
+
+#bottom path{
+stroke: white;
+}
