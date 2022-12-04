@@ -10,8 +10,7 @@ let myRunnerup;
 
 let promises = [
     d3.csv("data/contestant-data-simplified-1.csv"),
-    d3.json("data/hometowns.json"),
-    d3.csv("data/updated_data.csv")
+    d3.json("data/hometowns.json")
 ];
 
 Promise.all(promises)
@@ -22,14 +21,6 @@ Promise.all(promises)
             d.season = +d.season;
             d.elim_week = +d.elim_week;
             d.winner = +d.winner;
-        });
-
-        data[1].forEach(function(d){
-            d.season = +d.season;
-            d.winner = +d.winner;
-            d.runner_up = +d.runner_up;
-            d.elim_week = +d.elim_week;
-            d.fir = +d.fir;
         });
 
         createVis(data)
