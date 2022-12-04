@@ -338,7 +338,7 @@ class DotsVis {
                 vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
                 vis.changeSelectedSeasonColor(d.target.__data__.season, d.target.__data__.show);
 
-                vis.zoomedgroup.exit().remove();
+                vis.dotgroup.exit().remove();
 
                 document.getElementById("selectedShow").innerText = d3.select(this)._groups[0][0].__data__.show;
                 document.getElementById("selectedSeason").innerText = d3.select(this)._groups[0][0].__data__.season;
