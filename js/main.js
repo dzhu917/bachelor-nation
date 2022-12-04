@@ -54,6 +54,13 @@ function clean(chartType){
             .transition()
             .attr("visibility", "hidden")
     }
+    if (chartType !== "dotlast"){
+        d3.select("#dotgroup")
+            .transition()
+            .attr("visibility", "hidden")
+
+        d3.selectAll('.zoomedgroupdots').remove()
+    }
     if (chartType !== "fir"){
         d3.select("#sankeygroup")
             .transition()
@@ -120,7 +127,7 @@ function draw3(){
 function draw4(){
     console.log("draw4");
 
-    clean("dot");
+    clean("dotlast");
 
     myDots.updateVisElimSorted();
 }
