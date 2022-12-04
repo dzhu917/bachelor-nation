@@ -335,12 +335,6 @@ class DotsVis {
             })
             .on("click", function(d,i){
 
-                vis.dotgroup.append("g")
-                    .attr("class", "x-axis axis")
-                    .attr("transform", "translate(0," + 340 + ")")
-                    .style("font-size", "15px")
-                    .call(vis.zoomedgroupXAxis);
-
                 vis.renderZoomedGroup(d.target.__data__.season, d.target.__data__.show);
                 vis.changeSelectedSeasonColor(d.target.__data__.season, d.target.__data__.show);
 
@@ -360,6 +354,12 @@ class DotsVis {
         // Filter data based on input season
         vis.filteredData = vis.data.filter(function (d) {return d.season === season_input & d.show === show_input;})
             .sort((a, b) => d3.descending(a.elim_week, b.elim_week))
+
+        vis.dotgroup.append("g")
+            .attr("class", "x-axis axis")
+            .attr("transform", "translate(0," + 340 + ")")
+            .style("font-size", "15px")
+            .call(vis.zoomedgroupXAxis);
 
         vis.zoomedgroupText = vis.dotgroup.append("text")
             .attr("class", "chart-label zoomedgroupdots")
