@@ -20,24 +20,18 @@ class DotsVis {
         vis.width = vis.svg.style("width").replace("px", "");
         vis.height = vis.svg.style("height").replace("px", "");
 
+        // Create svg for dot group
         vis.dotgroup = vis.svg
             .append("g")
             .attr("id", "dotgroup")
             .attr("visibility", "hidden");
 
-        // append div container for tooltip
+        // Append div container for tooltip
         vis.tooltip = d3.select("body").append('div')
             .attr('class', "tooltip")
             .attr('id', 'divTooltip')
 
-        // create group to fill white space below
-        vis.zoomedgroup = vis.dotgroup
-            .selectAll(".zoomedgroup")
-            .append("g")
-            .data(vis.data)
-            .attr("id", "zoomedgroup");
-
-        // CREATE LEGEND FOR DOT PLOT 1
+        // Create legend for Bachelor and Bachelorette contestants
         vis.allContestantDotLegendData = ["Bachelor contestants", "Bachelorette contestants"]
         vis.allContestantDotLegendColors = ["#deffb0", "#F59BBB"]
 
@@ -76,11 +70,12 @@ class DotsVis {
     updateVisAll(){
         let vis = this;
 
+        // Make dotgroup svg visible
         vis.dotgroup
             .transition()
             .attr("visibility", "visible");
 
-        // create circle containers
+        // Create circle containers for each contestant
         vis.allContestantCircles = vis.dotgroup
             .selectAll(".allContestantCircles")
             .data(vis.data)
@@ -91,6 +86,7 @@ class DotsVis {
             .attr("class", "allContestantCircles")
             .merge(vis.allContestantCircles)
             .attr('cx', function(d){
+                // Create cluters for different seasons
                 if (d.show === "Bachelorette"){
                     return d3.randomUniform(((d.season - 1) * (vis.width/21) + (vis.width/50)), (d.season * (vis.width/21)))();
                 }
@@ -99,6 +95,7 @@ class DotsVis {
                 }
             })
             .attr('cy', function(d){
+                // Randomly assigned y position
                 if (d.show === "Bachelorette"){
                     return 100 + (d3.randomUniform(vis.margin.top + vis.padding, 100)())
                 }
@@ -108,6 +105,7 @@ class DotsVis {
             })
             .attr('r', 3)
             .attr('fill', function(d,i){
+                // Different colors for Bachelor vs. Bachelorette contestants
                 if(d.show === "Bachelorette"){
                     return '#F59BBB'
                 }else{
@@ -117,6 +115,7 @@ class DotsVis {
 
         vis.allContestantCircles.transition();
 
+        // Add tooltip
         vis.allContestantCircles.on("mouseover", function(event,d){
 
             d3.select(this).style("stroke", "black")
@@ -145,7 +144,7 @@ class DotsVis {
                     .html(``);
             });
 
-        // ADD LABELS TO CLUSTERS
+        // Add season label to each cluster
         vis.allContestantCircles
             .enter()
             .append("text")
@@ -183,7 +182,7 @@ class DotsVis {
             .transition()
             .attr("visibility", "visible");
 
-        // create circle containers
+        // Create circle containers
         vis.allContestantCircles = vis.dotgroup
             .selectAll(".allContestantCircles")
             .data(vis.data)
@@ -191,8 +190,9 @@ class DotsVis {
         vis.allContestantCircles
             .merge(vis.allContestantCircles)
             .transition()
-            .attr('r', d => d.winner === 1 ? 7 : 3)
+            .attr('r', d => d.winner === 1 ? 7 : 3) // Different circle size for winners
             .attr('fill', function(d){
+                // Different colors for winners of each season
                 if(d.show === "Bachelor" && d.winner === 1){
                     return '#66c000'
                 }
@@ -224,6 +224,7 @@ class DotsVis {
             .transition()
             .attr('r', d => d.winner === 1 ? 7 : 3)
             .attr('fill', function(d,i){
+                // Different colors based on elimination week
                 if(d.show == "Bachelor"){
                     if(d.winner === 1){return '#66c000'}
                     else if(d.elim_week === 10){return '#69be1c'}
@@ -271,6 +272,7 @@ class DotsVis {
             .merge(vis.allContestantCircles)
             .transition()
             .attr('cy', function(d){
+                // Different y positions based on elimination week (should look like waterfall)
                 if (d.show === "Bachelor" & isNaN(d.elim_week)){
                     return 115
                 }
@@ -319,13 +321,16 @@ class DotsVis {
                 }
             });
 
+        // Create x-scale for the season that has been clicked on
         vis.zoomedgroupX = d3.scaleLinear()
             .range([10 + vis.margin.left, vis.width - vis.margin.right - 300])
             .domain([1, 10]);
 
+        // Create x-axis
         vis.zoomedgroupXAxis = d3.axisTop()
             .scale(vis.zoomedgroupX);
 
+        // Click on contestant to make detailed dotplot appear below existing dotplot
         vis.allContestantCircles
             .on("mouseover", function(d){
                 d3.select(this).attr("opacity", "0.5");
@@ -348,6 +353,7 @@ class DotsVis {
 
     }
 
+    // Creates the detailed season dotplot
     renderZoomedGroup(season_input, show_input){
         let vis = this;
 
@@ -357,12 +363,14 @@ class DotsVis {
         vis.filteredData = vis.data.filter(function (d) {return d.season === season_input & d.show === show_input;})
             .sort((a, b) => d3.descending(a.elim_week, b.elim_week))
 
+        // Display x-axis
         vis.dotgroup.append("g")
             .attr("class", "x-axis axis zoomedgroupdots")
             .attr("transform", "translate(0," + 340 + ")")
             .style("font-size", "15px")
             .call(vis.zoomedgroupXAxis);
 
+        // Subtitle
         vis.zoomedgroupText = vis.dotgroup.append("text")
             .attr("class", "chart-label zoomedgroupdots")
             .attr("transform", "translate(15," + 300 + ")")
@@ -371,6 +379,7 @@ class DotsVis {
 
         let winnerchartlabelx = vis.width - vis.margin.right - 300 + 50;
 
+        // Separate label for winner
         vis.zoomedgroupWinnerLabel = vis.dotgroup.append("text")
             .attr("class", "winner-chart-label zoomedgroupdots")
             .attr("x", winnerchartlabelx)
@@ -378,6 +387,7 @@ class DotsVis {
             .style("font-size", "15px")
             .text("Winner");
 
+        // Chart title
         vis.zoomedgroupAxisLabel = vis.dotgroup.append("text")
             .attr("class", "x-axis-label zoomedgroupdots")
             .attr("transform", "translate(15," + 280 + ")")
@@ -435,6 +445,7 @@ class DotsVis {
                     else {return 'rgba(255,255,255,0.45)'}
                 }
             })
+            // Add more detailed tooltip with age and occupation
             .on("mouseover", function(event,d){
                 vis.tooltip
                     .style("opacity", 1)
@@ -468,6 +479,7 @@ class DotsVis {
 
     }
 
+    // Change color of all contestants in selected season
     changeSelectedSeasonColor(season_input, show_input){
         let vis = this;
 
@@ -508,6 +520,7 @@ class DotsVis {
             })
     }
 
+    // Print elimination week as "Winner" instead of N/A for winners
     winnerPrint(week){
         if (Number.isNaN(week)){
             return "Winner";
