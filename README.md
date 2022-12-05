@@ -7,6 +7,8 @@ Video demo: https://youtu.be/sYFLKVyCrzg
 
 Our project aims to conduct an exploratory analysis of the Bachelor/Bachelorette franchise, the wildly popular reality dating show that has been airing since 2002. Over 6-10 weeks, each season narrows an initial group of ~30 contestants through Rose Ceremonies, during which the Bachelor/Bachelorette chooses which contestants to bring to the next round. Throughout each week, the Bachelor/Bachelorette can also grant special roses to contestants, such as group date roses or first impression roses. At the end of the season, the Bachelor/Bachelorette is expected to get engaged to the final contestant. Each week, producers carefully curate an entertaining, dramatic portrayal of the Bachelor/Bachelorette’s journey to love, while viewers at home tune into each episode with nervous anticipation. Throughout the 26 seasons of “The Bachelor” and 13 seasons of “The Bachelorette,” fans have predicted many different potential determinants/indicators of a winning contestant (e.g. screen time, reception of first impression rose). 
 
+Our project renders best on desktop and has not yet been developed for mobile viewing yet. Our project uses Bootstrap for its CSS framework and the JavaScript library D3.js for its interactive visualizations. There is no need to download any additional libraries to run this project - all data and code required is contained within this Github repository. 
+
 ## Description of Javascript Files 
 
 ### main.js
@@ -26,7 +28,4 @@ This file creates our last main visualization, which compares the winners and th
 
 ### roses.js 
 This file creates the falling image animations at the top of the page. 
-
-Our project uses Bootstrap for its CSS framework and the JavaScript library D3.js for its interactive visualizations. There is no need to download any additional libraries to run this project - all data and code required is contained within this Github repository. 
-
 
